@@ -1,5 +1,5 @@
 # TravelHere
-RxSwift+MVVM
 
-RxSwift+MVVM
-ARkit
+- MVVM
+- RxSwift
+- ARkit
