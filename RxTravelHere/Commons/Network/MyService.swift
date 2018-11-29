@@ -9,8 +9,8 @@
 import Foundation
 import Moya
 
-enum SimpleResult {
-    case ok(message: String)
+enum SimpleResult<T> {
+    case ok(data: T, msg: String)
     case sending
     case failed(error: THError)
     
@@ -24,6 +24,7 @@ enum MyService {
     
     enum User {
         case sendSecurityCode(phoneNum: String)
+        case login(phoneNum: String, code: String)
     }
 }
 

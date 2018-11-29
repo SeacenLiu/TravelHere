@@ -16,6 +16,8 @@ extension MyService.User: TargetType {
         switch self {
         case .sendSecurityCode(_):
             return "/sendSecurityCode"
+        case .login(_, _):
+            return "/login"
         }
     }
     
@@ -23,6 +25,8 @@ extension MyService.User: TargetType {
         switch self {
         case .sendSecurityCode(_):
             return .get
+        case .login( _, _):
+            return .post
         }
     }
     
@@ -35,6 +39,8 @@ extension MyService.User: TargetType {
         switch self {
         case let .sendSecurityCode(phoneNum):
             return .requestParameters(parameters: ["phoneNum": phoneNum], encoding: URLEncoding.queryString)
+        case let .login(phoneNum, code):
+            return .requestParameters(parameters: ["phoneNum": phoneNum, "code": code], encoding: URLEncoding.queryString)
         }
     }
     

@@ -36,10 +36,10 @@ extension Account.PhoneLogin.View {
         
         _viewModel.sendPhone.drive(onNext: { result in
             switch result {
-            case let .ok(msg):
+            case let .ok(num, msg):
                 self.showHUD(successText: msg, completion: {
                     self.navigationController?.pushViewController(
-                        Account.ValidateLogin.View(),
+                        Account.ValidateLogin.View(phone: num),
                         animated: true)
                 })
             case let .failed(err):
@@ -53,7 +53,10 @@ extension Account.PhoneLogin.View {
             .subscribe(onNext: { self.dismiss(animated: true) })
             .disposed(by: _diposeBag)
         
-        
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
 }
 

@@ -13,25 +13,28 @@ import Moya
 
 extension Account.PhoneLogin {
     final class PhoneViewModel {
+        typealias Result = SimpleResult<String>
+        
         let validatedPhone: Driver<Bool>
-        let sendPhone: Driver<SimpleResult>
+        let sendPhone: Driver<Result>
         
         init(input:(phone: Driver<String>, sendTaps: Signal<()>)) {
             validatedPhone = input.phone.map { $0.count == 11 }
             
             let provider = MoyaProvider<MyService.User>()
             sendPhone = input.sendTaps.withLatestFrom(input.phone).flatMapLatest({
-                return  provider.rx.request(.sendSecurityCode(phoneNum: $0))
-                    .map { response in
-                        guard let responseData = response.mapObject(type: String.self) else {
-                            return SimpleResult.defaultFailed
+                let phoneNum = $0
+                return  provider.rx.request(.sendSecurityCode(phoneNum: phoneNum))
+                    .map { response -> Result in
+                        guard let body = response.mapObject(type: String.self) else {
+                            return .defaultFailed
                         }
-                        if responseData.code == .frequently {
+                        if body.code == .frequently {
                             return .failed(error: .operationFrequently)
                         }
-                        return .ok(message: "操作成功")
+                        return .ok(data: phoneNum, msg: "操作成功")
                     }
-                    .asDriver(onErrorJustReturn: SimpleResult.defaultFailed)
+                    .asDriver(onErrorJustReturn: .defaultFailed)
                     .startWith(.sending)
             })
         }

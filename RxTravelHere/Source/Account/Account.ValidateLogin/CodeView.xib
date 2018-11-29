@@ -140,6 +140,7 @@
             <connections>
                 <outlet property="codeTf" destination="lyW-vL-aFa" id="AXX-Jw-dZv"/>
                 <outlet property="loginBtn" destination="fMM-Ny-e44" id="QQ4-A5-FbF"/>
+                <outlet property="phoneLb" destination="ahU-GE-XHg" id="aMS-yv-jwJ"/>
             </connections>
         </view>
     </objects>
