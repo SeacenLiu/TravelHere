@@ -7,3 +7,11 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
+
+extension Account.Edit {
+    final class ViewModel {
+        
+    }
+}

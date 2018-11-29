@@ -6,8 +6,16 @@ target 'RxTravelHere' do
   use_frameworks!
 
   # Pods for RxTravelHere
-  pod 'RxSwift'
-  pod 'RxCocoa'
+  
+  pod 'RxSwift', '~> 4.3.1'
+  pod 'RxCocoa', '~> 4.3.1'
+  
+  # Alamofire (4.7.3)
+  # Moya (11.0.2)
+  # Result (3.2.4)
+  pod 'Moya/RxSwift'
+  
+  pod 'SVProgressHUD'
 
   target 'RxTravelHereTests' do
     inherit! :search_paths

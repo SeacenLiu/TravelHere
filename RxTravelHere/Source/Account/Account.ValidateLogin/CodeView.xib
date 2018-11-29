@@ -137,6 +137,10 @@
                 <constraint firstItem="fMM-Ny-e44" firstAttribute="centerX" secondItem="rge-Mp-PWG" secondAttribute="centerX" id="t36-iz-Rrz"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="rge-Mp-PWG"/>
+            <connections>
+                <outlet property="codeTf" destination="lyW-vL-aFa" id="AXX-Jw-dZv"/>
+                <outlet property="loginBtn" destination="fMM-Ny-e44" id="QQ4-A5-FbF"/>
+            </connections>
         </view>
     </objects>
     <resources>
