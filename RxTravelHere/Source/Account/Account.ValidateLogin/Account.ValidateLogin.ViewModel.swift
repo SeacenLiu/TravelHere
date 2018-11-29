@@ -12,6 +12,10 @@ import RxCocoa
 import Moya
 
 extension Account.ValidateLogin {
+    struct ShowViewModel {
+        let phoneNum: String
+    }
+    
     final class ViewModel {
         typealias Result = SimpleResult<Account.Model>
         
@@ -33,7 +37,7 @@ extension Account.ValidateLogin {
                             if body.code != .success {
                                 return .failed(error: .securityCodeError)
                             }
-                            // FIXME: - 不应该将 Model 传出，那我的 Model 应该如何处理    
+                            // FIXME: - 不应该将 Model 传出，那我的 Model 应该如何处理
                             return .ok(data: body.data, msg: "登录成功")
                         }
                         .asDriver(onErrorJustReturn: .defaultFailed)

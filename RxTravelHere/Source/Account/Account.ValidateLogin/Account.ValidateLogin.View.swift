@@ -16,11 +16,10 @@ extension Account.ValidateLogin {
         
         let _disposeBag = DisposeBag()
         
-        // FIXME: - 这个不就是 Model 吗... View 不能接触Model   
-        let phone: String
+        let showViewModel: ShowViewModel
         
-        init(phone: String) {
-            self.phone = phone
+        init(viewModel: ShowViewModel) {
+            showViewModel = viewModel
             super.init(nibName: nil, bundle: nil)
         }
         
@@ -33,7 +32,7 @@ extension Account.ValidateLogin {
         }
         
         private lazy var _viewModel = ViewModel(
-            phone: self.phone,
+            phone: showViewModel.phoneNum,
             input: (
                 code: self._codeView.codeTf.rx.text.orEmpty.asDriver(),
                 loginTaps: self._codeView.loginBtn.rx.tap.asSignal()
@@ -46,7 +45,7 @@ extension Account.ValidateLogin.View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        _codeView.phoneLb.text = phone
+        _codeView.phoneLb.text = showViewModel.phoneNum
         
         _viewModel.validatedCode
             .drive(_codeView.loginBtn.rx.isEnabled)

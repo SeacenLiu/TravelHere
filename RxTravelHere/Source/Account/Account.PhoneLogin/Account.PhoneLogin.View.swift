@@ -39,7 +39,9 @@ extension Account.PhoneLogin.View {
             case let .ok(num, msg):
                 self.showHUD(successText: msg, completion: {
                     self.navigationController?.pushViewController(
-                        Account.ValidateLogin.View(phone: num),
+                        Account.ValidateLogin.View(viewModel:
+                            Account.ValidateLogin.ShowViewModel(phoneNum: num)
+                        ),
                         animated: true)
                 })
             case let .failed(err):
