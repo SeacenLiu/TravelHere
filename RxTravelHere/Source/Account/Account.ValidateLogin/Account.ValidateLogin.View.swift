@@ -16,7 +16,7 @@ extension Account.ValidateLogin {
         
         let _disposeBag = DisposeBag()
         
-        // FIXME: - 这个不就是 Model 吗... View 不能接触Model
+        // FIXME: - 这个不就是 Model 吗... View 不能接触Model   
         let phone: String
         
         init(phone: String) {
