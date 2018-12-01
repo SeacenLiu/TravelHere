@@ -29,16 +29,6 @@ enum MyService {
     }
 }
 
-extension Response {
-    func mapObject<T: Decodable>(type: T.Type) throws -> MyService.ResponseBody<T> {
-        do {
-            return try JSONDecoder().decode(MyService.ResponseBody<T>.self, from: data)
-        } catch {
-            throw THError.jsonError
-        }
-    }
-}
-
 extension Reactive where Base: MoyaProviderType {
     func sc_request<T: Decodable>(_ type: T.Type, _ token: Base.Target, callbackQueue: DispatchQueue? = nil) -> Single<T> {
         return Single.create { [weak base] single in
@@ -46,25 +36,20 @@ extension Reactive where Base: MoyaProviderType {
                 switch result {
                 case let .success(response):
                     do {
-                        let body = try response.mapObject(type: MyService.ResponseBody<T>.self)
+                        let body = try response.map(MyService.ResponseBody<T>.self)
                         // 处理业务错误
                         if body.code != .success {
-                            
-                            // TODO: - 需要根据后台返回的字符型定义
-                            single(.error(THError.UnknowError))
+                            single(.error(THError.infoEror(str: body.info)))
                         }
-                        let model = body.data as! T
                         // 返回模型
-                        single(.success(model))
-                    } catch (let err) {
-                        // JSON反序列化失败
-                        single(.error(err))
+                        single(.success(body.data))
+                    } catch (_) {
+                        // JSON反序列化错误
+                        single(.error(THError.jsonError))
                     }
-                    
-                    break
-                case let .failure(error):
+                case .failure(_):
                     // 处理网络异常错误
-                    single(.error(error))
+                    single(.error(THError.networkAnomaly))
                 }
             }
             

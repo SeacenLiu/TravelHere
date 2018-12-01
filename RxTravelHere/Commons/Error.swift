@@ -10,6 +10,7 @@ import Foundation
 
 enum THError: Error {
     case jsonError
+    case infoEror(str: String)
     case networkAnomaly
     case operationFrequently
     case securityCodeError
@@ -18,7 +19,7 @@ enum THError: Error {
     var localizedDescription: String {
         switch self {
         case .jsonError:
-            return "JSON序列化失败"
+            return "JSON反序列化失败"
         case .networkAnomaly:
             return "网络异常"
         case .operationFrequently:
@@ -27,6 +28,8 @@ enum THError: Error {
             return "验证码错误"
         case .UnknowError:
             return "未知错误"
+        case .infoEror(let str):
+            return str
         }
     }
 }
