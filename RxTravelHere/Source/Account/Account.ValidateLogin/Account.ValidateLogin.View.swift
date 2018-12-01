@@ -45,27 +45,31 @@ extension Account.ValidateLogin.View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        _codeView.phoneLb.text = showViewModel.phoneNum
+        setupUI()
         
         _viewModel.validatedCode
             .drive(_codeView.loginBtn.rx.isEnabled)
             .disposed(by: _disposeBag)
         
-        _viewModel.login.drive(onNext: { result in
-            switch result {
-            case .sending:
-                self.showHUD()
-            case let .ok(data, msg):
-                self.showHUD(successText: msg)
-                log(data)
-            case let .failed(err):
-                self.showHUD(error: err)
-            }
-        }).disposed(by: _disposeBag)
+//        _viewModel.login.drive(onNext: { result in
+//            switch result {
+//            case .sending:
+//                self.showHUD()
+//            case let .ok(data, msg):
+//                self.showHUD(successText: msg)
+//                log(data)
+//            case let .failed(err):
+//                self.showHUD(error: err)
+//            }
+//        }).disposed(by: _disposeBag)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+    }
+    
+    func setupUI() {
+        _codeView.phoneLb.text = showViewModel.phoneNum
     }
 }
 

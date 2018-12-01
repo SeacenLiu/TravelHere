@@ -48,4 +48,14 @@ extension MyService.User: TargetType {
         return ["Content-type": "application/json"]
     }
     
+    var dataType: Decodable.Type {
+        switch self {
+        case .sendSecurityCode(_):
+            return String.self
+        case .login(_, _):
+            return String.self
+        }
+    }
+    
+    
 }

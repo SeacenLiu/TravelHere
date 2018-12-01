@@ -7,6 +7,7 @@ target 'RxTravelHere' do
 
   # Pods for RxTravelHere
   
+  # Reactive
   pod 'RxSwift', '~> 4.3.1'
   pod 'RxCocoa', '~> 4.3.1'
   
@@ -15,7 +16,8 @@ target 'RxTravelHere' do
   # Result (3.2.4)
   pod 'Moya/RxSwift'
   
-  pod 'SVProgressHUD'
+  # UI
+  pod 'SVProgressHUD' , '~> 2.2.5'
 
   target 'RxTravelHereTests' do
     inherit! :search_paths

@@ -33,23 +33,28 @@ extension Account.PhoneLogin.View {
          _viewModel.validatedPhone
             .drive(_phoneView.nextBtn.rx.isEnabled)
             .disposed(by: _diposeBag)
+
         
-        _viewModel.sendPhone.drive(onNext: { result in
-            switch result {
-            case let .ok(num, msg):
-                self.showHUD(successText: msg, completion: {
-                    self.navigationController?.pushViewController(
-                        Account.ValidateLogin.View(viewModel:
-                            Account.ValidateLogin.ShowViewModel(phoneNum: num)
-                        ),
-                        animated: true)
-                })
-            case let .failed(err):
-                self.showHUD(error: err)
-            case .sending:
-                SVProgressHUD.show()
-            }
-        }).disposed(by: _diposeBag)
+        
+//        _viewModel.sendPhone.drive(onNext: { model in
+//        }).disposed(by: _diposeBag)
+        
+//        _viewModel.sendPhone.drive(onNext: { result in
+//            switch result {
+//            case let .ok(num, msg):
+//                self.showHUD(successText: msg, completion: {
+//                    self.navigationController?.pushViewController(
+//                        Account.ValidateLogin.View(viewModel:
+//                            Account.ValidateLogin.ShowViewModel(phoneNum: num)
+//                        ),
+//                        animated: true)
+//                })
+//            case let .failed(err):
+//                self.showHUD(error: err)
+//            case .sending:
+//                SVProgressHUD.show()
+//            }
+//        }).disposed(by: _diposeBag)
         
         _phoneView.closeBtn.rx.tap
             .subscribe(onNext: { self.dismiss(animated: true) })
