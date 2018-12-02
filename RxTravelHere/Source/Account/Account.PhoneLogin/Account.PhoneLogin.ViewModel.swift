@@ -12,31 +12,32 @@ import RxCocoa
 import Moya
 
 extension Account.PhoneLogin {
+    struct SendCodeResult {
+        let phone: String
+        let msg: String
+        let isValid: Bool
+    }
+    
     final class PhoneViewModel {
         let validatedPhone: Driver<Bool>
-        let sendPhone: Observable<(phone: String, info: String)>
+        let sendCode: Driver<SendCodeResult>
         
         init(input:(phone: Driver<String>, sendTaps: Signal<()>)) {
             validatedPhone = input.phone.map { $0.count == 11 }
+
+            let provider = Network<Account.NetworkTarget>()
             
-            /*
-             情况：
-             1. T - 获取验证码成功
-             2. F - 获取验证码失败
-             3. F - 操作频繁
-             4. F - 网络异常
-            */
-            let provider = MoyaProvider<MyService.User>()
-            sendPhone = input.sendTaps
+            sendCode = input.sendTaps
                 .withLatestFrom(input.phone)
-                .asObservable()
                 .flatMapLatest { num in
                     return provider.rx
-                        .sc_request(String.self, .sendSecurityCode(phoneNum: num))
-                        .map { (num, $0) }
+                        .request(.sendSecurityCode(phone: num))
+                        .map(NetworkModel<String>.self)
+                        .map { SendCodeResult(phone: num, msg: $0.data, isValid: $0.code == .success) }
+                        .asDriver(onErrorJustReturn: SendCodeResult(phone: num, msg: "网络异常", isValid: false))
             }
-                .observeOn(MainScheduler.instance)
-                .share()
         }
     }
+    
+    
 }

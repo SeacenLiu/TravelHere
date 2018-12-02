@@ -46,6 +46,10 @@ extension UIViewController {
         SVProgressHUD.showError(status: error.localizedDescription, completion: completion)
     }
     
+    func showHUD(errorText: String, completion: (()->())? = nil) {
+        SVProgressHUD.showError(status: errorText, completion: completion)
+    }
+    
     func showHUD(successText: String, completion: (()->())? = nil) {
         SVProgressHUD.showSuccess(status: successText, completion: completion)
     }

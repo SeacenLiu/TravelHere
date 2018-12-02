@@ -27,11 +27,11 @@
 		140ED16421AF8D1800F1D1D2 /* Account.PhoneLogin.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140ED16321AF8D1800F1D1D2 /* Account.PhoneLogin.ViewModel.swift */; };
 		140ED16621AF8D2B00F1D1D2 /* Account.ValidateLogin.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140ED16521AF8D2B00F1D1D2 /* Account.ValidateLogin.View.swift */; };
 		140ED16821AF8D3200F1D1D2 /* Account.ValidateLogin.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140ED16721AF8D3200F1D1D2 /* Account.ValidateLogin.ViewModel.swift */; };
-		1434ACB721AFCD0E00A140C4 /* MyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434ACB621AFCD0E00A140C4 /* MyService.swift */; };
+		1428891221B3B8710057F79E /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428891121B3B8710057F79E /* NetworkConfig.swift */; };
+		1428891421B3B8BC0057F79E /* NetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428891321B3B8BC0057F79E /* NetworkInterface.swift */; };
+		1428891621B3BCFA0057F79E /* Account.NetworkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428891521B3BCFA0057F79E /* Account.NetworkTarget.swift */; };
+		1428891821B3C5710057F79E /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428891721B3C5710057F79E /* NetworkModel.swift */; };
 		1434ACB921B002A500A140C4 /* SVProgressHUD+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434ACB821B002A500A140C4 /* SVProgressHUD+Ex.swift */; };
-		1434ACBD21B0085C00A140C4 /* MyService.User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434ACBC21B0085C00A140C4 /* MyService.User.swift */; };
-		1434ACBF21B0092C00A140C4 /* MyService.StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434ACBE21B0092C00A140C4 /* MyService.StatusCode.swift */; };
-		1434ACC121B0094400A140C4 /* MyService.ResponseBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434ACC021B0094400A140C4 /* MyService.ResponseBody.swift */; };
 		1434ACC721B012CD00A140C4 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434ACC621B012CD00A140C4 /* Error.swift */; };
 		1434ACC921B0224A00A140C4 /* Account.Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434ACC821B0224A00A140C4 /* Account.Model.swift */; };
 		6651C8CDC1021B3CDEEFC508 /* Pods_RxTravelHere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E8D2174BF8E6DCAA4DE9F1 /* Pods_RxTravelHere.framework */; };
@@ -83,11 +83,11 @@
 		140ED16321AF8D1800F1D1D2 /* Account.PhoneLogin.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.PhoneLogin.ViewModel.swift; sourceTree = "<group>"; };
 		140ED16521AF8D2B00F1D1D2 /* Account.ValidateLogin.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.ValidateLogin.View.swift; sourceTree = "<group>"; };
 		140ED16721AF8D3200F1D1D2 /* Account.ValidateLogin.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.ValidateLogin.ViewModel.swift; sourceTree = "<group>"; };
-		1434ACB621AFCD0E00A140C4 /* MyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyService.swift; sourceTree = "<group>"; };
+		1428891121B3B8710057F79E /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
+		1428891321B3B8BC0057F79E /* NetworkInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterface.swift; sourceTree = "<group>"; };
+		1428891521B3BCFA0057F79E /* Account.NetworkTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.NetworkTarget.swift; sourceTree = "<group>"; };
+		1428891721B3C5710057F79E /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
 		1434ACB821B002A500A140C4 /* SVProgressHUD+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SVProgressHUD+Ex.swift"; sourceTree = "<group>"; };
-		1434ACBC21B0085C00A140C4 /* MyService.User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyService.User.swift; sourceTree = "<group>"; };
-		1434ACBE21B0092C00A140C4 /* MyService.StatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyService.StatusCode.swift; sourceTree = "<group>"; };
-		1434ACC021B0094400A140C4 /* MyService.ResponseBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyService.ResponseBody.swift; sourceTree = "<group>"; };
 		1434ACC621B012CD00A140C4 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		1434ACC821B0224A00A140C4 /* Account.Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.Model.swift; sourceTree = "<group>"; };
 		3A662F8E49B5C849B1E7545A /* Pods-RxTravelHere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxTravelHere.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxTravelHere/Pods-RxTravelHere.release.xcconfig"; sourceTree = "<group>"; };
@@ -242,6 +242,7 @@
 			children = (
 				140ED14321AE8D9E00F1D1D2 /* Account.swift */,
 				1434ACC821B0224A00A140C4 /* Account.Model.swift */,
+				1428891521B3BCFA0057F79E /* Account.NetworkTarget.swift */,
 				140ED16021AF8CA400F1D1D2 /* Account.PhoneLogin */,
 				140ED15F21AF8C8100F1D1D2 /* Account.ValidateLogin */,
 				140ED15A21AF885A00F1D1D2 /* Account.Edit */,
@@ -282,10 +283,9 @@
 		1434ACB321AFC07300A140C4 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				1434ACB621AFCD0E00A140C4 /* MyService.swift */,
-				1434ACBC21B0085C00A140C4 /* MyService.User.swift */,
-				1434ACBE21B0092C00A140C4 /* MyService.StatusCode.swift */,
-				1434ACC021B0094400A140C4 /* MyService.ResponseBody.swift */,
+				1428891121B3B8710057F79E /* NetworkConfig.swift */,
+				1428891321B3B8BC0057F79E /* NetworkInterface.swift */,
+				1428891721B3C5710057F79E /* NetworkModel.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -535,25 +535,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1434ACBF21B0092C00A140C4 /* MyService.StatusCode.swift in Sources */,
 				140ED15421AECECF00F1D1D2 /* UIImage+Ex.swift in Sources */,
 				140ED15C21AF8B8A00F1D1D2 /* Account.Edit.View.swift in Sources */,
 				140ED15E21AF8BD000F1D1D2 /* Account.Edit.ViewModel.swift in Sources */,
-				1434ACBD21B0085C00A140C4 /* MyService.User.swift in Sources */,
 				140ED14121AE8C8B00F1D1D2 /* log.swift in Sources */,
-				1434ACB721AFCD0E00A140C4 /* MyService.swift in Sources */,
 				140ED15921AF73F100F1D1D2 /* NameSpace.swift in Sources */,
 				1434ACC721B012CD00A140C4 /* Error.swift in Sources */,
 				140ED16421AF8D1800F1D1D2 /* Account.PhoneLogin.ViewModel.swift in Sources */,
 				1434ACC921B0224A00A140C4 /* Account.Model.swift in Sources */,
+				1428891221B3B8710057F79E /* NetworkConfig.swift in Sources */,
+				1428891621B3BCFA0057F79E /* Account.NetworkTarget.swift in Sources */,
 				140ED10C21AE884E00F1D1D2 /* AppDelegate.swift in Sources */,
 				140ED16221AF8D0E00F1D1D2 /* Account.PhoneLogin.View.swift in Sources */,
 				140ED16821AF8D3200F1D1D2 /* Account.ValidateLogin.ViewModel.swift in Sources */,
-				1434ACC121B0094400A140C4 /* MyService.ResponseBody.swift in Sources */,
 				140ED14421AE8D9E00F1D1D2 /* Account.swift in Sources */,
 				140ED15621AECF9000F1D1D2 /* UIButton+Ex.swift in Sources */,
 				140ED16621AF8D2B00F1D1D2 /* Account.ValidateLogin.View.swift in Sources */,
 				140ED14B21AEB44B00F1D1D2 /* UIView+Ex.swift in Sources */,
+				1428891421B3B8BC0057F79E /* NetworkInterface.swift in Sources */,
+				1428891821B3C5710057F79E /* NetworkModel.swift in Sources */,
 				1434ACB921B002A500A140C4 /* SVProgressHUD+Ex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

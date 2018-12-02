@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 import SVProgressHUD
 
 extension Account.PhoneLogin {
@@ -33,29 +34,10 @@ extension Account.PhoneLogin.View {
          _viewModel.validatedPhone
             .drive(_phoneView.nextBtn.rx.isEnabled)
             .disposed(by: _diposeBag)
-
-        _viewModel.sendPhone
-            .debug()
-            .subscribe { (event) in
-                switch event {
-                case let .next(phone, info):
-                    self.showHUD(successText: info)
-                    self.navigationController?.pushViewController(
-                        Account.ValidateLogin.View(viewModel:
-                            Account.ValidateLogin.ShowViewModel(phoneNum: phone)
-                        ),
-                        animated: true)
-                case let .error(err):
-                    log(err)
-                    log(err.localizedDescription)
-                    if let e = err as? THError {
-                        log(e)
-                        self.showHUD(error: e)
-                    }
-                case .completed:
-                    break;
-                }
-            }.disposed(by: _diposeBag)
+        
+        _viewModel.sendCode
+            .drive(rx.showCodeView)
+            .disposed(by: _diposeBag)
         
         _phoneView.closeBtn.rx.tap
             .subscribe(onNext: { self.dismiss(animated: true) })
@@ -68,6 +50,23 @@ extension Account.PhoneLogin.View {
     }
 }
 
+extension Reactive where Base: Account.PhoneLogin.View {
+    typealias Result = Account.PhoneLogin.SendCodeResult
+    internal var showCodeView: AnyObserver<Result> {
+        return Binder<Result>(base) { c, r in
+            if r.isValid {
+                c.showHUD(successText: r.msg)
+                c.navigationController?.pushViewController(
+                    Account.ValidateLogin.View(viewModel:
+                        Account.ValidateLogin.ShowViewModel(phoneNum: r.phone)
+                    ),
+                    animated: true)
+            } else {
+                c.showHUD(errorText: r.msg)
+            }
+        }.asObserver()
+    }
+}
 
 final class PhoneView: UIView {
     @IBOutlet weak var nextBtn: UIButton!

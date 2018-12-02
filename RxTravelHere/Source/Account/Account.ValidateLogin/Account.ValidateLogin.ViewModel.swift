@@ -17,8 +17,6 @@ extension Account.ValidateLogin {
     }
     
     final class ViewModel {
-        typealias Result = SimpleResult<Account.Model>
-        
         let validatedCode: Driver<Bool>
 //        let login: Driver<Result>
         

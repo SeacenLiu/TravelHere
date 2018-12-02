@@ -13,7 +13,7 @@ extension Account {
         var user: User
         let token: String
         
-        var userId: String {
+        var id: String {
             return user.userId
         }
         
