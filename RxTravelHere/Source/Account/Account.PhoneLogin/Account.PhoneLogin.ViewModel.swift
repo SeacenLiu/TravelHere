@@ -25,14 +25,14 @@ extension Account.PhoneLogin {
         init(input:(phone: Driver<String>, sendTaps: Signal<()>)) {
             validatedPhone = input.phone.map { $0.count == 11 }
 
-            let provider = Network<Account.NetworkTarget>()
+            let provider = MoyaProvider<Account.NetworkTarget>()
             
             sendCode = input.sendTaps
                 .withLatestFrom(input.phone)
-                .flatMapLatest { num in
+                .flatMapFirst { num in
                     return provider.rx
                         .request(.sendSecurityCode(phone: num))
-                        .map(NetworkModel<String>.self)
+                        .map(NetworkResponse<String>.self)
                         .map { SendCodeResult(phone: num, msg: $0.data, isValid: $0.code == .success) }
                         .asDriver(onErrorJustReturn: SendCodeResult(phone: num, msg: "网络异常", isValid: false))
             }

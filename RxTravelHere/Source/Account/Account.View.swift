@@ -11,7 +11,8 @@ import UIKit
 extension Account {
     final class View: UINavigationController {
         init() {
-            super.init(rootViewController: PhoneLogin.View())
+//            super.init(rootViewController: PhoneLogin.View())
+            super.init(rootViewController: Edit.View())
         }
         
         override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

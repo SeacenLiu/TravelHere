@@ -13,7 +13,7 @@
 		140ED12121AE884F00F1D1D2 /* RxTravelHereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140ED12021AE884F00F1D1D2 /* RxTravelHereTests.swift */; };
 		140ED12C21AE884F00F1D1D2 /* RxTravelHereUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140ED12B21AE884F00F1D1D2 /* RxTravelHereUITests.swift */; };
 		140ED14121AE8C8B00F1D1D2 /* log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140ED14021AE8C8B00F1D1D2 /* log.swift */; };
-		140ED14421AE8D9E00F1D1D2 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140ED14321AE8D9E00F1D1D2 /* Account.swift */; };
+		140ED14421AE8D9E00F1D1D2 /* Account.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140ED14321AE8D9E00F1D1D2 /* Account.View.swift */; };
 		140ED14821AE927B00F1D1D2 /* PhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140ED14721AE927B00F1D1D2 /* PhoneView.xib */; };
 		140ED14B21AEB44B00F1D1D2 /* UIView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140ED14A21AEB44B00F1D1D2 /* UIView+Ex.swift */; };
 		140ED14D21AEB90B00F1D1D2 /* CodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140ED14C21AEB90B00F1D1D2 /* CodeView.xib */; };
@@ -31,6 +31,10 @@
 		1428891421B3B8BC0057F79E /* NetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428891321B3B8BC0057F79E /* NetworkInterface.swift */; };
 		1428891621B3BCFA0057F79E /* Account.NetworkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428891521B3BCFA0057F79E /* Account.NetworkTarget.swift */; };
 		1428891821B3C5710057F79E /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428891721B3C5710057F79E /* NetworkModel.swift */; };
+		1428891B21B4CB130057F79E /* FileNetworkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428891A21B4CB130057F79E /* FileNetworkTarget.swift */; };
+		1428891D21B54BC50057F79E /* UIButton+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428891C21B54BC50057F79E /* UIButton+Rx.swift */; };
+		1428892221B555AC0057F79E /* UIImagePickerController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428892121B555AC0057F79E /* UIImagePickerController+Rx.swift */; };
+		1428892521B5571A0057F79E /* UIImagePickerController+RxCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428892421B5571A0057F79E /* UIImagePickerController+RxCreate.swift */; };
 		1434ACB921B002A500A140C4 /* SVProgressHUD+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434ACB821B002A500A140C4 /* SVProgressHUD+Ex.swift */; };
 		1434ACC721B012CD00A140C4 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434ACC621B012CD00A140C4 /* Error.swift */; };
 		1434ACC921B0224A00A140C4 /* Account.Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434ACC821B0224A00A140C4 /* Account.Model.swift */; };
@@ -69,7 +73,7 @@
 		140ED12B21AE884F00F1D1D2 /* RxTravelHereUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxTravelHereUITests.swift; sourceTree = "<group>"; };
 		140ED12D21AE884F00F1D1D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		140ED14021AE8C8B00F1D1D2 /* log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = log.swift; sourceTree = "<group>"; };
-		140ED14321AE8D9E00F1D1D2 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		140ED14321AE8D9E00F1D1D2 /* Account.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.View.swift; sourceTree = "<group>"; };
 		140ED14721AE927B00F1D1D2 /* PhoneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhoneView.xib; sourceTree = "<group>"; };
 		140ED14A21AEB44B00F1D1D2 /* UIView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ex.swift"; sourceTree = "<group>"; };
 		140ED14C21AEB90B00F1D1D2 /* CodeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CodeView.xib; sourceTree = "<group>"; };
@@ -87,6 +91,10 @@
 		1428891321B3B8BC0057F79E /* NetworkInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterface.swift; sourceTree = "<group>"; };
 		1428891521B3BCFA0057F79E /* Account.NetworkTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.NetworkTarget.swift; sourceTree = "<group>"; };
 		1428891721B3C5710057F79E /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
+		1428891A21B4CB130057F79E /* FileNetworkTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNetworkTarget.swift; sourceTree = "<group>"; };
+		1428891C21B54BC50057F79E /* UIButton+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Rx.swift"; sourceTree = "<group>"; };
+		1428892121B555AC0057F79E /* UIImagePickerController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImagePickerController+Rx.swift"; sourceTree = "<group>"; };
+		1428892421B5571A0057F79E /* UIImagePickerController+RxCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImagePickerController+RxCreate.swift"; sourceTree = "<group>"; };
 		1434ACB821B002A500A140C4 /* SVProgressHUD+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SVProgressHUD+Ex.swift"; sourceTree = "<group>"; };
 		1434ACC621B012CD00A140C4 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		1434ACC821B0224A00A140C4 /* Account.Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.Model.swift; sourceTree = "<group>"; };
@@ -211,6 +219,7 @@
 		140ED13C21AE8C1000F1D1D2 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				1428892321B555B30057F79E /* Rx */,
 				1434ACB321AFC07300A140C4 /* Network */,
 				140ED13D21AE8C2500F1D1D2 /* Extensions */,
 				1434ACC621B012CD00A140C4 /* Error.swift */,
@@ -240,7 +249,7 @@
 		140ED14221AE8D3B00F1D1D2 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				140ED14321AE8D9E00F1D1D2 /* Account.swift */,
+				140ED14321AE8D9E00F1D1D2 /* Account.View.swift */,
 				1434ACC821B0224A00A140C4 /* Account.Model.swift */,
 				1428891521B3BCFA0057F79E /* Account.NetworkTarget.swift */,
 				140ED16021AF8CA400F1D1D2 /* Account.PhoneLogin */,
@@ -280,12 +289,23 @@
 			path = Account.PhoneLogin;
 			sourceTree = "<group>";
 		};
+		1428892321B555B30057F79E /* Rx */ = {
+			isa = PBXGroup;
+			children = (
+				1428891C21B54BC50057F79E /* UIButton+Rx.swift */,
+				1428892121B555AC0057F79E /* UIImagePickerController+Rx.swift */,
+				1428892421B5571A0057F79E /* UIImagePickerController+RxCreate.swift */,
+			);
+			path = Rx;
+			sourceTree = "<group>";
+		};
 		1434ACB321AFC07300A140C4 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				1428891121B3B8710057F79E /* NetworkConfig.swift */,
 				1428891321B3B8BC0057F79E /* NetworkInterface.swift */,
 				1428891721B3C5710057F79E /* NetworkModel.swift */,
+				1428891A21B4CB130057F79E /* FileNetworkTarget.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -472,6 +492,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RxTravelHere/Pods-RxTravelHere-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
@@ -481,6 +502,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
@@ -540,19 +562,23 @@
 				140ED15E21AF8BD000F1D1D2 /* Account.Edit.ViewModel.swift in Sources */,
 				140ED14121AE8C8B00F1D1D2 /* log.swift in Sources */,
 				140ED15921AF73F100F1D1D2 /* NameSpace.swift in Sources */,
+				1428891D21B54BC50057F79E /* UIButton+Rx.swift in Sources */,
 				1434ACC721B012CD00A140C4 /* Error.swift in Sources */,
 				140ED16421AF8D1800F1D1D2 /* Account.PhoneLogin.ViewModel.swift in Sources */,
 				1434ACC921B0224A00A140C4 /* Account.Model.swift in Sources */,
 				1428891221B3B8710057F79E /* NetworkConfig.swift in Sources */,
 				1428891621B3BCFA0057F79E /* Account.NetworkTarget.swift in Sources */,
 				140ED10C21AE884E00F1D1D2 /* AppDelegate.swift in Sources */,
+				1428892221B555AC0057F79E /* UIImagePickerController+Rx.swift in Sources */,
 				140ED16221AF8D0E00F1D1D2 /* Account.PhoneLogin.View.swift in Sources */,
 				140ED16821AF8D3200F1D1D2 /* Account.ValidateLogin.ViewModel.swift in Sources */,
-				140ED14421AE8D9E00F1D1D2 /* Account.swift in Sources */,
+				140ED14421AE8D9E00F1D1D2 /* Account.View.swift in Sources */,
 				140ED15621AECF9000F1D1D2 /* UIButton+Ex.swift in Sources */,
+				1428891B21B4CB130057F79E /* FileNetworkTarget.swift in Sources */,
 				140ED16621AF8D2B00F1D1D2 /* Account.ValidateLogin.View.swift in Sources */,
 				140ED14B21AEB44B00F1D1D2 /* UIView+Ex.swift in Sources */,
 				1428891421B3B8BC0057F79E /* NetworkInterface.swift in Sources */,
+				1428892521B5571A0057F79E /* UIImagePickerController+RxCreate.swift in Sources */,
 				1428891821B3C5710057F79E /* NetworkModel.swift in Sources */,
 				1434ACB921B002A500A140C4 /* SVProgressHUD+Ex.swift in Sources */,
 			);

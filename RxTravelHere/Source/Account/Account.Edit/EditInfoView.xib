@@ -122,6 +122,12 @@
                 <constraint firstItem="pnv-WK-266" firstAttribute="trailing" secondItem="CUv-cJ-EeK" secondAttribute="trailing" id="wDI-j6-o0T"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="CUv-cJ-EeK"/>
+            <connections>
+                <outlet property="avatarBtn" destination="IFq-l9-npO" id="h3h-cx-Amp"/>
+                <outlet property="doneBtn" destination="yQg-Bd-nKi" id="Q2k-07-DNb"/>
+                <outlet property="editAvatarBtn" destination="fbX-Px-FhS" id="ud4-nz-e5a"/>
+                <outlet property="nameTf" destination="Wlh-iD-kOU" id="Row-SA-m0F"/>
+            </connections>
         </view>
     </objects>
     <resources>

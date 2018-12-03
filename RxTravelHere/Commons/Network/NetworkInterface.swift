@@ -11,4 +11,7 @@ import Foundation
 enum NetworkInterface: String {
     case sendSecurityCode = "/user/sendSecurityCode"
     case login = "/user/login"
+    case userModify = "/user/modify"
+    
+    case fileUpload = "/file/upload"
 }

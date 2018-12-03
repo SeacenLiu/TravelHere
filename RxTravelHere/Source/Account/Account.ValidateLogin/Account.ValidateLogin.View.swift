@@ -51,17 +51,9 @@ extension Account.ValidateLogin.View {
             .drive(_codeView.loginBtn.rx.isEnabled)
             .disposed(by: _disposeBag)
         
-//        _viewModel.login.drive(onNext: { result in
-//            switch result {
-//            case .sending:
-//                self.showHUD()
-//            case let .ok(data, msg):
-//                self.showHUD(successText: msg)
-//                log(data)
-//            case let .failed(err):
-//                self.showHUD(error: err)
-//            }
-//        }).disposed(by: _disposeBag)
+        _viewModel.login
+            .drive(rx.showEditView)
+            .disposed(by: _disposeBag)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -70,6 +62,21 @@ extension Account.ValidateLogin.View {
     
     func setupUI() {
         _codeView.phoneLb.text = showViewModel.phoneNum
+    }
+}
+
+extension Reactive where Base: Account.ValidateLogin.View {
+    var showEditView: AnyObserver<Bool> {
+        return Binder<Bool>(base) { c, v in
+            if v {
+                c.showHUD(successText: "登录成功")
+                c.navigationController?.pushViewController(
+                    Account.Edit.View(),
+                    animated: true)
+            } else {
+                c.showHUD(errorText: "登录失败")
+            }
+        }.asObserver()
     }
 }
 

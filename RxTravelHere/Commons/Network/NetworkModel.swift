@@ -28,8 +28,14 @@ enum Statuscode: Int, Decodable {
     }
 }
 
-struct NetworkModel<T: Decodable>: Decodable {
+// 标准响应体结构体
+struct NetworkResponse<T: Decodable>: Decodable {
     let code: Statuscode
     let data: T
     var info: String
+}
+
+// 图片信息
+struct ImageInfo: Decodable {
+    let path: String
 }

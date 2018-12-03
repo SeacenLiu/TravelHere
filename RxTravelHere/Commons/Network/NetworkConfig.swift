@@ -20,7 +20,8 @@ extension NetworkTarget {
     var path: String { return self.interface.rawValue }
     var parameterEncoding: ParameterEncoding { return URLEncoding.default }
     var headers: [String: String]? {
-        return ["Content-type": "application/json"]
+        guard let token = Account.Manager.shared.token else { return nil }
+        return ["Authorization": token]
     }
 }
 
