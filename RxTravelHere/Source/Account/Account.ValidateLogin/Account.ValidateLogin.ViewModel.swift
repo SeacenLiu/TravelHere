@@ -18,29 +18,24 @@ extension Account.ValidateLogin {
     
     final class ViewModel {
         let validatedCode: Driver<Bool>
-//        let login: Driver<Result>
+        let login: Driver<Bool>
         
         init(phone: String, input:(code: Driver<String>, loginTaps: Signal<()>)) {
             validatedCode = input.code.map { $0.count == 4 }
             
-//            let provider = MoyaProvider<MyService.User>()
-//            login = input.loginTaps
-//                .withLatestFrom(input.code)
-//                .flatMapLatest({
-//                    return  provider.rx.request(.sendSecurityCode(phoneNum: $0))
-//                        .map { response -> Result in
-//                            guard let body = response.mapObject(type: Account.Model.self) else {
-//                                return .defaultFailed
-//                            }
-//                            if body.code != .success {
-//                                return .failed(error: .securityCodeError)
-//                            }
-//                            // FIXME: - 不应该将 Model 传出，那我的 Model 应该如何处理
-//                            return .ok(data: body.data, msg: "登录成功")
-//                        }
-//                        .asDriver(onErrorJustReturn: .defaultFailed)
-//                        .startWith(.sending)
-//                })
+            let provider = MoyaProvider<Account.NetworkTarget>()
+            
+            login = input.loginTaps
+                .withLatestFrom(input.code)
+                .flatMapFirst {
+                    provider.rx
+                        .request(.login(phone: phone, code: $0))
+                        .map(NetworkResponse<Account.Model>.self)
+                        .map({
+                            Account.Manager.shared.login(with: $0.data)
+                            return $0.code == .success
+                        }).asDriver(onErrorJustReturn: false)
+            }
         }
     }
 }
