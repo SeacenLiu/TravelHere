@@ -34,10 +34,17 @@
 		1428891B21B4CB130057F79E /* FileNetworkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428891A21B4CB130057F79E /* FileNetworkTarget.swift */; };
 		1428891D21B54BC50057F79E /* UIButton+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428891C21B54BC50057F79E /* UIButton+Rx.swift */; };
 		1428892221B555AC0057F79E /* UIImagePickerController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428892121B555AC0057F79E /* UIImagePickerController+Rx.swift */; };
-		1428892521B5571A0057F79E /* UIImagePickerController+RxCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428892421B5571A0057F79E /* UIImagePickerController+RxCreate.swift */; };
+		1428893721B573B40057F79E /* THImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428893421B573B40057F79E /* THImagePickerController.swift */; };
+		1428893821B573B40057F79E /* YYImageClipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1428893521B573B40057F79E /* YYImageClipViewController.m */; };
+		1428893A21B5743D0057F79E /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428893921B5743D0057F79E /* UIViewController+Ex.swift */; };
+		1428893C21B586910057F79E /* ActionSheetControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428893B21B586910057F79E /* ActionSheetControl.swift */; };
+		1428893E21B58BEE0057F79E /* ImagePickerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428893D21B58BEE0057F79E /* ImagePickerControl.swift */; };
+		1428894621B611FF0057F79E /* KingfisherControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428894521B611FF0057F79E /* KingfisherControl.swift */; };
 		1434ACB921B002A500A140C4 /* SVProgressHUD+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434ACB821B002A500A140C4 /* SVProgressHUD+Ex.swift */; };
 		1434ACC721B012CD00A140C4 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434ACC621B012CD00A140C4 /* Error.swift */; };
 		1434ACC921B0224A00A140C4 /* Account.Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434ACC821B0224A00A140C4 /* Account.Model.swift */; };
+		143DB46A21B6B6DF001F57E1 /* ImageClipControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143DB46921B6B6DF001F57E1 /* ImageClipControl.swift */; };
+		143DB46C21B6B790001F57E1 /* YYImagePickerController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143DB46B21B6B790001F57E1 /* YYImagePickerController+Rx.swift */; };
 		6651C8CDC1021B3CDEEFC508 /* Pods_RxTravelHere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E8D2174BF8E6DCAA4DE9F1 /* Pods_RxTravelHere.framework */; };
 		67D330B13DF060220C3DE011 /* Pods_RxTravelHereUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DBC54C19255EB117EF3E973 /* Pods_RxTravelHereUITests.framework */; };
 		C2FE0C21049B34BAD0C95D71 /* Pods_RxTravelHereTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9665BF2A665CBE6CF36DF11D /* Pods_RxTravelHereTests.framework */; };
@@ -94,10 +101,19 @@
 		1428891A21B4CB130057F79E /* FileNetworkTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNetworkTarget.swift; sourceTree = "<group>"; };
 		1428891C21B54BC50057F79E /* UIButton+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Rx.swift"; sourceTree = "<group>"; };
 		1428892121B555AC0057F79E /* UIImagePickerController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImagePickerController+Rx.swift"; sourceTree = "<group>"; };
-		1428892421B5571A0057F79E /* UIImagePickerController+RxCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImagePickerController+RxCreate.swift"; sourceTree = "<group>"; };
+		1428892F21B5739E0057F79E /* RxTravelHere-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RxTravelHere-Bridging-Header.h"; sourceTree = "<group>"; };
+		1428893421B573B40057F79E /* THImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THImagePickerController.swift; sourceTree = "<group>"; };
+		1428893521B573B40057F79E /* YYImageClipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYImageClipViewController.m; sourceTree = "<group>"; };
+		1428893621B573B40057F79E /* YYImageClipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYImageClipViewController.h; sourceTree = "<group>"; };
+		1428893921B5743D0057F79E /* UIViewController+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
+		1428893B21B586910057F79E /* ActionSheetControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetControl.swift; sourceTree = "<group>"; };
+		1428893D21B58BEE0057F79E /* ImagePickerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerControl.swift; sourceTree = "<group>"; };
+		1428894521B611FF0057F79E /* KingfisherControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingfisherControl.swift; sourceTree = "<group>"; };
 		1434ACB821B002A500A140C4 /* SVProgressHUD+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SVProgressHUD+Ex.swift"; sourceTree = "<group>"; };
 		1434ACC621B012CD00A140C4 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		1434ACC821B0224A00A140C4 /* Account.Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.Model.swift; sourceTree = "<group>"; };
+		143DB46921B6B6DF001F57E1 /* ImageClipControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClipControl.swift; sourceTree = "<group>"; };
+		143DB46B21B6B790001F57E1 /* YYImagePickerController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YYImagePickerController+Rx.swift"; sourceTree = "<group>"; };
 		3A662F8E49B5C849B1E7545A /* Pods-RxTravelHere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxTravelHere.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxTravelHere/Pods-RxTravelHere.release.xcconfig"; sourceTree = "<group>"; };
 		4492411006C311772B653288 /* Pods-RxTravelHere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxTravelHere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxTravelHere/Pods-RxTravelHere.debug.xcconfig"; sourceTree = "<group>"; };
 		65D6934429BDCC4A3000AB81 /* Pods-RxTravelHereUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxTravelHereUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxTravelHereUITests/Pods-RxTravelHereUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -168,6 +184,7 @@
 				140ED13C21AE8C1000F1D1D2 /* Commons */,
 				140ED10B21AE884E00F1D1D2 /* AppDelegate.swift */,
 				140ED11721AE884F00F1D1D2 /* Info.plist */,
+				1428892F21B5739E0057F79E /* RxTravelHere-Bridging-Header.h */,
 			);
 			path = RxTravelHere;
 			sourceTree = "<group>";
@@ -219,6 +236,8 @@
 		140ED13C21AE8C1000F1D1D2 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				1428894021B60DD60057F79E /* Control */,
+				1428893321B573B40057F79E /* ImagePicker */,
 				1428892321B555B30057F79E /* Rx */,
 				1434ACB321AFC07300A140C4 /* Network */,
 				140ED13D21AE8C2500F1D1D2 /* Extensions */,
@@ -230,6 +249,7 @@
 		140ED13D21AE8C2500F1D1D2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1428893921B5743D0057F79E /* UIViewController+Ex.swift */,
 				1434ACB821B002A500A140C4 /* SVProgressHUD+Ex.swift */,
 				140ED15521AECF9000F1D1D2 /* UIButton+Ex.swift */,
 				140ED14A21AEB44B00F1D1D2 /* UIView+Ex.swift */,
@@ -294,9 +314,30 @@
 			children = (
 				1428891C21B54BC50057F79E /* UIButton+Rx.swift */,
 				1428892121B555AC0057F79E /* UIImagePickerController+Rx.swift */,
-				1428892421B5571A0057F79E /* UIImagePickerController+RxCreate.swift */,
 			);
 			path = Rx;
+			sourceTree = "<group>";
+		};
+		1428893321B573B40057F79E /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				1428893421B573B40057F79E /* THImagePickerController.swift */,
+				1428893621B573B40057F79E /* YYImageClipViewController.h */,
+				1428893521B573B40057F79E /* YYImageClipViewController.m */,
+				143DB46B21B6B790001F57E1 /* YYImagePickerController+Rx.swift */,
+			);
+			path = ImagePicker;
+			sourceTree = "<group>";
+		};
+		1428894021B60DD60057F79E /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				1428893B21B586910057F79E /* ActionSheetControl.swift */,
+				1428893D21B58BEE0057F79E /* ImagePickerControl.swift */,
+				1428894521B611FF0057F79E /* KingfisherControl.swift */,
+				143DB46921B6B6DF001F57E1 /* ImageClipControl.swift */,
+			);
+			path = Control;
 			sourceTree = "<group>";
 		};
 		1434ACB321AFC07300A140C4 /* Network */ = {
@@ -405,6 +446,7 @@
 				TargetAttributes = {
 					140ED10721AE884E00F1D1D2 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					140ED11B21AE884F00F1D1D2 = {
 						CreatedOnToolsVersion = 10.1;
@@ -560,15 +602,23 @@
 				140ED15421AECECF00F1D1D2 /* UIImage+Ex.swift in Sources */,
 				140ED15C21AF8B8A00F1D1D2 /* Account.Edit.View.swift in Sources */,
 				140ED15E21AF8BD000F1D1D2 /* Account.Edit.ViewModel.swift in Sources */,
+				1428893C21B586910057F79E /* ActionSheetControl.swift in Sources */,
 				140ED14121AE8C8B00F1D1D2 /* log.swift in Sources */,
+				1428893821B573B40057F79E /* YYImageClipViewController.m in Sources */,
 				140ED15921AF73F100F1D1D2 /* NameSpace.swift in Sources */,
 				1428891D21B54BC50057F79E /* UIButton+Rx.swift in Sources */,
 				1434ACC721B012CD00A140C4 /* Error.swift in Sources */,
 				140ED16421AF8D1800F1D1D2 /* Account.PhoneLogin.ViewModel.swift in Sources */,
 				1434ACC921B0224A00A140C4 /* Account.Model.swift in Sources */,
+				1428893E21B58BEE0057F79E /* ImagePickerControl.swift in Sources */,
+				1428893A21B5743D0057F79E /* UIViewController+Ex.swift in Sources */,
 				1428891221B3B8710057F79E /* NetworkConfig.swift in Sources */,
+				143DB46C21B6B790001F57E1 /* YYImagePickerController+Rx.swift in Sources */,
+				1428893721B573B40057F79E /* THImagePickerController.swift in Sources */,
 				1428891621B3BCFA0057F79E /* Account.NetworkTarget.swift in Sources */,
 				140ED10C21AE884E00F1D1D2 /* AppDelegate.swift in Sources */,
+				1428894621B611FF0057F79E /* KingfisherControl.swift in Sources */,
+				143DB46A21B6B6DF001F57E1 /* ImageClipControl.swift in Sources */,
 				1428892221B555AC0057F79E /* UIImagePickerController+Rx.swift in Sources */,
 				140ED16221AF8D0E00F1D1D2 /* Account.PhoneLogin.View.swift in Sources */,
 				140ED16821AF8D3200F1D1D2 /* Account.ValidateLogin.ViewModel.swift in Sources */,
@@ -578,7 +628,6 @@
 				140ED16621AF8D2B00F1D1D2 /* Account.ValidateLogin.View.swift in Sources */,
 				140ED14B21AEB44B00F1D1D2 /* UIView+Ex.swift in Sources */,
 				1428891421B3B8BC0057F79E /* NetworkInterface.swift in Sources */,
-				1428892521B5571A0057F79E /* UIImagePickerController+RxCreate.swift in Sources */,
 				1428891821B3C5710057F79E /* NetworkModel.swift in Sources */,
 				1434ACB921B002A500A140C4 /* SVProgressHUD+Ex.swift in Sources */,
 			);
@@ -748,6 +797,7 @@
 			baseConfigurationReference = 4492411006C311772B653288 /* Pods-RxTravelHere.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6426K9AWKV;
 				INFOPLIST_FILE = RxTravelHere/Info.plist;
@@ -758,6 +808,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cppteam.com.RxTravelHere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RxTravelHere/RxTravelHere-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -768,6 +820,7 @@
 			baseConfigurationReference = 3A662F8E49B5C849B1E7545A /* Pods-RxTravelHere.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6426K9AWKV;
 				INFOPLIST_FILE = RxTravelHere/Info.plist;
@@ -778,6 +831,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cppteam.com.RxTravelHere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RxTravelHere/RxTravelHere-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

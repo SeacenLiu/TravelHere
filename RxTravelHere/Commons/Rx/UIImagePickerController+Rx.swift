@@ -10,28 +10,37 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-extension Reactive where Base: UIImagePickerController {
+open class RxImagePickerDelegateProxy: RxNavigationControllerDelegateProxy, UIImagePickerControllerDelegate {
     
-    public var didFinishPickingMediaWithInfo: Observable<[String : AnyObject]> {
-        return delegate
-            .methodInvoked(#selector(UIImagePickerControllerDelegate.imagePickerController(_:didFinishPickingMediaWithInfo:)))
-            .map({ (a) in
-                return try castOrThrow(Dictionary<String, AnyObject>.self, a[1])
-            })
+    public init(imagePicker: UIImagePickerController) {
+        super.init(navigationController: imagePicker)
     }
     
+}
+
+extension Reactive where Base: UIImagePickerController {
+
+    public var didFinishPickingMediaWithInfo: Observable<[UIImagePickerController.InfoKey : Any]> {
+        return delegate
+            .methodInvoked(#selector(UIImagePickerControllerDelegate.imagePickerController(_:didFinishPickingMediaWithInfo:)))
+            .do(onNext: { _ in self.base.dismiss(animated: true) })
+            .map({ (a) in
+                return try castOrThrow(Dictionary<UIImagePickerController.InfoKey, Any>.self, a[1])
+            })
+    }
+
     public var didCancel: Observable<()> {
         return delegate
             .methodInvoked(#selector(UIImagePickerControllerDelegate.imagePickerControllerDidCancel(_:)))
             .map {_ in () }
     }
-    
+
 }
 
 fileprivate func castOrThrow<T>(_ resultType: T.Type, _ object: Any) throws -> T {
     guard let returnValue = object as? T else {
         throw RxCocoaError.castingError(object: object, targetType: resultType)
     }
-    
+
     return returnValue
 }

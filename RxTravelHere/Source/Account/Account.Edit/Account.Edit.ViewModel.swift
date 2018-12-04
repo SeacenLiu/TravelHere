@@ -10,12 +10,13 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Moya
+import Kingfisher
 
 extension Account.Edit {
     final class ViewModel {
         let done: Driver<Bool>
         let validateName: Driver<Bool>
-        let avatar: Driver<String>
+        let avatar: Driver<UIImage>
         let name: Driver<String>
         
         init(input:(avatar: Driver<UIImage>, name: Driver<String>, doneTaps: Signal<()>)) {
@@ -35,10 +36,9 @@ extension Account.Edit {
             
             let modify = Observable
                 .combineLatest(input.name.asObservable(), imageUpload)
-                .asSignal(onErrorJustReturn: ("", ""))
+                .debug()
             
-            done = input.doneTaps
-                .withLatestFrom(modify)
+            done = modify
                 .flatMapFirst {
                     provider.rx
                         .request(.modify(name: $0.0, avatar: $0.1))
@@ -47,8 +47,8 @@ extension Account.Edit {
                             Account.Manager.shared.modifyUserInfo(with: response.data)
                             return response.code == .success
                         })
-                        .asDriver(onErrorJustReturn: false)
             }
+                .asDriver(onErrorJustReturn: false)
             
             validateName = input.name.map { $0 != "" }
             
@@ -56,10 +56,20 @@ extension Account.Edit {
             name = Observable
                 .just(user?.userNickname ?? "")
                 .asDriver(onErrorJustReturn: "")
-            avatar = Observable
-                .just(user?.userAvatar ?? "")
-                .asDriver(onErrorJustReturn: "")
             
+            let startImgObservable = KingfisherControl
+                .getImage(
+                    with: user?.userAvatar ?? "",
+                    placeholder: "big_user_icon")
+                .asObservable()
+            let changemgObservable = input.avatar.asObservable()
+            let concat = Observable
+                .concat([
+                    startImgObservable,
+                    changemgObservable])
+            avatar = concat
+                .debug()
+                .asDriver(onErrorJustReturn: UIImage(named: "big_user_icon")!)
         }
     }
 }

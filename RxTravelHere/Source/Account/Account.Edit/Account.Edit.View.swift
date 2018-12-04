@@ -22,20 +22,18 @@ extension Account.Edit {
         
         private lazy var _viewModel = ViewModel(
             input: (
-                avatar: self._editView.avatarBtn.rx.tap
-                    .flatMapLatest { [weak self] _ in
-                        return UIImagePickerController.rx.createWithParent(self) { picker in
-                            picker.sourceType = .photoLibrary
-                            picker.allowsEditing = false
-                            }
-                            .flatMap { $0.rx.didFinishPickingMediaWithInfo }
-                            .take(1)
+                avatar: self._editView.editAvatarBtn.rx.tap
+                    .flatMap { [unowned self] _ in
+                        ImagePickerControl.showActionAndGetImage(from: self)
                     }
-                    .map { info in
-                        return  info[UIImagePickerController.InfoKey.originalImage.rawValue] as! UIImage
-                }.asDriver(onErrorJustReturn: UIImage()),
+                    .filter {image in image != nil}
+                    .flatMap { [unowned self] image in
+                        ImageClipControl.cropImage(image!, isCycle: true, from: self)
+                    }
+                    .asDriver(onErrorJustReturn: UIImage()),
                 name: self._editView.nameTf.rx.text.orEmpty.asDriver(),
-                doneTaps: self._editView.doneBtn.rx.tap.asSignal())
+                doneTaps: self._editView.doneBtn.rx.tap.asSignal()
+            )
         )
     }
 }
@@ -45,7 +43,7 @@ extension Account.Edit.View {
         super.viewDidLoad()
         
         _viewModel.avatar
-            .drive(_editView.avatarBtn.rx.kfBackgroundImage)
+            .drive(_editView.avatarBtn.rx.backgroundImage(for: .normal))
             .disposed(by: _disposeBag)
         
         _viewModel.name
@@ -55,6 +53,24 @@ extension Account.Edit.View {
         _viewModel.validateName
             .drive(_editView.doneBtn.rx.isEnabled)
             .disposed(by: _disposeBag)
+        
+        _viewModel.done
+            .drive(rx.doneHandler)
+            .disposed(by: _disposeBag)
+
+    }
+}
+
+extension Reactive where Base: Account.Edit.View {
+    var doneHandler: AnyObserver<Bool> {
+        return Binder<Bool>(base) { c, v in
+            if v {
+                c.showHUD(successText: "修改成功")
+//                c.dismiss(animated: true)
+            } else {
+                c.showHUD(errorText: "修改失败")
+            }
+        }.asObserver()
     }
 }
 
