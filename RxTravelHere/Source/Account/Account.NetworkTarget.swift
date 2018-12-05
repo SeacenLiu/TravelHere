@@ -33,8 +33,10 @@ extension Account.NetworkTarget: NetworkTarget {
         switch self {
         case .sendSecurityCode(_):
             return .get
-        case .login(_, _), .modify(_, _):
+        case .login(_, _):
             return .post
+        case .modify(_, _):
+            return .put
         }
     }
     

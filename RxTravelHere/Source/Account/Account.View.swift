@@ -12,6 +12,7 @@ extension Account {
     final class View: UINavigationController {
         init() {
 //            super.init(rootViewController: PhoneLogin.View())
+            Account.Manager.shared.autoLogin()
             super.init(rootViewController: Edit.View())
         }
         

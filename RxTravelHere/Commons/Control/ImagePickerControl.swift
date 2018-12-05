@@ -48,6 +48,7 @@ class ImagePickerControl {
             .map { info in info[UIImagePickerController.InfoKey.originalImage] as? UIImage }
     }
     
+    // FIXME: - 检查用户权限 这里还能分开
     static func checkPrivilege(from: UIViewController, sourceType: UIImagePickerController.SourceType) -> Observable<(UIViewController, UIImagePickerController.SourceType)> {
         return Observable<(UIViewController, UIImagePickerController.SourceType)>.create({ subscriber -> Disposable in
             var hasPrivilege = true
