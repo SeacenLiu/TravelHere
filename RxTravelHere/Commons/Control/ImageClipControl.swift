@@ -20,9 +20,8 @@ class ImageClipControl {
             let rect = CGRect(x: x, y: y, width: w, height: h)
             let cc = YYImageClipViewController(image: image, cropFrame: rect, limitScaleRatio: 3, isCycle: isCycle)!
             let cancelDispose = cc.rx.didCancel.subscribe(onNext: { _ in
-                cc.dismiss(animated: true)
+                subscriber.onCompleted()
             })
-            log(from)
             from.present(cc, animated: true)
             subscriber.onNext(cc)
             return Disposables.create(cancelDispose, Disposables.create {

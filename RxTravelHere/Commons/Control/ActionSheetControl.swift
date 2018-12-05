@@ -20,7 +20,9 @@ class ActionSheetControl {
                 })
                 actionSheet.addAction(action)
             }
-            actionSheet.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+            actionSheet.addAction(UIAlertAction(title: "取消", style: .cancel, handler: { _ in
+                subcriber.onCompleted()
+            }))
             from.present(actionSheet, animated: true)
             return Disposables.create {
                 actionSheet.dismiss(animated: true)

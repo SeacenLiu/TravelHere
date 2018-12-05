@@ -34,7 +34,6 @@
 		1428891B21B4CB130057F79E /* FileNetworkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428891A21B4CB130057F79E /* FileNetworkTarget.swift */; };
 		1428891D21B54BC50057F79E /* UIButton+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428891C21B54BC50057F79E /* UIButton+Rx.swift */; };
 		1428892221B555AC0057F79E /* UIImagePickerController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428892121B555AC0057F79E /* UIImagePickerController+Rx.swift */; };
-		1428893721B573B40057F79E /* THImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428893421B573B40057F79E /* THImagePickerController.swift */; };
 		1428893821B573B40057F79E /* YYImageClipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1428893521B573B40057F79E /* YYImageClipViewController.m */; };
 		1428893A21B5743D0057F79E /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428893921B5743D0057F79E /* UIViewController+Ex.swift */; };
 		1428893C21B586910057F79E /* ActionSheetControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428893B21B586910057F79E /* ActionSheetControl.swift */; };
@@ -102,7 +101,6 @@
 		1428891C21B54BC50057F79E /* UIButton+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Rx.swift"; sourceTree = "<group>"; };
 		1428892121B555AC0057F79E /* UIImagePickerController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImagePickerController+Rx.swift"; sourceTree = "<group>"; };
 		1428892F21B5739E0057F79E /* RxTravelHere-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RxTravelHere-Bridging-Header.h"; sourceTree = "<group>"; };
-		1428893421B573B40057F79E /* THImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THImagePickerController.swift; sourceTree = "<group>"; };
 		1428893521B573B40057F79E /* YYImageClipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYImageClipViewController.m; sourceTree = "<group>"; };
 		1428893621B573B40057F79E /* YYImageClipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYImageClipViewController.h; sourceTree = "<group>"; };
 		1428893921B5743D0057F79E /* UIViewController+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
@@ -321,7 +319,6 @@
 		1428893321B573B40057F79E /* ImagePicker */ = {
 			isa = PBXGroup;
 			children = (
-				1428893421B573B40057F79E /* THImagePickerController.swift */,
 				1428893621B573B40057F79E /* YYImageClipViewController.h */,
 				1428893521B573B40057F79E /* YYImageClipViewController.m */,
 				143DB46B21B6B790001F57E1 /* YYImagePickerController+Rx.swift */,
@@ -614,7 +611,6 @@
 				1428893A21B5743D0057F79E /* UIViewController+Ex.swift in Sources */,
 				1428891221B3B8710057F79E /* NetworkConfig.swift in Sources */,
 				143DB46C21B6B790001F57E1 /* YYImagePickerController+Rx.swift in Sources */,
-				1428893721B573B40057F79E /* THImagePickerController.swift in Sources */,
 				1428891621B3BCFA0057F79E /* Account.NetworkTarget.swift in Sources */,
 				140ED10C21AE884E00F1D1D2 /* AppDelegate.swift in Sources */,
 				1428894621B611FF0057F79E /* KingfisherControl.swift in Sources */,

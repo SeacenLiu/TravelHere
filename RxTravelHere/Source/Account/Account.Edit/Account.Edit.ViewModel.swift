@@ -36,7 +36,6 @@ extension Account.Edit {
             
             let modify = Observable
                 .combineLatest(input.name.asObservable(), imageUpload)
-                .debug()
             
             done = modify
                 .flatMapFirst {
@@ -68,7 +67,6 @@ extension Account.Edit {
                     startImgObservable,
                     changemgObservable])
             avatar = concat
-                .debug()
                 .asDriver(onErrorJustReturn: UIImage(named: "big_user_icon")!)
         }
     }
