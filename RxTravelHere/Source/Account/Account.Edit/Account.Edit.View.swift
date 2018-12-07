@@ -66,7 +66,7 @@ extension Reactive where Base: Account.Edit.View {
         return Binder<Bool>(base) { c, v in
             if v {
                 c.showHUD(successText: "修改成功")
-//                c.dismiss(animated: true)
+                c.dismiss(animated: true)
             } else {
                 c.showHUD(errorText: "修改失败")
             }

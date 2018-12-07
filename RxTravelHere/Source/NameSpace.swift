@@ -13,3 +13,12 @@ enum Account {
     enum ValidateLogin { }
     enum Edit { }
 }
+
+enum Map {
+    enum Show { }
+}
+
+enum Record {
+    enum Show { }
+    enum Edit { }
+}
