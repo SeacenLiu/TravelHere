@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="1yg-eW-pms" customClass="MapView" customModule="RxTravelHere" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="1yg-eW-pms" customClass="HomeView" customModule="RxTravelHere" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -94,6 +94,12 @@
                 <constraint firstItem="v8o-3T-gng" firstAttribute="trailing" secondItem="2eN-ty-ngO" secondAttribute="trailing" id="yBe-XE-nik"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="i4X-0v-1AF"/>
+            <connections>
+                <outlet property="arBtn" destination="cpB-MH-Bli" id="uWU-dP-GhY"/>
+                <outlet property="editBtn" destination="Bi2-sv-X1c" id="VB0-Ia-Lak"/>
+                <outlet property="refreshBtn" destination="F1h-eT-7Tp" id="2Hi-4B-WPh"/>
+                <outlet property="userBtn" destination="2eN-ty-ngO" id="cab-mj-ndb"/>
+            </connections>
         </view>
     </objects>
     <resources>

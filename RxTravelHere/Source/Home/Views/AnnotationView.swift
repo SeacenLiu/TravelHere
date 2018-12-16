@@ -12,7 +12,7 @@ class AnnotationView: MAAnnotationView {
     
     static let reuseIndetifier = "com.Seacen.Map.AnnotationView.reuseIndetifier"
     
-    class func annotationView(_ mapView: MAMapView, _ annotation: Map.Show.Model) -> AnnotationView {
+    class func annotationView(_ mapView: MAMapView, _ annotation: Home.Annotation) -> AnnotationView {
         var v: AnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIndetifier) as? AnnotationView
         if v == nil {
             v = AnnotationView(annotation: annotation, reuseIdentifier: reuseIndetifier)

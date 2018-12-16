@@ -14,9 +14,7 @@ enum Account {
     enum Edit { }
 }
 
-enum Map {
-    enum Show { }
-}
+enum Home { }
 
 enum Record {
     enum Show { }

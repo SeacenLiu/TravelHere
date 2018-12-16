@@ -10,10 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-//extension YYImageClipViewController: HasDelegate {
-//    public typealias Delegate = YYImageClipDelegate
-//}
-
 class RxImageClipViewControllerDelegateProxy
     : DelegateProxy<YYImageClipViewController, YYImageClipDelegate>
     , DelegateProxyType

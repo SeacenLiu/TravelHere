@@ -9,9 +9,11 @@
 import Foundation
 
 extension MAMapView {
-    convenience init(bundle: String, frame: CGRect, delegate: MAMapViewDelegate) {
+    convenience init(bundle: String, frame: CGRect, delegate: MAMapViewDelegate? = nil) {
         self.init(frame: frame)
-        self.delegate = delegate
+        if let delegate = delegate {
+            self.delegate = delegate
+        }
         customizeUserLocationAccuracyCircleRepresentation = true
         if var path = Bundle.main.path(forResource: bundle, ofType: "bundle", inDirectory: nil) {
             path += "/style.data"
@@ -26,7 +28,7 @@ extension MAMapView {
         customMapStyleEnabled = true
         showsCompass = false
         showsScale = false
-        isZoomEnabled = false
+//        isZoomEnabled = false
         isScrollEnabled = false
         isRotateEnabled = false
         isRotateCameraEnabled = false

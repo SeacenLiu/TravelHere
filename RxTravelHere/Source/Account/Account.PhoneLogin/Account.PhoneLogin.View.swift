@@ -51,9 +51,9 @@ extension Account.PhoneLogin.View {
 }
 
 extension Reactive where Base: Account.PhoneLogin.View {
-    typealias Result = Account.PhoneLogin.SendCodeResult
-    internal var showCodeView: AnyObserver<Result> {
-        return Binder<Result>(base) { c, r in
+    typealias PLResult = Account.PhoneLogin.SendCodeResult
+    internal var showCodeView: AnyObserver<PLResult> {
+        return Binder<PLResult>(base) { c, r in
             if r.isValid {
                 c.showHUD(successText: r.msg)
                 c.navigationController?.pushViewController(

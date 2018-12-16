@@ -15,7 +15,7 @@ protocol NetworkTarget: TargetType {
 }
 
 extension NetworkTarget {
-    var baseURL: URL { return URL(string: "http://119.23.47.182:9080")! }
+    var baseURL: URL { return URL(string: "http://ar.ngrok.xiaomiqiu.cn")! }
     var sampleData: Data { return "{}".data(using: .utf8)! }
     var path: String { return self.interface.rawValue }
     var parameterEncoding: ParameterEncoding { return URLEncoding.default }

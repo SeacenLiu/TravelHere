@@ -53,4 +53,8 @@ extension UIViewController {
     func showHUD(successText: String, completion: (()->())? = nil) {
         SVProgressHUD.showSuccess(status: successText, completion: completion)
     }
+    
+    func showHUD(infoText: String, completion: (()->())? = nil) {
+        SVProgressHUD.showTip(status: infoText, completion: completion)
+    }
 }
