@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class  RxMapViewDelegateProxy: DelegateProxy<MAMapView, MAMapViewDelegate>, DelegateProxyType, MAMapViewDelegate {
+class RxMapViewDelegateProxy: DelegateProxy<MAMapView, MAMapViewDelegate>, DelegateProxyType, MAMapViewDelegate {
     
     weak private(set) var mapView: MAMapView?
     
@@ -31,9 +31,9 @@ class  RxMapViewDelegateProxy: DelegateProxy<MAMapView, MAMapViewDelegate>, Dele
         object.delegate = delegate
     }
     
-    override open func setForwardToDelegate(_ delegate: MAMapViewDelegate?, retainDelegate: Bool) {
-        super.setForwardToDelegate(delegate, retainDelegate: false)
-    }
+//    override open func setForwardToDelegate(_ delegate: MAMapViewDelegate?, retainDelegate: Bool) {
+//        super.setForwardToDelegate(delegate, retainDelegate: false)
+//    }
     
     // 现在只有一个地图，暂且放这里，首页就不需要写代理了
     private var userView: MAAnnotationView?

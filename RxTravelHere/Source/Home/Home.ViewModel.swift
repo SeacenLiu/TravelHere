@@ -24,15 +24,23 @@ extension Home {
     
     final class ViewModel {
         
-        var curRecordModels: [Record.Model]?
-        var curAnnotations: [Annotation]?
+        // 输出流
         private var _showRecord: Driver<MapShowResult>?
         var showRecord: Driver<MapShowResult> {
             return _showRecord!
         }
         
+        let avatar: Driver<UIImage>
+        
+        // 保存状态用
+        var curRecordModels: [Record.Model]?
+        var curAnnotations: [Annotation]?
+        
         init(input: (locations: Observable<CLLocationCoordinate2D>, refreshTap: Signal<()>)) {
-            let provider = MoyaProvider<Record.NetworkTarget>(plugins: [NetworkDebugPlugin()])
+            let provider = MoyaProvider<Record.NetworkTarget>()
+            
+            avatar = Account.Manager.shared.avatar
+                .asDriver(onErrorJustReturn: UIImage(named: "unlogin_avator")!)
             
             let firstLocation = input.locations.take(1)
             
@@ -44,6 +52,7 @@ extension Home {
             let concat = Observable.concat(firstLocation, tapRefresh)
             
             _showRecord = concat
+                .asDriver(onErrorJustReturn: CLLocationCoordinate2D())
                 .flatMapLatest {  location in
                     return provider.rx
                         .request(Record.NetworkTarget.arroundRecord(
@@ -70,8 +79,8 @@ extension Home {
                                 news: annotations
                             )
                         })
+                        .asDriver(onErrorJustReturn: .defaultResult)
             }
-                .asDriver(onErrorJustReturn: .defaultResult)
         }
     }
 }

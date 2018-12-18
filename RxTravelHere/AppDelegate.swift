@@ -28,7 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func loadWindow() {
         self.window = UIWindow(frame: UIScreen.main.bounds)
 //        window?.rootViewController = Account.View()
-        window?.rootViewController = MainNavigationControler(rootViewController: Home.View())
+//        window?.rootViewController = Account.Edit.View()
+//        window?.rootViewController = UserCenter.View.viewForNavigation()
+        window?.rootViewController = MainNavigationController(rootViewController: Home.View())
         window?.makeKeyAndVisible()
     }
     

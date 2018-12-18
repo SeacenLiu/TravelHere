@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import Moya
 
 extension Home {
     final class View: UIViewController {
@@ -32,9 +31,7 @@ extension Home {
             refreshTap: self._homeView.refreshBtn.rx.tap.asSignal()))
         
         private lazy var locationManager = CLLocationManager(delegate: self)
-        
-        /// 用户位置
-        private var userView: MAAnnotationView?
+        // TODO: - 没有定位权限使用高斯模糊
     }
 }
 
@@ -48,14 +45,30 @@ extension Home.View {
         _homeView.userBtn.rx
             .controlEvent(UIControlEvents.touchUpInside)
             .subscribe { (_) in
-                self.present(Account.View(), animated: true)
+                Account.Manager.shared.ensureLogin(curVC: self, handle: {
+                    self.present(UserCenter.View.viewForNavigation(), animated: true)
+                })
         }
         .disposed(by: _disposeBag)
 
+        _viewModel.avatar
+            .drive(_homeView.userBtn.rx.image(for: .normal))
+            .disposed(by: _disposeBag)
+        
         _viewModel.showRecord
             .debug()
             .drive(rx.homeShowArround)
             .disposed(by: _disposeBag)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startLocation()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        closeLocation()
     }
     
     func setupUI() {
@@ -66,6 +79,24 @@ extension Home.View {
         mapView.update(r)
         // 默认的视角
         mapView.setDefaultVisual()
+    }
+}
+
+// MARK: - 定位权限有关
+extension Home.View {
+    private func startLocation() {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            mapView.showsUserLocation = true
+            mapView.userTrackingMode = .followWithHeading
+        }
+        else if CLLocationManager.authorizationStatus() != .notDetermined  {
+            tipChangePrivilege(privilege: .location)
+        }
+    }
+    
+    private func closeLocation() {
+        mapView.showsUserLocation = false
+        mapView.userTrackingMode = .none
     }
 }
 

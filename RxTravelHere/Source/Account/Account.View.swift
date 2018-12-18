@@ -9,7 +9,7 @@
 import UIKit
 
 extension Account {
-    final class View: MainNavigationControler {
+    final class View: MainNavigationController {
         init() {
             super.init(rootViewController: PhoneLogin.View())
         }

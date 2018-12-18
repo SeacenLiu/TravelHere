@@ -10,7 +10,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Moya
-import Kingfisher
 
 extension Account.Edit {
     final class ViewModel {
@@ -22,46 +21,51 @@ extension Account.Edit {
         init(input:(avatar: Driver<UIImage>, name: Driver<String>, doneTaps: Signal<()>)) {
             let imageProvider = MoyaProvider<FileNetworkTarget>()
             let provider = MoyaProvider<Account.NetworkTarget>()
-            let user = Account.Manager.shared.user
             
-            name = Observable
-                .just(user?.userNickname ?? "")
-                .asDriver(onErrorJustReturn: "")
-            
-            let startImgObservable = KingfisherControl
-                .getImage(
-                    with: user?.userAvatar ?? "",
-                    placeholder: "big_user_icon")
-            let changemgObservable = input.avatar.asObservable()
+            name = Account.Manager.shared.name.asDriver(onErrorJustReturn: "")
             avatar = Observable
-                .concat([startImgObservable,changemgObservable])
-                .asDriver(onErrorJustReturn: UIImage(named: "big_user_icon")!)
-                .debug()
+                .merge(
+                    Account.Manager.shared.avatar.asObservable(),
+                    input.avatar.asObservable()
+                )
+                .asDriver(onErrorJustReturn: UIImage(named: "big_user_icon")!).debug()
             
             validateName = input.name.map { $0 != "" }
             
             let imageUpload = input.doneTaps
+                .debug()
                 .withLatestFrom(avatar)
-                .map {$0.imageJpgData!}
                 .asObservable()
+                .map {$0.imageJpgData!}
                 .flatMapFirst {
                     imageProvider.rx
                         .request(FileNetworkTarget($0))
+                        .do(onSuccess: { (res) in
+                            log(String(data: res.data, encoding: .utf8)!)
+                        },onError: { (err) in
+                            log(err)
+                        })
                         .map(NetworkResponse<ImageInfo>.self)
                         .do(onSuccess: { (res) in
                             log(res)
+                        },onError: { (err) in
+                            log(err)
                         })
                         .map { $0.data.path }
                 }
+            
+            // 出错不能Dispose
+            // 出错要传出去
             
             done = Observable
                 .combineLatest(
                     input.name.asObservable(),
                     imageUpload)
+                .debug()
                 .flatMapFirst {
                     provider.rx
                         .request(.modify(name: $0.0, avatar: $0.1))
-                        .map(NetworkResponse<Account.User>.self).debug()
+                        .map(NetworkResponse<Account.User>.self)
                         .map({ response in
                             Account.Manager.shared.modifyUserInfo(with: response.data)
                             return response.code == .success

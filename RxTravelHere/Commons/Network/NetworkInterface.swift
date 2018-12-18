@@ -18,5 +18,7 @@ enum NetworkInterface: String {
     case fileUpload = "/file/upload"
     
     // MARK: - message(record)
+    case record = "/message"
     case arroundRecord = "/message/list"
+    case oneRecord = "/message/one"
 }

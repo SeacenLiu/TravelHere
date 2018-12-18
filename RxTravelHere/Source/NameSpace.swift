@@ -20,3 +20,8 @@ enum Record {
     enum Show { }
     enum Edit { }
 }
+
+enum UserCenter {
+    enum MyRecord { }
+    enum Interaction { }
+}
