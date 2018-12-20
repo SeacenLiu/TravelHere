@@ -14,48 +14,66 @@ import Moya
 extension UserCenter.MyRecord {
     internal class ViewModel {
         
-        var refreshStatus = BehaviorRelay<RefreshStatus>(value: RefreshStatus.InvalidData)
-        var result: Observable<[Record.Detail]>?
-        var hasContent = BehaviorRelay<Bool>(value: false)
-        private var _page = 1
-        private var _loadData = PublishSubject<Int>()
+        var data: Driver<[Record.Detail]>!
+        var refreshStatus: Driver<RefreshStatus> {
+            return _refreshStatus.asDriver(onErrorJustReturn: .InvalidData)
+        }
+        var hasContent: Driver<Bool> {
+            return _hasContent.asDriver(onErrorJustReturn: false)
+        }
+        
+        var _refreshStatus = PublishSubject<RefreshStatus>()
+        var _hasContent = PublishSubject<Bool>()
+        var _page = 1
         private var dataArray = [Record.Detail]()
         
-        init() {
+        init(input: (refresh: Driver<()>, loadMore: Driver<()>)) {
             let provider = MoyaProvider<Record.NetworkTarget>()
             
-            result = _loadData.flatMapLatest { p in
-                provider.rx.request(.myRecord(page: p, count: 20))
-                    .map(NetworkResponse<[Record.Detail]>.self)
-                    .map({ (response) -> [Record.Detail] in
-                        let array = response.data
-                        if p == 1 {
-                            self.refreshStatus.accept(.DropDownSuccess)
+            let refresh = Driver.merge(input.refresh, Driver.of(()))
+                .debug()
+                .do(onNext: { _ in self._page = 1 })
+                .flatMapLatest { _ in
+                    provider.rx
+                        .request(.myRecord(page: self._page, count: 20))
+                        .map(NetworkResponse<[Record.Detail]>.self)
+                        .map({ (response) -> [Record.Detail] in
+                            let array = response.data
+                            self._refreshStatus.onNext(.DropDownSuccess)
                             self.dataArray = array
-                        } else {
-                            if array.count <= 0 {
-                                self.refreshStatus.accept(.PullSuccessNoMoreData)
-                            } else {
-                                self.refreshStatus.accept(.PullSuccessHasMoreData)
-                                self.dataArray += array
-                            }
-                        }
-                        if p == 1 && self.dataArray.count != 0 {
-                            self.hasContent.accept(true)
-                        }
-                        return self.dataArray
-                    })
+                            self._hasContent.onNext(!array.isEmpty)
+                            return self.dataArray
+                        })
+                        .asDriver(onErrorJustReturn: [])
             }
-        }
-        
-        func reloadData() {
-            _page = 1
-            _loadData.onNext(_page)
-        }
-        
-        func loadMoreData() {
-            _page += 1
-            _loadData.onNext(_page)
+            
+            let loadMore = input.loadMore
+                .do(onNext: { _ in self._page += 1 })
+                .flatMapLatest { _ in
+                    provider.rx.request(.myRecord(page: self._page, count: 20))
+                        .map(NetworkResponse<[Record.Detail]>.self)
+                        .map({ (response) -> [Record.Detail] in
+                            let array = response.data
+                            if array.isEmpty {
+                                self._refreshStatus.onNext(.PullSuccessNoMoreData)
+                            } else {
+                                self._refreshStatus.onNext(.PullSuccessHasMoreData)
+                            }
+                            self.dataArray += array
+                            return self.dataArray
+                        })
+                        .asDriver(onErrorJustReturn: [])
+            }
+            
+            data = Driver.merge(refresh, loadMore)
+                .do(onNext: { (models) in
+                    if models.isEmpty {
+                        self._refreshStatus.onNext(.InvalidData)
+                    }
+                })
+                .map { models in
+                    return self.dataArray
+            }
         }
     }
 }

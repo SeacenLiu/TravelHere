@@ -10,6 +10,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class TableViewModel {
-    
+protocol TableViewModelType {
+    associatedtype Element: Decodable
 }

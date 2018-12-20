@@ -30,7 +30,7 @@ extension Reactive where Base: UITableView {
         switch status {
         case .InvalidData:
             tableView.mj_header.endRefreshing()
-            tableView.mj_footer.endRefreshing()
+            tableView.mj_footer.endRefreshingWithNoMoreData()
             return
         case .DropDownSuccess:
             tableView.mj_header.endRefreshing()
@@ -43,3 +43,33 @@ extension Reactive where Base: UITableView {
         tableView.mj_header.endRefreshing()
     }
 }
+
+protocol MJRefreshHeaderCreater { }
+extension MJRefreshHeaderCreater where Self: MJRefreshHeader {
+    static func create(from: UIScrollView, config: ((Self) -> ())? = nil) -> Observable<()> {
+        return Observable.create { [unowned from] subscribe in
+            let header = Self.init(refreshingBlock: {
+                subscribe.onNext(())
+            })
+            config?(header!)
+            from.mj_header = header
+            return Disposables.create()
+        }
+    }
+}
+extension MJRefreshHeader: MJRefreshHeaderCreater { }
+
+protocol MJRefreshFooterCreater { }
+extension MJRefreshFooterCreater where Self: MJRefreshFooter {
+    static func create(from: UIScrollView, config: ((Self) -> ())? = nil) -> Observable<()> {
+        return Observable.create { [unowned from] subscribe in
+            let footer = Self.init(refreshingBlock: {
+                subscribe.onNext(())
+            })
+            config?(footer!)
+            from.mj_footer = footer
+            return Disposables.create()
+        }
+    }
+}
+extension MJRefreshFooter: MJRefreshFooterCreater { }
