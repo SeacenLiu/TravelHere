@@ -11,8 +11,8 @@ import RxSwift
 import RxCocoa
 
 class ImageClipControl {
-    static func show(_ image: UIImage, isCycle: Bool, from: UIViewController) -> Observable<YYImageClipViewController> {
-        return Observable.create { subscriber in
+    static func show(_ image: UIImage, isCycle: Bool, from: UIViewController?) -> Observable<YYImageClipViewController> {
+        return Observable.create { [weak from] observer in
             let w = UIScreen.main.bounds.width
             let h = w //  * imagescaleHW
             let x: CGFloat = 0
@@ -20,18 +20,28 @@ class ImageClipControl {
             let rect = CGRect(x: x, y: y, width: w, height: h)
             let cc = YYImageClipViewController(image: image, cropFrame: rect, limitScaleRatio: 3, isCycle: isCycle)!
             let cancelDispose = cc.rx.didCancel.subscribe(onNext: { _ in
-                subscriber.onCompleted()
+                observer.onCompleted()
             })
+            
+            let doneDispose = cc.rx.didFinished.subscribe(onNext: { _ in
+                observer.onCompleted()
+            })
+            
+            guard let from = from else {
+                observer.onCompleted()
+                return Disposables.create()
+            }
+            
             from.present(cc, animated: true)
-            subscriber.onNext(cc)
-            return Disposables.create(cancelDispose, Disposables.create {
+            observer.onNext(cc)
+            return Disposables.create(cancelDispose, doneDispose, Disposables.create {
                 cc.dismiss(animated: true)
             })
         }
     }
     
-    static func cropImage(_ image: UIImage, isCycle: Bool, from: UIViewController) -> Observable<UIImage> {
-        return self.show(image, isCycle: isCycle, from: from)
+    static func cropImage(_ image: UIImage, isCycle: Bool, from: UIViewController?) -> Observable<UIImage> {
+        return self.show(image, isCycle: isCycle, from: from).debug()
             .flatMap { $0.rx.didFinished }
     }
 }

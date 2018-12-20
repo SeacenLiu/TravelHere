@@ -23,7 +23,7 @@ extension Reactive where Base: UIImagePickerController {
     public var didFinishPickingMediaWithInfo: Observable<[UIImagePickerController.InfoKey : Any]> {
         return delegate
             .methodInvoked(#selector(UIImagePickerControllerDelegate.imagePickerController(_:didFinishPickingMediaWithInfo:)))
-            .do(onNext: { _ in self.base.dismiss(animated: true) })
+//            .do(onNext: { _ in self.base.dismiss(animated: true) })
             .map({ (a) in
                 return try castOrThrow(Dictionary<UIImagePickerController.InfoKey, Any>.self, a[1])
             })

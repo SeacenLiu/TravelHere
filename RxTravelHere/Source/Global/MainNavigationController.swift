@@ -18,6 +18,10 @@ class MainNavigationController: UINavigationController {
             interactivePopGestureRecognizer?.delegate = self
         }
     }
+    
+    deinit {
+        log("MainNavigationController byebye.")
+    }
 }
 
 extension MainNavigationController: UIGestureRecognizerDelegate {

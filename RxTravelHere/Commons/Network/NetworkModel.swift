@@ -39,3 +39,9 @@ struct NetworkResponse<T: Decodable>: Decodable {
 struct ImageInfo: Decodable {
     let path: String
 }
+
+// MARK: - Rx Status
+enum NetworkResult<T> {
+    case failure
+    case success(value: T)
+}

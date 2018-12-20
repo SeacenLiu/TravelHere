@@ -46,10 +46,7 @@ extension Reactive where Base: YYImageClipViewController {
     public var didFinished: Observable<UIImage> {
         let sel = #selector(YYImageClipDelegate.imageCropper(_:didFinished:))
         return delegate.methodInvoked(sel)
-            .do(onNext: { _ in self.base.dismiss(animated: true) })
-            .map {
-            parameters in parameters[1] as! UIImage
-        }
+            .map { parameters in parameters[1] as! UIImage }
     }
     
     public var didCancel: Observable<()> {

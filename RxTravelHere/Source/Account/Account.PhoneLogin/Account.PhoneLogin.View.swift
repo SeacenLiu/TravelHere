@@ -40,7 +40,7 @@ extension Account.PhoneLogin.View {
             .disposed(by: _diposeBag)
         
         _phoneView.closeBtn.rx.tap
-            .subscribe(onNext: { self.dismiss(animated: true) })
+            .bind(to: rx.dismissAction)
             .disposed(by: _diposeBag)
         
     }

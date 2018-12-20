@@ -57,9 +57,9 @@
     [self.navigationController.navigationBar setHidden:YES];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return NO;
-}
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+//    return NO;
+//}
 
 - (void)initView {
     self.view.backgroundColor = [UIColor blackColor];

@@ -28,50 +28,43 @@ extension Account.Edit {
                     Account.Manager.shared.avatar.asObservable(),
                     input.avatar.asObservable()
                 )
-                .asDriver(onErrorJustReturn: UIImage(named: "big_user_icon")!).debug()
+                .asDriver(onErrorJustReturn: UIImage(named: "big_user_icon")!)
             
             validateName = input.name.map { $0 != "" }
             
-            let imageUpload = input.doneTaps
+            done = input.doneTaps
                 .debug()
                 .withLatestFrom(avatar)
-                .asObservable()
                 .map {$0.imageJpgData!}
-                .flatMapFirst {
+                .flatMapFirst { data -> Driver<NetworkResult<String>> in
                     imageProvider.rx
-                        .request(FileNetworkTarget($0))
-                        .do(onSuccess: { (res) in
-                            log(String(data: res.data, encoding: .utf8)!)
-                        },onError: { (err) in
-                            log(err)
-                        })
+                        .request(FileNetworkTarget(data))
                         .map(NetworkResponse<ImageInfo>.self)
-                        .do(onSuccess: { (res) in
-                            log(res)
-                        },onError: { (err) in
-                            log(err)
-                        })
-                        .map { $0.data.path }
+                        .map { .success(value: $0.data.path) }
+                        .asDriver(onErrorJustReturn: .failure)
                 }
-            
-            // 出错不能Dispose
-            // 出错要传出去
-            
-            done = Observable
-                .combineLatest(
-                    input.name.asObservable(),
-                    imageUpload)
-                .debug()
-                .flatMapFirst {
-                    provider.rx
-                        .request(.modify(name: $0.0, avatar: $0.1))
-                        .map(NetworkResponse<Account.User>.self)
-                        .map({ response in
-                            Account.Manager.shared.modifyUserInfo(with: response.data)
-                            return response.code == .success
-                        })
-                }
-                .asDriver(onErrorJustReturn: false)
+                .flatMapFirst { result -> Driver<Bool> in
+                    switch result {
+                    case let .success(imagePath):
+                        return input.name
+                            .flatMapLatest { name in
+                                provider.rx
+                                    .request(.modify(name: name, avatar: imagePath))
+                                    .map(NetworkResponse<Account.User>.self)
+                                    .do(onSuccess: { Account.Manager.shared.modifyUserInfo(with: $0.data) })
+                                    .map { $0.code == .success }
+                                    .asDriver(onErrorJustReturn: false)
+                        }
+                    case .failure:
+                        return Driver<Bool>.just(false)
+                    }
+            }
+        }
+        
+        deinit {
+            log("Edit ViewModel deinit.")
         }
     }
 }
+
+

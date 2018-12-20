@@ -13,44 +13,55 @@ import AVFoundation.AVCaptureDevice
 import AVFoundation.AVMediaFormat
 
 class ImagePickerControl {
-    static func show(from: UIViewController, sourceType: UIImagePickerController.SourceType) -> Observable<UIImagePickerController> {
-        return Observable<UIImagePickerController>.create { [unowned from] subscribe in
+    static func show(from: UIViewController?, sourceType: UIImagePickerController.SourceType) -> Observable<UIImagePickerController> {
+        return Observable<UIImagePickerController>.create { [weak from] observer in
             let picker = UIImagePickerController()
             let cancelDisposable = picker.rx
                 .didCancel
                 .subscribe(onNext: { _ in
-                    subscribe.onCompleted()
+                    observer.onCompleted()
                 })
+            let doneDisposeable = picker.rx
+                .didFinishPickingMediaWithInfo
+                .subscribe(onNext: { _ in
+                    observer.onCompleted()
+            })
             picker.sourceType = sourceType
+            
+            guard let from = from else {
+                observer.onCompleted()
+                return Disposables.create()
+            }
+            
             from.present(picker, animated: true)
-            subscribe.onNext(picker)
-            return Disposables.create(cancelDisposable, Disposables.create {
+            observer.onNext(picker)
+            return Disposables.create(cancelDisposable, doneDisposeable, Disposables.create {
                 picker.dismiss(animated: true)
                 }
             )
         }
     }
     
-    static func showActionAndGetImage(from: UIViewController) -> Observable<UIImage?> {
+    static func showActionAndGetImage(from: UIViewController?) -> Observable<UIImage?> {
         return ActionSheetControl
             .show(from: from, menu: ["来自相机", "来自相册"])
             .flatMap { (which) -> Observable<UIImage?> in
                 var source: UIImagePickerController.SourceType = .camera
                 if which == 1 { source = .savedPhotosAlbum }
-                return ImagePickerControl.showAndGetImage(from: from, sourceType: source)
+                return ImagePickerControl.showAndGetImage(from: from, sourceType: source).debug()
         }
     }
     
-    static func showAndGetImage(from: UIViewController, sourceType: UIImagePickerController.SourceType) -> Observable<UIImage?> {
-        return self.checkPrivilege(from: from, sourceType: sourceType)
-            .flatMap { f, t in self.show(from: f, sourceType: t) }
+    static func showAndGetImage(from: UIViewController?, sourceType: UIImagePickerController.SourceType) -> Observable<UIImage?> {
+        return self.checkPrivilege(from: from, sourceType: sourceType).debug()
+            .flatMap { f, t in ImagePickerControl.show(from: f, sourceType: t) }
             .flatMap { picker in picker.rx.didFinishPickingMediaWithInfo }
             .map { info in info[UIImagePickerController.InfoKey.originalImage] as? UIImage }
     }
     
     // FIXME: - 检查用户权限 这里还能分开
-    static func checkPrivilege(from: UIViewController, sourceType: UIImagePickerController.SourceType) -> Observable<(UIViewController, UIImagePickerController.SourceType)> {
-        return Observable<(UIViewController, UIImagePickerController.SourceType)>.create({ subscriber -> Disposable in
+    static func checkPrivilege(from: UIViewController?, sourceType: UIImagePickerController.SourceType) -> Observable<(UIViewController, UIImagePickerController.SourceType)> {
+        return Observable<(UIViewController, UIImagePickerController.SourceType)>.create({ [weak from] observer -> Disposable in
             var hasPrivilege = true
             var privilege: Privilege = .camera
             switch sourceType {
@@ -73,27 +84,33 @@ class ImagePickerControl {
                 }
                 if !UIImagePickerController.isSourceTypeAvailable(.camera) {
                     log("无可用摄像头")
-                    subscriber.onCompleted()
+                    observer.onCompleted()
                 }
             case .savedPhotosAlbum:
                 break
             default:
-                subscriber.onCompleted()
+                observer.onCompleted()
+            }
+            
+            guard let from = from else {
+                observer.onCompleted()
+                return Disposables.create()
             }
             
             let aleat = UIAlertController(title: "", message:privilege.rawValue, preferredStyle: .alert)
             if hasPrivilege {
-                subscriber.onNext((from, sourceType))
+                observer.onNext((from, sourceType))
+                observer.onCompleted()
             } else {
                 let tempAction = UIAlertAction(title: "取消", style: .cancel) { _ in
-                    subscriber.onCompleted()
+                    observer.onCompleted()
                 }
                 let callAction = UIAlertAction(title: "立即设置", style: .default) { _ in
                     let url = NSURL.init(string: UIApplication.openSettingsURLString)
                     if(UIApplication.shared.canOpenURL(url! as URL)) {
                         UIApplication.shared.open(url! as URL, options: [:])
                     }
-                    subscriber.onCompleted()
+                    observer.onCompleted()
                 }
                 aleat.addAction(tempAction)
                 aleat.addAction(callAction)

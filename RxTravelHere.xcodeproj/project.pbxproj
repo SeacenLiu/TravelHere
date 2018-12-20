@@ -81,6 +81,7 @@
 		146A6C7821BA99AE0066732C /* CLLocationManager+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A6C7721BA99AE0066732C /* CLLocationManager+Ex.swift */; };
 		146A6C7A21BAB2770066732C /* MAMapView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A6C7921BAB2770066732C /* MAMapView+Rx.swift */; };
 		14ED87DD21C8F71A0019F861 /* MJRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED87DC21C8F71A0019F861 /* MJRefresh+Rx.swift */; };
+		14ED87E021CB3DCB0019F861 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED87DF21CB3DCB0019F861 /* UIViewController+Rx.swift */; };
 		6651C8CDC1021B3CDEEFC508 /* Pods_RxTravelHere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E8D2174BF8E6DCAA4DE9F1 /* Pods_RxTravelHere.framework */; };
 		67D330B13DF060220C3DE011 /* Pods_RxTravelHereUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DBC54C19255EB117EF3E973 /* Pods_RxTravelHereUITests.framework */; };
 		C2FE0C21049B34BAD0C95D71 /* Pods_RxTravelHereTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9665BF2A665CBE6CF36DF11D /* Pods_RxTravelHereTests.framework */; };
@@ -186,6 +187,7 @@
 		146A6C7721BA99AE0066732C /* CLLocationManager+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationManager+Ex.swift"; sourceTree = "<group>"; };
 		146A6C7921BAB2770066732C /* MAMapView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MAMapView+Rx.swift"; sourceTree = "<group>"; };
 		14ED87DC21C8F71A0019F861 /* MJRefresh+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefresh+Rx.swift"; sourceTree = "<group>"; };
+		14ED87DF21CB3DCB0019F861 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		3A662F8E49B5C849B1E7545A /* Pods-RxTravelHere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxTravelHere.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxTravelHere/Pods-RxTravelHere.release.xcconfig"; sourceTree = "<group>"; };
 		4492411006C311772B653288 /* Pods-RxTravelHere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxTravelHere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxTravelHere/Pods-RxTravelHere.debug.xcconfig"; sourceTree = "<group>"; };
 		65D6934429BDCC4A3000AB81 /* Pods-RxTravelHereUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxTravelHereUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxTravelHereUITests/Pods-RxTravelHereUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -399,6 +401,7 @@
 				1428892121B555AC0057F79E /* UIImagePickerController+Rx.swift */,
 				146A6C7921BAB2770066732C /* MAMapView+Rx.swift */,
 				14ED87DC21C8F71A0019F861 /* MJRefresh+Rx.swift */,
+				14ED87DF21CB3DCB0019F861 /* UIViewController+Rx.swift */,
 			);
 			path = Rx;
 			sourceTree = "<group>";
@@ -418,8 +421,8 @@
 			children = (
 				1428893B21B586910057F79E /* ActionSheetControl.swift */,
 				1428893D21B58BEE0057F79E /* ImagePickerControl.swift */,
-				1428894521B611FF0057F79E /* KingfisherControl.swift */,
 				143DB46921B6B6DF001F57E1 /* ImageClipControl.swift */,
+				1428894521B611FF0057F79E /* KingfisherControl.swift */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -828,6 +831,7 @@
 				146A6C7421BA97560066732C /* HomeView.swift in Sources */,
 				146A6C4F21B7D3EE0066732C /* Home.View.swift in Sources */,
 				14590E2E21C7300F00843EBA /* UserCenter.View.swift in Sources */,
+				14ED87E021CB3DCB0019F861 /* UIViewController+Rx.swift in Sources */,
 				14590E4A21C7F0B300843EBA /* EmptyView.swift in Sources */,
 				140ED14121AE8C8B00F1D1D2 /* log.swift in Sources */,
 				146A6C7621BA97860066732C /* MAMapView+Ex.swift in Sources */,

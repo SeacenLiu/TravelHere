@@ -23,11 +23,11 @@ extension Account.Edit {
         private lazy var _viewModel = ViewModel(
             input: (
                 avatar: self._editView.editAvatarBtn.rx.tap
-                    .flatMap { [unowned self] _ in
+                    .flatMap { [weak self] _ in
                         ImagePickerControl.showActionAndGetImage(from: self)
                     }
                     .filter {image in image != nil}
-                    .flatMap { [unowned self] image in
+                    .flatMap { [weak self] image in
                         ImageClipControl.cropImage(image!, isCycle: true, from: self)
                     }
                     .asDriver(onErrorJustReturn: UIImage()),
