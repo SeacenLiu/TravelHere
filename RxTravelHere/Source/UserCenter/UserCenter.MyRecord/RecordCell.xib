@@ -45,32 +45,23 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right_small_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="9QU-SB-4fP">
                         <rect key="frame" x="343" y="38" width="8" height="12"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5fT-Ix-4xx">
-                        <rect key="frame" x="24" y="87" width="327" height="0.5"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="0.33000000000000002" id="Xck-4Z-iV7"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="5fT-Ix-4xx" secondAttribute="bottom" id="00C-L9-bse"/>
                     <constraint firstItem="Ggb-Mg-joQ" firstAttribute="leading" secondItem="2EO-7n-hwO" secondAttribute="leading" id="65A-Qs-ZJt"/>
                     <constraint firstItem="wVT-2L-QA1" firstAttribute="top" secondItem="2EO-7n-hwO" secondAttribute="bottom" constant="12.5" id="7nD-y1-4e4"/>
                     <constraint firstAttribute="trailing" secondItem="2EO-7n-hwO" secondAttribute="trailing" constant="32" id="FoV-BK-qnA"/>
                     <constraint firstItem="9QU-SB-4fP" firstAttribute="centerY" secondItem="EHi-s7-7aL" secondAttribute="centerY" id="OOj-f9-33c"/>
-                    <constraint firstItem="5fT-Ix-4xx" firstAttribute="leading" secondItem="EHi-s7-7aL" secondAttribute="leading" constant="24" id="QxU-4u-R9E"/>
                     <constraint firstAttribute="bottom" secondItem="wVT-2L-QA1" secondAttribute="bottom" constant="18" id="WEB-Mk-Ym9"/>
                     <constraint firstItem="Ggb-Mg-joQ" firstAttribute="centerY" secondItem="wVT-2L-QA1" secondAttribute="centerY" id="Xfv-Wn-SW9"/>
                     <constraint firstItem="2EO-7n-hwO" firstAttribute="leading" secondItem="EHi-s7-7aL" secondAttribute="leading" constant="24" id="fbE-PW-lh6"/>
                     <constraint firstAttribute="trailing" secondItem="9QU-SB-4fP" secondAttribute="trailing" constant="24" id="gCF-nX-O5h"/>
-                    <constraint firstAttribute="trailing" secondItem="5fT-Ix-4xx" secondAttribute="trailing" constant="24" id="hMJ-cm-3tf"/>
                     <constraint firstItem="wVT-2L-QA1" firstAttribute="leading" secondItem="Ggb-Mg-joQ" secondAttribute="trailing" constant="12" id="jgI-Tx-322"/>
                     <constraint firstAttribute="trailing" secondItem="wVT-2L-QA1" secondAttribute="trailing" constant="32" id="tvm-f6-NPP"/>
                     <constraint firstItem="2EO-7n-hwO" firstAttribute="top" secondItem="EHi-s7-7aL" secondAttribute="top" constant="20" id="vns-gG-K4O"/>
                 </constraints>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="24" minY="0.0" maxX="24" maxY="0.0"/>
             <connections>
-                <outlet property="lineIv" destination="5fT-Ix-4xx" id="uPy-s0-qcF"/>
                 <outlet property="locationLb" destination="wVT-2L-QA1" id="lia-rt-nAb"/>
                 <outlet property="titleLb" destination="2EO-7n-hwO" id="I0n-jv-vcN"/>
             </connections>

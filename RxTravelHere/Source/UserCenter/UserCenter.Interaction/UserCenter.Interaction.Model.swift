@@ -28,3 +28,5 @@ extension UserCenter.Interaction.Model: Equatable {
         return lhs.commentId == rhs.commentId
     }
 }
+
+extension UserCenter.Interaction.Model: InteractionRepresentable {}

@@ -21,6 +21,8 @@ enum Record {
     enum Edit { }
 }
 
+enum Comment { }
+
 enum UserCenter {
     enum MyRecord { }
     enum Interaction { }

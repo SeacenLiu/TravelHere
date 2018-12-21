@@ -65,23 +65,4 @@ extension Record {
     }
 }
 
-// MARK: - 评论
-//extension Record {
-//    struct Comment: Codable {
-//        let id: Int
-//        let recordId: Int
-//        let userId: String
-//        let text: String
-//        let time: Int
-//        var reply: String?
-//
-//        enum CodingKeys: String, CodingKey {
-//            case id = "commentId"
-//            case recordId = "messageId"
-//            case time = "commentTime"
-//            case text = "commentContent"
-//            case reply = "commentReplyContent"
-//            case userId
-//        }
-//    }
-//}
+extension Record.Detail: MyRecordRepresentable { }

@@ -21,5 +21,9 @@ extension UserCenter {
             name = Account.Manager.shared.name
                 .asDriver(onErrorJustReturn: "未登录")
         }
+        
+        deinit {
+            log("UserCenter.ViewModel deinit.")
+        }
     }
 }

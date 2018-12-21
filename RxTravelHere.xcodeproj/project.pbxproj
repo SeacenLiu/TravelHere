@@ -27,6 +27,10 @@
 		140ED16421AF8D1800F1D1D2 /* Account.PhoneLogin.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140ED16321AF8D1800F1D1D2 /* Account.PhoneLogin.ViewModel.swift */; };
 		140ED16621AF8D2B00F1D1D2 /* Account.ValidateLogin.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140ED16521AF8D2B00F1D1D2 /* Account.ValidateLogin.View.swift */; };
 		140ED16821AF8D3200F1D1D2 /* Account.ValidateLogin.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140ED16721AF8D3200F1D1D2 /* Account.ValidateLogin.ViewModel.swift */; };
+		1427363C21CCD9A3000AA31D /* UserCenter.Interaction.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1427363B21CCD9A3000AA31D /* UserCenter.Interaction.ViewModel.swift */; };
+		1427363F21CCDB78000AA31D /* Comment.Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1427363E21CCDB78000AA31D /* Comment.Model.swift */; };
+		1427364121CCDB92000AA31D /* Comment.NetworkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1427364021CCDB92000AA31D /* Comment.NetworkTarget.swift */; };
+		1427364321CCE48D000AA31D /* UserCenter.Interaction.NetworkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1427364221CCE48D000AA31D /* UserCenter.Interaction.NetworkTarget.swift */; };
 		1428891221B3B8710057F79E /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428891121B3B8710057F79E /* NetworkConfig.swift */; };
 		1428891421B3B8BC0057F79E /* NetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428891321B3B8BC0057F79E /* NetworkInterface.swift */; };
 		1428891621B3BCFA0057F79E /* Account.NetworkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428891521B3BCFA0057F79E /* Account.NetworkTarget.swift */; };
@@ -55,7 +59,6 @@
 		14590E3D21C7337600843EBA /* UserCenter.MyRecord.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14590E3C21C7337600843EBA /* UserCenter.MyRecord.View.swift */; };
 		14590E3F21C7339A00843EBA /* UserCenter.Interaction.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14590E3E21C7339A00843EBA /* UserCenter.Interaction.View.swift */; };
 		14590E4121C78C4B00843EBA /* TouchBigBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14590E4021C78C4B00843EBA /* TouchBigBtn.swift */; };
-		14590E4321C7F00B00843EBA /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14590E4221C7F00A00843EBA /* TableViewModel.swift */; };
 		14590E4921C7F0B300843EBA /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14590E4421C7F0B200843EBA /* RecordCell.swift */; };
 		14590E4A21C7F0B300843EBA /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14590E4521C7F0B200843EBA /* EmptyView.swift */; };
 		14590E4B21C7F0B300843EBA /* RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14590E4621C7F0B200843EBA /* RecordCell.xib */; };
@@ -70,8 +73,6 @@
 		146A6C5521B7D57E0066732C /* Home.Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A6C5421B7D57E0066732C /* Home.Annotation.swift */; };
 		146A6C5721B7D5B40066732C /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146A6C5621B7D5B40066732C /* HomeView.xib */; };
 		146A6C5921B7DF070066732C /* MapSetting.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 146A6C5821B7DF070066732C /* MapSetting.bundle */; };
-		146A6C6221B7ECAA0066732C /* THRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A6C6121B7ECAA0066732C /* THRecordModel.swift */; };
-		146A6C6421B7ECD10066732C /* THCommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A6C6321B7ECD10066732C /* THCommentModel.swift */; };
 		146A6C6621B7ECF30066732C /* Date+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A6C6521B7ECF30066732C /* Date+Ex.swift */; };
 		146A6C6921B7ED5E0066732C /* Record.Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A6C6821B7ED5E0066732C /* Record.Model.swift */; };
 		146A6C7021BA927B0066732C /* UserAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A6C6F21BA927B0066732C /* UserAnnotationView.swift */; };
@@ -131,6 +132,10 @@
 		140ED16321AF8D1800F1D1D2 /* Account.PhoneLogin.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.PhoneLogin.ViewModel.swift; sourceTree = "<group>"; };
 		140ED16521AF8D2B00F1D1D2 /* Account.ValidateLogin.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.ValidateLogin.View.swift; sourceTree = "<group>"; };
 		140ED16721AF8D3200F1D1D2 /* Account.ValidateLogin.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.ValidateLogin.ViewModel.swift; sourceTree = "<group>"; };
+		1427363B21CCD9A3000AA31D /* UserCenter.Interaction.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenter.Interaction.ViewModel.swift; sourceTree = "<group>"; };
+		1427363E21CCDB78000AA31D /* Comment.Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.Model.swift; sourceTree = "<group>"; };
+		1427364021CCDB92000AA31D /* Comment.NetworkTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.NetworkTarget.swift; sourceTree = "<group>"; };
+		1427364221CCE48D000AA31D /* UserCenter.Interaction.NetworkTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenter.Interaction.NetworkTarget.swift; sourceTree = "<group>"; };
 		1428891121B3B8710057F79E /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		1428891321B3B8BC0057F79E /* NetworkInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterface.swift; sourceTree = "<group>"; };
 		1428891521B3BCFA0057F79E /* Account.NetworkTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.NetworkTarget.swift; sourceTree = "<group>"; };
@@ -161,7 +166,6 @@
 		14590E3C21C7337600843EBA /* UserCenter.MyRecord.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenter.MyRecord.View.swift; sourceTree = "<group>"; };
 		14590E3E21C7339A00843EBA /* UserCenter.Interaction.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenter.Interaction.View.swift; sourceTree = "<group>"; };
 		14590E4021C78C4B00843EBA /* TouchBigBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchBigBtn.swift; sourceTree = "<group>"; };
-		14590E4221C7F00A00843EBA /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
 		14590E4421C7F0B200843EBA /* RecordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
 		14590E4521C7F0B200843EBA /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		14590E4621C7F0B200843EBA /* RecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordCell.xib; sourceTree = "<group>"; };
@@ -176,8 +180,6 @@
 		146A6C5421B7D57E0066732C /* Home.Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.Annotation.swift; sourceTree = "<group>"; };
 		146A6C5621B7D5B40066732C /* HomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
 		146A6C5821B7DF070066732C /* MapSetting.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MapSetting.bundle; sourceTree = "<group>"; };
-		146A6C6121B7ECAA0066732C /* THRecordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THRecordModel.swift; sourceTree = "<group>"; };
-		146A6C6321B7ECD10066732C /* THCommentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCommentModel.swift; sourceTree = "<group>"; };
 		146A6C6521B7ECF30066732C /* Date+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Ex.swift"; sourceTree = "<group>"; };
 		146A6C6821B7ED5E0066732C /* Record.Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.Model.swift; sourceTree = "<group>"; };
 		146A6C6F21BA927B0066732C /* UserAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnnotationView.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				140ED15821AF73F100F1D1D2 /* NameSpace.swift */,
 				146A6C6021B7EC970066732C /* Model */,
 				146A6C6721B7ED2D0066732C /* Record */,
+				1427363D21CCDB62000AA31D /* Comment */,
 				140ED14221AE8D3B00F1D1D2 /* Account */,
 				146A6C4D21B7D39B0066732C /* Home */,
 				14590E2C21C72FE500843EBA /* UserCenter */,
@@ -315,11 +318,11 @@
 		140ED13C21AE8C1000F1D1D2 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				1434ACB321AFC07300A140C4 /* Network */,
 				14590E3621C7312B00843EBA /* UI */,
 				1428894021B60DD60057F79E /* Control */,
 				1428893321B573B40057F79E /* ImagePicker */,
 				1428892321B555B30057F79E /* Rx */,
-				1434ACB321AFC07300A140C4 /* Network */,
 				140ED13D21AE8C2500F1D1D2 /* Extensions */,
 				1434ACC621B012CD00A140C4 /* Error.swift */,
 			);
@@ -394,6 +397,15 @@
 			path = Account.PhoneLogin;
 			sourceTree = "<group>";
 		};
+		1427363D21CCDB62000AA31D /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				1427363E21CCDB78000AA31D /* Comment.Model.swift */,
+				1427364021CCDB92000AA31D /* Comment.NetworkTarget.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
 		1428892321B555B30057F79E /* Rx */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,7 +459,6 @@
 				14590E3121C7309700843EBA /* Views */,
 				14590E2D21C7300F00843EBA /* UserCenter.View.swift */,
 				14590E2F21C7301900843EBA /* UserCenter.ViewModel.swift */,
-				14590E4221C7F00A00843EBA /* TableViewModel.swift */,
 			);
 			path = UserCenter;
 			sourceTree = "<group>";
@@ -494,10 +505,12 @@
 		14590E4F21C7F22500843EBA /* UserCenter.Interaction */ = {
 			isa = PBXGroup;
 			children = (
+				1427364221CCE48D000AA31D /* UserCenter.Interaction.NetworkTarget.swift */,
 				14590E5021C7F3CA00843EBA /* UserCenter.Interaction.Model.swift */,
+				14590E3E21C7339A00843EBA /* UserCenter.Interaction.View.swift */,
+				1427363B21CCD9A3000AA31D /* UserCenter.Interaction.ViewModel.swift */,
 				14590E4821C7F0B300843EBA /* InteractionCell.swift */,
 				14590E4721C7F0B300843EBA /* InteractionCell.xib */,
-				14590E3E21C7339A00843EBA /* UserCenter.Interaction.View.swift */,
 			);
 			path = UserCenter.Interaction;
 			sourceTree = "<group>";
@@ -516,8 +529,6 @@
 		146A6C6021B7EC970066732C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				146A6C6321B7ECD10066732C /* THCommentModel.swift */,
-				146A6C6121B7ECAA0066732C /* THRecordModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -828,6 +839,7 @@
 				14590E3A21C7313400843EBA /* LPSliderView.swift in Sources */,
 				146A6C7221BA93950066732C /* AnnotationView.swift in Sources */,
 				1428893C21B586910057F79E /* ActionSheetControl.swift in Sources */,
+				1427363F21CCDB78000AA31D /* Comment.Model.swift in Sources */,
 				146A6C7421BA97560066732C /* HomeView.swift in Sources */,
 				146A6C4F21B7D3EE0066732C /* Home.View.swift in Sources */,
 				14590E2E21C7300F00843EBA /* UserCenter.View.swift in Sources */,
@@ -848,7 +860,7 @@
 				14590E3021C7301900843EBA /* UserCenter.ViewModel.swift in Sources */,
 				1434ACC921B0224A00A140C4 /* Account.Model.swift in Sources */,
 				1428893E21B58BEE0057F79E /* ImagePickerControl.swift in Sources */,
-				146A6C6421B7ECD10066732C /* THCommentModel.swift in Sources */,
+				1427363C21CCD9A3000AA31D /* UserCenter.Interaction.ViewModel.swift in Sources */,
 				146A6C6921B7ED5E0066732C /* Record.Model.swift in Sources */,
 				1428893A21B5743D0057F79E /* UIViewController+Ex.swift in Sources */,
 				1428891221B3B8710057F79E /* NetworkConfig.swift in Sources */,
@@ -859,15 +871,15 @@
 				143DB46A21B6B6DF001F57E1 /* ImageClipControl.swift in Sources */,
 				1428892221B555AC0057F79E /* UIImagePickerController+Rx.swift in Sources */,
 				140ED16221AF8D0E00F1D1D2 /* Account.PhoneLogin.View.swift in Sources */,
+				1427364121CCDB92000AA31D /* Comment.NetworkTarget.swift in Sources */,
 				14590E4D21C7F0B300843EBA /* InteractionCell.swift in Sources */,
-				146A6C6221B7ECAA0066732C /* THRecordModel.swift in Sources */,
 				140ED16821AF8D3200F1D1D2 /* Account.ValidateLogin.ViewModel.swift in Sources */,
 				140ED14421AE8D9E00F1D1D2 /* Account.View.swift in Sources */,
 				14590E4921C7F0B300843EBA /* RecordCell.swift in Sources */,
 				14590DF921C54E3D00843EBA /* Record.NetworkTarget.swift in Sources */,
 				140ED15621AECF9000F1D1D2 /* UIButton+Ex.swift in Sources */,
 				1428891B21B4CB130057F79E /* FileNetworkTarget.swift in Sources */,
-				14590E4321C7F00B00843EBA /* TableViewModel.swift in Sources */,
+				1427364321CCE48D000AA31D /* UserCenter.Interaction.NetworkTarget.swift in Sources */,
 				14590E3B21C7313400843EBA /* RedPointView.swift in Sources */,
 				146A6C5121B7D4090066732C /* Home.ViewModel.swift in Sources */,
 				140ED16621AF8D2B00F1D1D2 /* Account.ValidateLogin.View.swift in Sources */,

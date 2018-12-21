@@ -11,10 +11,20 @@ import RxSwift
 import RxCocoa
 import Moya
 
+protocol TableViewLoadDataService {
+    associatedtype Element: Decodable
+    associatedtype TargetType: NetworkTarget
+    
+    var provider: MoyaProvider<TargetType> { get }
+    func loadData(with page: Int, count: Int) -> Driver<NetworkValid<[Element]>>
+}
+
 extension UserCenter.MyRecord {
     internal class ViewModel {
         
-        var data: Driver<[Record.Detail]>!
+        typealias ModelType = Record.Detail
+        
+        var data: Driver<[ModelType]>!
         var refreshStatus: Driver<RefreshStatus> {
             return _refreshStatus.asDriver(onErrorJustReturn: .InvalidData)
         }
@@ -24,60 +34,72 @@ extension UserCenter.MyRecord {
         
         var _refreshStatus = PublishSubject<RefreshStatus>()
         var _hasContent = PublishSubject<Bool>()
-        var _page = 1
-        private var dataArray = [Record.Detail]()
         
-        init(input: (refresh: Driver<()>, loadMore: Driver<()>)) {
-            let provider = MoyaProvider<Record.NetworkTarget>()
+        private var _page = 1
+        private let _count = 20
+        private var _dataArray = [ModelType]()
+        
+        init(input: (refresh: Driver<()>, loadMore: Driver<()>), service: LoadDataService) {
+            let loadMyRecordService = service
             
             let refresh = Driver.merge(input.refresh, Driver.of(()))
                 .do(onNext: { [unowned self] _ in self._page = 1 })
                 .flatMapLatest { [unowned self] _  in
-                    provider.rx
-                        .request(.myRecord(page: self._page, count: 20))
-                        .map(NetworkResponse<[Record.Detail]>.self)
-                        .map({ (response) -> NetworkValid<[Record.Detail]> in
-                            let array = response.data
-                            self._refreshStatus.onNext(.DropDownSuccess)
-                            self.dataArray = array
-                            self._hasContent.onNext(!array.isEmpty)
-                            return .success(value: self.dataArray)
-                        })
-                        .asDriver(onErrorJustReturn: .failure)
+                    loadMyRecordService
+                        .loadData(with: self._page, count: self._count)
+                        .map { [unowned self] (valid) -> [ModelType] in
+                            switch valid {
+                            case let .success(value: v):
+                                self._refreshStatus.onNext(.DropDownSuccess)
+                                self._hasContent.onNext(!v.isEmpty)
+                                self._dataArray = v
+                            case .failure:
+                                self._refreshStatus.onNext(.InvalidData)
+                            }
+                            return self._dataArray
+                        }
             }
             
             let loadMore = input.loadMore
                 .do(onNext: { [unowned self] _ in self._page += 1 })
                 .flatMapLatest { [unowned self] _ in
-                    provider.rx.request(.myRecord(page: self._page, count: 20))
-                        .map(NetworkResponse<[Record.Detail]>.self)
-                        .map({ (response) -> NetworkValid<[Record.Detail]> in
-                            let array = response.data
-                            if array.isEmpty {
-                                self._refreshStatus.onNext(.PullSuccessNoMoreData)
-                            } else {
-                                self._refreshStatus.onNext(.PullSuccessHasMoreData)
+                    loadMyRecordService
+                        .loadData(with: self._page, count: self._count)
+                        .map { [unowned self] (valid) -> [ModelType] in
+                            switch valid {
+                            case let .success(value: v):
+                                if v.isEmpty {
+                                    self._refreshStatus.onNext(.PullSuccessNoMoreData)
+                                } else {
+                                    self._refreshStatus.onNext(.PullSuccessHasMoreData)
+                                }
+                                self._dataArray += v
+                            case .failure:
+                                self._refreshStatus.onNext(.InvalidData)
                             }
-                            self.dataArray += array
-                            return .success(value: self.dataArray)
-                        })
-                        .asDriver(onErrorJustReturn: .failure)
+                            return self._dataArray
+                        }
             }
             
             data = Driver.merge(refresh, loadMore)
-                .map { [unowned self] valid in
-                    switch valid {
-                    case let .success(value: array):
-                        return array
-                    case .failure:
-                        self._refreshStatus.onNext(.InvalidData)
-                        return self.dataArray
-                    }
-            }
         }
         
         deinit {
             log("UserCenter.MyRecord.ViewModel deinit.")
+        }
+    }
+    
+    internal class LoadDataService: TableViewLoadDataService {
+        typealias Element = Record.Detail
+        
+        let provider = MoyaProvider<Record.NetworkTarget>()
+        
+        func loadData(with page: Int, count: Int) -> Driver<NetworkValid<[Element]>> {
+            return provider.rx
+                .request(.myRecord(page: page, count: 20))
+                .map(NetworkResponse<[Element]>.self)
+                .map { .success(value: $0.data) }
+                .asDriver(onErrorJustReturn: .failure)
         }
     }
 }

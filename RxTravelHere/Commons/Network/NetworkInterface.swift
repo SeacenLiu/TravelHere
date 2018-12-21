@@ -21,4 +21,12 @@ enum NetworkInterface: String {
     case record = "/message"
     case arroundRecord = "/message/list"
     case oneRecord = "/message/one"
+    
+    // MARK: - comment
+    case comment = "/comment"
+    case commentByRecord = "/comment/message"
+    case replyComment = "/comment/reply"
+    
+    // MARK: - interaction
+    case interaction = "/comment/interaction"
 }

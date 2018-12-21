@@ -24,7 +24,7 @@ extension UserCenter.MyRecord {
                 loadMore: MJRefreshBackNormalFooter
                     .create(from: self.tableView)
                     .asDriver(onErrorJustReturn: ())
-            )
+            ), service: LoadDataService()
         )
         
         private lazy var emptyView = EmptyView(text: "留言是空的，快去留言吧~")
@@ -53,8 +53,8 @@ extension UserCenter.MyRecord.View {
             .drive(tableView.rx.items(
                 cellIdentifier: RecordCell.cellIdentifier,
                 cellType: RecordCell.self)) {
-                    (row, element, cell) in
-                    cell.model = element
+                    (row, vm, cell) in
+                    cell.config(with: vm)
             }.disposed(by: _disposeBag)
         
         _viewModel.refreshStatus
