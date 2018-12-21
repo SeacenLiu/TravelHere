@@ -33,6 +33,10 @@ extension UserCenter.MyRecord {
             tv.register(UINib.init(nibName: "RecordCell", bundle: nil), forCellReuseIdentifier: RecordCell.cellIdentifier)
             return tv
         }()
+        
+        deinit {
+            log("UserCenter.MyRecord View")
+        }
     }
 }
 

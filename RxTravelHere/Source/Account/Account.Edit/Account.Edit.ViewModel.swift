@@ -36,7 +36,7 @@ extension Account.Edit {
                 .debug()
                 .withLatestFrom(avatar)
                 .map {$0.imageJpgData!}
-                .flatMapFirst { data -> Driver<NetworkResult<String>> in
+                .flatMapFirst { data -> Driver<NetworkValid<String>> in
                     imageProvider.rx
                         .request(FileNetworkTarget(data))
                         .map(NetworkResponse<ImageInfo>.self)

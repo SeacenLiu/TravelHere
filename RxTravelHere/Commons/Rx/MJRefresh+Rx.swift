@@ -31,7 +31,6 @@ extension Reactive where Base: UITableView {
         case .InvalidData:
             tableView.mj_header.endRefreshing()
             tableView.mj_footer.endRefreshingWithNoMoreData()
-            return
         case .DropDownSuccess:
             tableView.mj_header.endRefreshing()
             tableView.mj_footer.resetNoMoreData()

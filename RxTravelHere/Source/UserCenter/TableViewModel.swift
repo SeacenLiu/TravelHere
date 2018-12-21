@@ -12,4 +12,8 @@ import RxCocoa
 
 protocol TableViewModelType {
     associatedtype Element: Decodable
+    
+    var data: Driver<[Element]> { get }
+    var refreshStatus: Driver<RefreshStatus> { get }
+    var hasContent: Driver<Bool> { get }
 }

@@ -41,7 +41,7 @@ struct ImageInfo: Decodable {
 }
 
 // MARK: - Rx Status
-enum NetworkResult<T> {
+enum NetworkValid<T> {
     case failure
     case success(value: T)
 }

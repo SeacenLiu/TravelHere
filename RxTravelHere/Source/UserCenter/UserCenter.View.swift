@@ -24,6 +24,10 @@ extension UserCenter {
         static func viewForNavigation() -> MainNavigationController {
             return MainNavigationController(rootViewController: View())
         }
+        
+        deinit {
+            log("UserCenter.View deinit")
+        }
     }
 }
 
@@ -41,9 +45,8 @@ extension UserCenter.View {
             .disposed(by: _disposeBag)
         
         _userCenterView.closeBtn.rx.tap
-            .subscribe(onNext: { _ in
-                self.dismiss(animated: true)
-        }).disposed(by: _disposeBag)
+            .bind(to: rx.dismissAction)
+        .disposed(by: _disposeBag)
     }
     
     func setupUI() {

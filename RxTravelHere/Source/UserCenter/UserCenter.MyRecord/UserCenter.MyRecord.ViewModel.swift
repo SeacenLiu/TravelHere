@@ -31,28 +31,27 @@ extension UserCenter.MyRecord {
             let provider = MoyaProvider<Record.NetworkTarget>()
             
             let refresh = Driver.merge(input.refresh, Driver.of(()))
-                .debug()
-                .do(onNext: { _ in self._page = 1 })
-                .flatMapLatest { _ in
+                .do(onNext: { [unowned self] _ in self._page = 1 })
+                .flatMapLatest { [unowned self] _  in
                     provider.rx
                         .request(.myRecord(page: self._page, count: 20))
                         .map(NetworkResponse<[Record.Detail]>.self)
-                        .map({ (response) -> [Record.Detail] in
+                        .map({ (response) -> NetworkValid<[Record.Detail]> in
                             let array = response.data
                             self._refreshStatus.onNext(.DropDownSuccess)
                             self.dataArray = array
                             self._hasContent.onNext(!array.isEmpty)
-                            return self.dataArray
+                            return .success(value: self.dataArray)
                         })
-                        .asDriver(onErrorJustReturn: [])
+                        .asDriver(onErrorJustReturn: .failure)
             }
             
             let loadMore = input.loadMore
-                .do(onNext: { _ in self._page += 1 })
-                .flatMapLatest { _ in
+                .do(onNext: { [unowned self] _ in self._page += 1 })
+                .flatMapLatest { [unowned self] _ in
                     provider.rx.request(.myRecord(page: self._page, count: 20))
                         .map(NetworkResponse<[Record.Detail]>.self)
-                        .map({ (response) -> [Record.Detail] in
+                        .map({ (response) -> NetworkValid<[Record.Detail]> in
                             let array = response.data
                             if array.isEmpty {
                                 self._refreshStatus.onNext(.PullSuccessNoMoreData)
@@ -60,20 +59,25 @@ extension UserCenter.MyRecord {
                                 self._refreshStatus.onNext(.PullSuccessHasMoreData)
                             }
                             self.dataArray += array
-                            return self.dataArray
+                            return .success(value: self.dataArray)
                         })
-                        .asDriver(onErrorJustReturn: [])
+                        .asDriver(onErrorJustReturn: .failure)
             }
             
             data = Driver.merge(refresh, loadMore)
-                .do(onNext: { (models) in
-                    if models.isEmpty {
+                .map { [unowned self] valid in
+                    switch valid {
+                    case let .success(value: array):
+                        return array
+                    case .failure:
                         self._refreshStatus.onNext(.InvalidData)
+                        return self.dataArray
                     }
-                })
-                .map { models in
-                    return self.dataArray
             }
+        }
+        
+        deinit {
+            log("UserCenter.MyRecord.ViewModel deinit.")
         }
     }
 }
