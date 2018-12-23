@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Kingfisher
 
 extension Comment {
     struct Model: Codable {
@@ -48,4 +49,32 @@ extension Comment.Detail: Equatable {
     static func==(lhs: Comment.Detail, rhs: Comment.Detail) -> Bool {
         return lhs.id == rhs.id
     }
+}
+
+extension Comment.Model: CommentRepresentable {
+    var userNickname: String {
+        return user.userNickname
+    }
+    
+    var time: String {
+        return Date.dateDescription(with: detail.time)
+    }
+    
+    var text: String {
+        return detail.text
+    }
+    
+    var avatarResource: Resource? {
+        guard let urlStr = user.userAvatar,
+            let url = URL(string: urlStr) else {
+                return nil
+        }
+        return url
+    }
+    
+    var reply: String? {
+        return detail.reply
+    }
+    
+    
 }

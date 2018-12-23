@@ -35,7 +35,7 @@ extension UserCenter.MyRecord {
         }()
         
         deinit {
-            log("UserCenter.MyRecord View")
+            log("UserCenter.MyRecord.View deinit.")
         }
     }
 }
@@ -45,6 +45,18 @@ extension UserCenter.MyRecord.View {
         super.viewDidLoad()
         setupUI()
         
+        binding()
+        
+        tableView.rx.itemSelected
+            .subscribe(onNext: { [unowned self] indexPath in
+                self.tableView.deselectRow(at: indexPath, animated: true)
+                let vm = self._viewModel.getRecordShowViewModel(with: indexPath)
+                let showView = Record.Show.View(with: vm)
+                self.navigationController?.pushViewController(showView, animated: true)
+        }).disposed(by: _disposeBag)
+    }
+    
+    private func binding() {
         _viewModel.hasContent
             .drive(emptyView.rx.isHidden)
             .disposed(by: _disposeBag)

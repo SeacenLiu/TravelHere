@@ -14,7 +14,7 @@ import Moya
 extension UserCenter.Interaction {
     internal class ViewModel {
         
-        var data: Observable<[Model]>!
+        var data: Driver<[Model]>!
         var refreshStatus = BehaviorRelay<RefreshStatus>(value: RefreshStatus.InvalidData)
         var hasContent = BehaviorRelay<Bool>(value: false)
         
@@ -28,6 +28,9 @@ extension UserCenter.Interaction {
             
             data = _loadData.flatMapLatest { [unowned self] p in
                 provider.rx.request(NetworkTarget(page: p, count: self._count))
+                    .do(onSuccess: { [unowned self] _ in
+                        self.refreshStatus.accept(.InvalidData)
+                    })
                     .map(NetworkResponse<[Model]>.self)
                     .map({ [unowned self] (response) -> [Model] in
                         let array = response.data
@@ -47,7 +50,7 @@ extension UserCenter.Interaction {
                         }
                         return self._dataArray
                     })
-            }
+                }.asDriver(onErrorJustReturn: self._dataArray)
         }
         
         func reloadData() {

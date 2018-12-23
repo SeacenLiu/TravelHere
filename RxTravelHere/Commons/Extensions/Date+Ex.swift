@@ -15,6 +15,10 @@ private let calendar = Calendar.current
 
 extension Date {
     
+    static func dateDescription(with time: Int) -> String {
+        return self.th_date(time: time).th_dateDescription
+    }
+    
     static func th_date(time: Int) -> Date {
         let value = TimeInterval(time) / 1000.0
         return Date(timeIntervalSince1970: value)

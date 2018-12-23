@@ -31,6 +31,20 @@
 		1427363F21CCDB78000AA31D /* Comment.Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1427363E21CCDB78000AA31D /* Comment.Model.swift */; };
 		1427364121CCDB92000AA31D /* Comment.NetworkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1427364021CCDB92000AA31D /* Comment.NetworkTarget.swift */; };
 		1427364321CCE48D000AA31D /* UserCenter.Interaction.NetworkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1427364221CCE48D000AA31D /* UserCenter.Interaction.NetworkTarget.swift */; };
+		1427364521CD1141000AA31D /* Record.Show.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1427364421CD1141000AA31D /* Record.Show.View.swift */; };
+		1427364821CD12C1000AA31D /* Record.Show.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1427364721CD12C1000AA31D /* Record.Show.ViewModel.swift */; };
+		1427364B21CD169D000AA31D /* NavBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1427364921CD169D000AA31D /* NavBarView.xib */; };
+		1427364C21CD169D000AA31D /* NavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1427364A21CD169D000AA31D /* NavBarView.swift */; };
+		1427364E21CD1731000AA31D /* UIDevice+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1427364D21CD1731000AA31D /* UIDevice+Ex.swift */; };
+		1427365121CD18B6000AA31D /* ImageHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1427365021CD18B6000AA31D /* ImageHeadView.swift */; };
+		1427365721CD18E5000AA31D /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1427365221CD18E4000AA31D /* CommentCell.xib */; };
+		1427365821CD18E5000AA31D /* RecordContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1427365321CD18E5000AA31D /* RecordContentCell.swift */; };
+		1427365921CD18E5000AA31D /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1427365421CD18E5000AA31D /* CommentCell.swift */; };
+		1427365A21CD18E5000AA31D /* CutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1427365521CD18E5000AA31D /* CutView.xib */; };
+		1427365B21CD18E5000AA31D /* RecordContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1427365621CD18E5000AA31D /* RecordContentCell.xib */; };
+		1427365D21CE714E000AA31D /* CutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1427365C21CE714E000AA31D /* CutView.swift */; };
+		1427365F21CF4341000AA31D /* Account.Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1427365E21CF4341000AA31D /* Account.Manager.swift */; };
+		1427366121CF6672000AA31D /* UITableView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1427366021CF6672000AA31D /* UITableView+Ex.swift */; };
 		1428891221B3B8710057F79E /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428891121B3B8710057F79E /* NetworkConfig.swift */; };
 		1428891421B3B8BC0057F79E /* NetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428891321B3B8BC0057F79E /* NetworkInterface.swift */; };
 		1428891621B3BCFA0057F79E /* Account.NetworkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428891521B3BCFA0057F79E /* Account.NetworkTarget.swift */; };
@@ -136,6 +150,20 @@
 		1427363E21CCDB78000AA31D /* Comment.Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.Model.swift; sourceTree = "<group>"; };
 		1427364021CCDB92000AA31D /* Comment.NetworkTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.NetworkTarget.swift; sourceTree = "<group>"; };
 		1427364221CCE48D000AA31D /* UserCenter.Interaction.NetworkTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenter.Interaction.NetworkTarget.swift; sourceTree = "<group>"; };
+		1427364421CD1141000AA31D /* Record.Show.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.Show.View.swift; sourceTree = "<group>"; };
+		1427364721CD12C1000AA31D /* Record.Show.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.Show.ViewModel.swift; sourceTree = "<group>"; };
+		1427364921CD169D000AA31D /* NavBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavBarView.xib; sourceTree = "<group>"; };
+		1427364A21CD169D000AA31D /* NavBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarView.swift; sourceTree = "<group>"; };
+		1427364D21CD1731000AA31D /* UIDevice+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Ex.swift"; sourceTree = "<group>"; };
+		1427365021CD18B6000AA31D /* ImageHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHeadView.swift; sourceTree = "<group>"; };
+		1427365221CD18E4000AA31D /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
+		1427365321CD18E5000AA31D /* RecordContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordContentCell.swift; sourceTree = "<group>"; };
+		1427365421CD18E5000AA31D /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		1427365521CD18E5000AA31D /* CutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CutView.xib; sourceTree = "<group>"; };
+		1427365621CD18E5000AA31D /* RecordContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordContentCell.xib; sourceTree = "<group>"; };
+		1427365C21CE714E000AA31D /* CutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutView.swift; sourceTree = "<group>"; };
+		1427365E21CF4341000AA31D /* Account.Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.Manager.swift; sourceTree = "<group>"; };
+		1427366021CF6672000AA31D /* UITableView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ex.swift"; sourceTree = "<group>"; };
 		1428891121B3B8710057F79E /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		1428891321B3B8BC0057F79E /* NetworkInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterface.swift; sourceTree = "<group>"; };
 		1428891521B3BCFA0057F79E /* Account.NetworkTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.NetworkTarget.swift; sourceTree = "<group>"; };
@@ -332,6 +360,7 @@
 		140ED13D21AE8C2500F1D1D2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1427364D21CD1731000AA31D /* UIDevice+Ex.swift */,
 				146A6C6521B7ECF30066732C /* Date+Ex.swift */,
 				146A6C4B21B7D3260066732C /* UserDefaults+Ex.swift */,
 				1428893921B5743D0057F79E /* UIViewController+Ex.swift */,
@@ -341,6 +370,7 @@
 				140ED15321AECECF00F1D1D2 /* UIImage+Ex.swift */,
 				146A6C7521BA97860066732C /* MAMapView+Ex.swift */,
 				146A6C7721BA99AE0066732C /* CLLocationManager+Ex.swift */,
+				1427366021CF6672000AA31D /* UITableView+Ex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -348,6 +378,8 @@
 		140ED13F21AE8C7000F1D1D2 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				1427364A21CD169D000AA31D /* NavBarView.swift */,
+				1427364921CD169D000AA31D /* NavBarView.xib */,
 				140ED14021AE8C8B00F1D1D2 /* log.swift */,
 				146A6C5221B7D44B0066732C /* MainNavigationController.swift */,
 			);
@@ -357,6 +389,7 @@
 		140ED14221AE8D3B00F1D1D2 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				1427365E21CF4341000AA31D /* Account.Manager.swift */,
 				140ED14321AE8D9E00F1D1D2 /* Account.View.swift */,
 				1434ACC821B0224A00A140C4 /* Account.Model.swift */,
 				1428891521B3BCFA0057F79E /* Account.NetworkTarget.swift */,
@@ -404,6 +437,30 @@
 				1427364021CCDB92000AA31D /* Comment.NetworkTarget.swift */,
 			);
 			path = Comment;
+			sourceTree = "<group>";
+		};
+		1427364621CD1169000AA31D /* Record.Show */ = {
+			isa = PBXGroup;
+			children = (
+				1427364F21CD18AD000AA31D /* Views */,
+				1427364421CD1141000AA31D /* Record.Show.View.swift */,
+				1427364721CD12C1000AA31D /* Record.Show.ViewModel.swift */,
+			);
+			path = Record.Show;
+			sourceTree = "<group>";
+		};
+		1427364F21CD18AD000AA31D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1427365021CD18B6000AA31D /* ImageHeadView.swift */,
+				1427365321CD18E5000AA31D /* RecordContentCell.swift */,
+				1427365621CD18E5000AA31D /* RecordContentCell.xib */,
+				1427365C21CE714E000AA31D /* CutView.swift */,
+				1427365521CD18E5000AA31D /* CutView.xib */,
+				1427365421CD18E5000AA31D /* CommentCell.swift */,
+				1427365221CD18E4000AA31D /* CommentCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		1428892321B555B30057F79E /* Rx */ = {
@@ -536,8 +593,9 @@
 		146A6C6721B7ED2D0066732C /* Record */ = {
 			isa = PBXGroup;
 			children = (
-				146A6C6821B7ED5E0066732C /* Record.Model.swift */,
 				14590DF821C54E3D00843EBA /* Record.NetworkTarget.swift */,
+				146A6C6821B7ED5E0066732C /* Record.Model.swift */,
+				1427364621CD1169000AA31D /* Record.Show */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -687,13 +745,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED14821AE927B00F1D1D2 /* PhoneView.xib in Resources */,
+				1427364B21CD169D000AA31D /* NavBarView.xib in Resources */,
 				140ED11621AE884F00F1D1D2 /* LaunchScreen.storyboard in Resources */,
 				146A6C5921B7DF070066732C /* MapSetting.bundle in Resources */,
 				140ED11321AE884F00F1D1D2 /* Assets.xcassets in Resources */,
 				146A6C5721B7D5B40066732C /* HomeView.xib in Resources */,
 				140ED14F21AEC4C900F1D1D2 /* EditInfoView.xib in Resources */,
+				1427365B21CD18E5000AA31D /* RecordContentCell.xib in Resources */,
+				1427365A21CD18E5000AA31D /* CutView.xib in Resources */,
 				14590E3521C730B000843EBA /* UserCenterView.xib in Resources */,
 				140ED14D21AEB90B00F1D1D2 /* CodeView.xib in Resources */,
+				1427365721CD18E5000AA31D /* CommentCell.xib in Resources */,
 				14590E4C21C7F0B300843EBA /* InteractionCell.xib in Resources */,
 				14590E4B21C7F0B300843EBA /* RecordCell.xib in Resources */,
 			);
@@ -742,11 +804,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RxTravelHere/Pods-RxTravelHere-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -754,11 +818,13 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -850,8 +916,12 @@
 				14590E5321C88EEC00843EBA /* UserCenter.MyRecord.ViewModel.swift in Sources */,
 				146A6C5521B7D57E0066732C /* Home.Annotation.swift in Sources */,
 				1428893821B573B40057F79E /* YYImageClipViewController.m in Sources */,
+				1427365821CD18E5000AA31D /* RecordContentCell.swift in Sources */,
 				140ED15921AF73F100F1D1D2 /* NameSpace.swift in Sources */,
+				1427364E21CD1731000AA31D /* UIDevice+Ex.swift in Sources */,
 				146A6C5321B7D44B0066732C /* MainNavigationController.swift in Sources */,
+				1427365F21CF4341000AA31D /* Account.Manager.swift in Sources */,
+				1427364C21CD169D000AA31D /* NavBarView.swift in Sources */,
 				146A6C7021BA927B0066732C /* UserAnnotationView.swift in Sources */,
 				14590E3F21C7339A00843EBA /* UserCenter.Interaction.View.swift in Sources */,
 				1428891D21B54BC50057F79E /* UIButton+Rx.swift in Sources */,
@@ -859,7 +929,9 @@
 				140ED16421AF8D1800F1D1D2 /* Account.PhoneLogin.ViewModel.swift in Sources */,
 				14590E3021C7301900843EBA /* UserCenter.ViewModel.swift in Sources */,
 				1434ACC921B0224A00A140C4 /* Account.Model.swift in Sources */,
+				1427364821CD12C1000AA31D /* Record.Show.ViewModel.swift in Sources */,
 				1428893E21B58BEE0057F79E /* ImagePickerControl.swift in Sources */,
+				1427365921CD18E5000AA31D /* CommentCell.swift in Sources */,
 				1427363C21CCD9A3000AA31D /* UserCenter.Interaction.ViewModel.swift in Sources */,
 				146A6C6921B7ED5E0066732C /* Record.Model.swift in Sources */,
 				1428893A21B5743D0057F79E /* UIViewController+Ex.swift in Sources */,
@@ -871,12 +943,14 @@
 				143DB46A21B6B6DF001F57E1 /* ImageClipControl.swift in Sources */,
 				1428892221B555AC0057F79E /* UIImagePickerController+Rx.swift in Sources */,
 				140ED16221AF8D0E00F1D1D2 /* Account.PhoneLogin.View.swift in Sources */,
+				1427365D21CE714E000AA31D /* CutView.swift in Sources */,
 				1427364121CCDB92000AA31D /* Comment.NetworkTarget.swift in Sources */,
 				14590E4D21C7F0B300843EBA /* InteractionCell.swift in Sources */,
 				140ED16821AF8D3200F1D1D2 /* Account.ValidateLogin.ViewModel.swift in Sources */,
 				140ED14421AE8D9E00F1D1D2 /* Account.View.swift in Sources */,
 				14590E4921C7F0B300843EBA /* RecordCell.swift in Sources */,
 				14590DF921C54E3D00843EBA /* Record.NetworkTarget.swift in Sources */,
+				1427365121CD18B6000AA31D /* ImageHeadView.swift in Sources */,
 				140ED15621AECF9000F1D1D2 /* UIButton+Ex.swift in Sources */,
 				1428891B21B4CB130057F79E /* FileNetworkTarget.swift in Sources */,
 				1427364321CCE48D000AA31D /* UserCenter.Interaction.NetworkTarget.swift in Sources */,
@@ -889,7 +963,9 @@
 				1428891421B3B8BC0057F79E /* NetworkInterface.swift in Sources */,
 				14590E5121C7F3CA00843EBA /* UserCenter.Interaction.Model.swift in Sources */,
 				146A6C4C21B7D3260066732C /* UserDefaults+Ex.swift in Sources */,
+				1427366121CF6672000AA31D /* UITableView+Ex.swift in Sources */,
 				1428891821B3C5710057F79E /* NetworkModel.swift in Sources */,
+				1427364521CD1141000AA31D /* Record.Show.View.swift in Sources */,
 				1434ACB921B002A500A140C4 /* SVProgressHUD+Ex.swift in Sources */,
 				14590E3321C730A500843EBA /* UserCenterView.swift in Sources */,
 				14590DFB21C5524500843EBA /* NetworkPlugin.swift in Sources */,

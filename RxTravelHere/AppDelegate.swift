@@ -16,8 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        AMapServices.shared().apiKey = "6a23acb4df3d6f2fbbe95b422b4523ec"
-        AMapServices.shared().enableHTTPS = true
+        prepareAMap()
         rxPrepare()
         autoLogin()
         loadWindow()
@@ -40,6 +39,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func rxPrepare() {
         RxImagePickerDelegateProxy.register { RxImagePickerDelegateProxy(imagePicker: $0) }
+    }
+    
+    private func prepareAMap() {
+        AMapServices.shared().apiKey = "6a23acb4df3d6f2fbbe95b422b4523ec"
+        AMapServices.shared().enableHTTPS = true
     }
 
 }

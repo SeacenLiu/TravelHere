@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Kingfisher
 
 extension Record {
     enum Style: Int, Codable {
@@ -34,6 +35,14 @@ extension Record {
             case user
             case detail = "message"
         }
+        
+        static var emptyModel: Model {
+            return Model(user: nil, detail: .emptyModel)
+        }
+        
+        static func myRecordModel(with detail: Detail) -> Model {
+            return Model(user: Account.Manager.shared.user, detail: detail)
+        }
     }
     
 }
@@ -47,7 +56,7 @@ extension Record {
         var longitude: Double
         var latitude: Double
         let text: String
-        let th_time: Int
+        let time: Int
         let imageUrl: String?
         let locationStr: String
         
@@ -57,12 +66,44 @@ extension Record {
             case longitude = "messageLongitude"
             case latitude = "messageLatitude"
             case text = "messageContent"
-            case th_time = "messageTime"
+            case time = "messageTime"
             case imageUrl = "messageImage"
             case userId
             case locationStr = "messageAddress"
+        }
+        
+        static var emptyModel: Detail {
+            return Detail(id: -1, userId: "", type: .blackboard, longitude: 0, latitude: 0, text: "", time: 0, imageUrl: nil, locationStr: "")
         }
     }
 }
 
 extension Record.Detail: MyRecordRepresentable { }
+
+extension Record.Model: RecordContentRepresentable {
+    var userNickname: String {
+        return user?.userNickname ?? "未登录"
+    }
+    
+    var time: String {
+        return Date.dateDescription(with: detail.time)
+    }
+    
+    var content: String {
+        return detail.text
+    }
+    
+    var locationStr: String {
+        return detail.locationStr
+    }
+    
+    var avatarResource: Resource? {
+        guard let urlStr = user?.userAvatar,
+            let url = URL(string: urlStr) else {
+            return nil
+        }
+        return url
+    }
+    
+    
+}

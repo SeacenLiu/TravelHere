@@ -46,7 +46,7 @@ extension UserCenter.Interaction.View {
         })
         
         _viewModel.data
-            .bind(to: tableView.rx.items(
+            .drive(tableView.rx.items(
                 cellIdentifier: InteractionCell.cellIdentifier,
                 cellType: InteractionCell.self)) {
                     (row, vm, cell) in

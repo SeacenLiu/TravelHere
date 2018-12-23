@@ -9,6 +9,13 @@
 import UIKit
 
 extension UIButton {
+    convenience init(image: UIImage) {
+        self.init()
+        self.setImage(image, for: .normal)
+    }
+}
+
+extension UIButton {
     public func setColorInState(normal: UIColor?, highlighted: UIColor?, selected: UIColor?, disabled: UIColor?) {
         if let normal = normal {
             setBackgroundImage(UIImage.createImage(color: normal, rect: bounds), for: .normal)

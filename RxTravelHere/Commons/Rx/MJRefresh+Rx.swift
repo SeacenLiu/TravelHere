@@ -29,17 +29,17 @@ extension Reactive where Base: UITableView {
     func refreshStatus(status:RefreshStatus,tableView: UITableView) {
         switch status {
         case .InvalidData:
-            tableView.mj_header.endRefreshing()
-            tableView.mj_footer.endRefreshingWithNoMoreData()
+            tableView.mj_header?.endRefreshing()
+            tableView.mj_footer?.endRefreshingWithNoMoreData()
         case .DropDownSuccess:
-            tableView.mj_header.endRefreshing()
-            tableView.mj_footer.resetNoMoreData()
+            tableView.mj_header?.endRefreshing()
+            tableView.mj_footer?.resetNoMoreData()
         case .PullSuccessHasMoreData:
-            tableView.mj_footer.endRefreshing()
+            tableView.mj_footer?.endRefreshing()
         case .PullSuccessNoMoreData:
-            tableView.mj_footer.endRefreshingWithNoMoreData()
+            tableView.mj_footer?.endRefreshingWithNoMoreData()
         }
-        tableView.mj_header.endRefreshing()
+        tableView.mj_header?.endRefreshing()
     }
 }
 

@@ -84,6 +84,12 @@ extension UserCenter.MyRecord {
             data = Driver.merge(refresh, loadMore)
         }
         
+        public func getRecordShowViewModel(with indexPath: IndexPath) -> Record.Show.ViewModel {
+            let recordDetail = _dataArray[indexPath.row]
+            let recordModel = Record.Model.myRecordModel(with: recordDetail)
+            return Record.Show.ViewModel(with: recordModel)
+        }
+        
         deinit {
             log("UserCenter.MyRecord.ViewModel deinit.")
         }
