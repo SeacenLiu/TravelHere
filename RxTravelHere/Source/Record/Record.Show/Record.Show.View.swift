@@ -75,12 +75,7 @@ extension Record.Show.View {
         super.viewDidLoad()
         setupUI()
         binding()
-        tableView.mj_footer = MJRefreshBackNormalFooter(refreshingBlock: {
-            [unowned self] in
-            self._viewModel.loadMoreComment()
-        })
         
-        // ---
         tableView.rx.didScroll
             .observeOn(MainScheduler.asyncInstance)
             .bind(to: rx.scrollAction)
@@ -102,6 +97,10 @@ extension Record.Show.View {
     }
     
     private func binding() {
+        MJRefreshBackNormalFooter.create(from: tableView)
+            .bind(to: _viewModel.loadMoreComment)
+            .disposed(by: _disposeBag)
+        
         tableView.rx.setDelegate(self).disposed(by: _disposeBag)
         _viewModel.data
             .drive(tableView.rx.items(dataSource: _dataSource))
