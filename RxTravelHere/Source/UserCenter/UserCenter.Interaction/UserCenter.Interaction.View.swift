@@ -20,7 +20,6 @@ extension UserCenter.Interaction {
         private lazy var tableView: UITableView = {
             let tv = UITableView()
             tv.register(UINib.init(nibName: "InteractionCell", bundle: nil), forCellReuseIdentifier: InteractionCell.cellIdentifier)
-            tv.contentInset = UIEdgeInsets(top: -54, left: 0, bottom: 0, right: 0)
             return tv
         }()
         
@@ -34,6 +33,7 @@ extension UserCenter.Interaction.View {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        binding()
         
         tableView.mj_header = MJRefreshStateHeader(refreshingBlock: {
             [unowned self] in
@@ -45,6 +45,18 @@ extension UserCenter.Interaction.View {
             self._viewModel.loadMoreData()
         })
         
+        // 加载第一页
+        tableView.mj_header.beginRefreshing()
+        
+        tableView.rx.itemSelected.subscribe(onNext: { [unowned self] indexPath in
+            self.tableView.deselectRow(at: indexPath, animated: true)
+            let vm = self._viewModel.getRecordShowViewModel(with: indexPath)
+            let showView = Record.Show.View(with: vm)
+            self.navigationController?.pushViewController(showView, animated: true)
+        }).disposed(by: _disposeBag)
+    }
+    
+    private func binding() {
         _viewModel.data
             .drive(tableView.rx.items(
                 cellIdentifier: InteractionCell.cellIdentifier,
@@ -60,9 +72,6 @@ extension UserCenter.Interaction.View {
         _viewModel.hasContent
             .bind(to: emptyView.rx.isHidden)
             .disposed(by: _disposeBag)
-        
-        // 加载第一页
-        tableView.mj_header.beginRefreshing()
     }
     
     private func setupUI() {

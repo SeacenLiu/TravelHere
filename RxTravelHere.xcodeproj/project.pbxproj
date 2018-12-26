@@ -57,6 +57,10 @@
 		1428893C21B586910057F79E /* ActionSheetControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428893B21B586910057F79E /* ActionSheetControl.swift */; };
 		1428893E21B58BEE0057F79E /* ImagePickerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428893D21B58BEE0057F79E /* ImagePickerControl.swift */; };
 		1428894621B611FF0057F79E /* KingfisherControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1428894521B611FF0057F79E /* KingfisherControl.swift */; };
+		142A688D21D263CC00221926 /* KingfisherManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142A688C21D263CC00221926 /* KingfisherManager+Rx.swift */; };
+		142A688F21D2692F00221926 /* THInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142A688E21D2692F00221926 /* THInputView.swift */; };
+		142A689121D269BB00221926 /* THTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142A689021D269BA00221926 /* THTextView.swift */; };
+		142A689321D26ADA00221926 /* Notification+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142A689221D26ADA00221926 /* Notification+Ex.swift */; };
 		1434ACB921B002A500A140C4 /* SVProgressHUD+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434ACB821B002A500A140C4 /* SVProgressHUD+Ex.swift */; };
 		1434ACC721B012CD00A140C4 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434ACC621B012CD00A140C4 /* Error.swift */; };
 		1434ACC921B0224A00A140C4 /* Account.Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434ACC821B0224A00A140C4 /* Account.Model.swift */; };
@@ -178,6 +182,10 @@
 		1428893B21B586910057F79E /* ActionSheetControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetControl.swift; sourceTree = "<group>"; };
 		1428893D21B58BEE0057F79E /* ImagePickerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerControl.swift; sourceTree = "<group>"; };
 		1428894521B611FF0057F79E /* KingfisherControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingfisherControl.swift; sourceTree = "<group>"; };
+		142A688C21D263CC00221926 /* KingfisherManager+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KingfisherManager+Rx.swift"; sourceTree = "<group>"; };
+		142A688E21D2692F00221926 /* THInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THInputView.swift; sourceTree = "<group>"; };
+		142A689021D269BA00221926 /* THTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THTextView.swift; sourceTree = "<group>"; };
+		142A689221D26ADA00221926 /* Notification+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+Ex.swift"; sourceTree = "<group>"; };
 		1434ACB821B002A500A140C4 /* SVProgressHUD+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SVProgressHUD+Ex.swift"; sourceTree = "<group>"; };
 		1434ACC621B012CD00A140C4 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		1434ACC821B0224A00A140C4 /* Account.Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.Model.swift; sourceTree = "<group>"; };
@@ -360,6 +368,7 @@
 		140ED13D21AE8C2500F1D1D2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				142A689221D26ADA00221926 /* Notification+Ex.swift */,
 				1427364D21CD1731000AA31D /* UIDevice+Ex.swift */,
 				146A6C6521B7ECF30066732C /* Date+Ex.swift */,
 				146A6C4B21B7D3260066732C /* UserDefaults+Ex.swift */,
@@ -380,8 +389,8 @@
 			children = (
 				1427364A21CD169D000AA31D /* NavBarView.swift */,
 				1427364921CD169D000AA31D /* NavBarView.xib */,
-				140ED14021AE8C8B00F1D1D2 /* log.swift */,
 				146A6C5221B7D44B0066732C /* MainNavigationController.swift */,
+				140ED14021AE8C8B00F1D1D2 /* log.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -471,6 +480,7 @@
 				146A6C7921BAB2770066732C /* MAMapView+Rx.swift */,
 				14ED87DC21C8F71A0019F861 /* MJRefresh+Rx.swift */,
 				14ED87DF21CB3DCB0019F861 /* UIViewController+Rx.swift */,
+				142A688C21D263CC00221926 /* KingfisherManager+Rx.swift */,
 			);
 			path = Rx;
 			sourceTree = "<group>";
@@ -533,8 +543,10 @@
 		14590E3621C7312B00843EBA /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				14590E4021C78C4B00843EBA /* TouchBigBtn.swift */,
 				14590E3721C7313400843EBA /* SliderView */,
+				142A688E21D2692F00221926 /* THInputView.swift */,
+				142A689021D269BA00221926 /* THTextView.swift */,
+				14590E4021C78C4B00843EBA /* TouchBigBtn.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -904,6 +916,7 @@
 				140ED15E21AF8BD000F1D1D2 /* Account.Edit.ViewModel.swift in Sources */,
 				14590E3A21C7313400843EBA /* LPSliderView.swift in Sources */,
 				146A6C7221BA93950066732C /* AnnotationView.swift in Sources */,
+				142A689321D26ADA00221926 /* Notification+Ex.swift in Sources */,
 				1428893C21B586910057F79E /* ActionSheetControl.swift in Sources */,
 				1427363F21CCDB78000AA31D /* Comment.Model.swift in Sources */,
 				146A6C7421BA97560066732C /* HomeView.swift in Sources */,
@@ -926,11 +939,13 @@
 				14590E3F21C7339A00843EBA /* UserCenter.Interaction.View.swift in Sources */,
 				1428891D21B54BC50057F79E /* UIButton+Rx.swift in Sources */,
 				1434ACC721B012CD00A140C4 /* Error.swift in Sources */,
+				142A688F21D2692F00221926 /* THInputView.swift in Sources */,
 				140ED16421AF8D1800F1D1D2 /* Account.PhoneLogin.ViewModel.swift in Sources */,
 				14590E3021C7301900843EBA /* UserCenter.ViewModel.swift in Sources */,
 				1434ACC921B0224A00A140C4 /* Account.Model.swift in Sources */,
 				1427364821CD12C1000AA31D /* Record.Show.ViewModel.swift in Sources */,
 				1428893E21B58BEE0057F79E /* ImagePickerControl.swift in Sources */,
+				142A689121D269BB00221926 /* THTextView.swift in Sources */,
 				1427365921CD18E5000AA31D /* CommentCell.swift in Sources */,
 				1427363C21CCD9A3000AA31D /* UserCenter.Interaction.ViewModel.swift in Sources */,
 				146A6C6921B7ED5E0066732C /* Record.Model.swift in Sources */,
@@ -956,6 +971,7 @@
 				1427364321CCE48D000AA31D /* UserCenter.Interaction.NetworkTarget.swift in Sources */,
 				14590E3B21C7313400843EBA /* RedPointView.swift in Sources */,
 				146A6C5121B7D4090066732C /* Home.ViewModel.swift in Sources */,
+				142A688D21D263CC00221926 /* KingfisherManager+Rx.swift in Sources */,
 				140ED16621AF8D2B00F1D1D2 /* Account.ValidateLogin.View.swift in Sources */,
 				146A6C7A21BAB2770066732C /* MAMapView+Rx.swift in Sources */,
 				14590E4121C78C4B00843EBA /* TouchBigBtn.swift in Sources */,

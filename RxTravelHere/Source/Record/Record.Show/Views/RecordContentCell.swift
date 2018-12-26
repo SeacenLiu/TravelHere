@@ -15,6 +15,7 @@ protocol RecordContentRepresentable {
     var content: String { get }
     var locationStr: String { get }
     var avatarResource: Resource? { get }
+    var imageResource: Resource? { get }
 }
 
 class RecordContentCell: UITableViewCell {

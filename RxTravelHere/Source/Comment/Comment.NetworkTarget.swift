@@ -12,7 +12,7 @@ import Moya
 extension Comment {
     enum NetworkTarget {
         case myComment(page: Int, count: Int)
-        case sendComment(messageId: Int, commentContent: Int)
+        case sendComment(messageId: Int, commentContent: String)
         case commentByRecord(messageId: Int, page: Int, count: Int)
         case replyComment(commentId: Int, commentReplyContent: String)
     }

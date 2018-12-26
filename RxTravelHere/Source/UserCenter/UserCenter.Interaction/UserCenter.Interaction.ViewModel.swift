@@ -63,6 +63,12 @@ extension UserCenter.Interaction {
             _loadData.onNext(_page)
         }
         
+        public func getRecordShowViewModel(with indexPath: IndexPath) -> Record.Show.ViewModel {
+            let model = _dataArray[indexPath.row]
+            let recordId = model.messageId
+            return Record.Show.ViewModel(with: recordId)
+        }
+        
         deinit {
             log("UserCenter.Interaction.ViewModel deinit.")
         }

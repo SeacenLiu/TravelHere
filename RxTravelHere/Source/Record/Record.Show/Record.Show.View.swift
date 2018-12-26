@@ -46,16 +46,27 @@ extension Record.Show {
         private let _viewModel: ViewModel
         
         // MARK: - UI Element
+        fileprivate lazy var navBarView = NavBarView.naviBarView(with: navigationController)
         fileprivate lazy var tableView = UITableView(style: .grouped) {
             ImageHeadView.registered(by: $0)
             CutView.registered(by: $0)
             RecordContentCell.registered(by: $0)
             CommentCell.registered(by: $0)
         }
-        
         private lazy var drawBtn = UIButton(image: #imageLiteral(resourceName: "edit_comment_btn"))
+        private lazy var inputer = THInputView() { [weak self] (text: String)->Void in
+            guard let `self` = self else { return }
+            self._viewModel.sendComment(with: text)
+            self.inputer.dismiss()
+        }
         
-        fileprivate lazy var navBarView = NavBarView.naviBarView(with: navigationController)
+        // MARK: - compute relate
+        private var headerH: CGFloat {
+            return ImageHeadView.headerHeight(with: self.tableView)
+        }
+        private var contentH: CGFloat = 0
+        private let cutH = CutView.headerHeight
+        private var showBottomY: CGFloat = 0
     }
 }
 
@@ -63,26 +74,43 @@ extension Record.Show.View {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        // 设置 MJRefresh
         binding()
         tableView.mj_footer = MJRefreshBackNormalFooter(refreshingBlock: {
             [unowned self] in
             self._viewModel.loadMoreComment()
         })
+        
+        // ---
+        tableView.rx.didScroll
+            .observeOn(MainScheduler.asyncInstance)
+            .bind(to: rx.scrollAction)
+            .disposed(by: _disposeBag)
+        
+        tableView.rx.willDisplayCell.subscribe(onNext: { [unowned self] cell ,ip in
+            if ip.section == 0 {
+                self.contentH = cell.bounds.height
+            }
+        }).disposed(by: _disposeBag)
+        
+        tableView.rx.itemSelected.subscribe(onNext: { [unowned self] ip in
+            self.tableView.deselectRow(at: ip, animated: true)
+        }).disposed(by: _disposeBag)
+        
+        drawBtn.rx.tap.subscribe(onNext: { [unowned self] btn in
+            self.showInputer()
+        }).disposed(by: _disposeBag)
     }
     
     private func binding() {
         tableView.rx.setDelegate(self).disposed(by: _disposeBag)
-        _viewModel.data.debug()
+        _viewModel.data
             .drive(tableView.rx.items(dataSource: _dataSource))
             .disposed(by: _disposeBag)
         _viewModel.refreshStatus
             .drive(tableView.rx.mj_refreshStatus)
             .disposed(by: _disposeBag)
-        
-        tableView.rx.didScroll
-            .observeOn(MainScheduler.asyncInstance)
-            .bind(to: rx.scrollAction)
+        _viewModel.headImage
+            .drive(rx.headerImage)
             .disposed(by: _disposeBag)
     }
     
@@ -107,7 +135,14 @@ extension Record.Show.View {
         }
         
         navBarView.barAlpha = 0
-//        navBarView.isHidden = isHiddenBar
+    }
+}
+
+// MARK: - input view relate
+private extension Record.Show.View {
+    func showInputer(indexPath: IndexPath = IndexPath(row: 0, section: 0)) {
+        showBottomY = contentH + headerH + cutH
+        inputer.show(with: "评论:")
     }
 }
 
@@ -139,6 +174,14 @@ extension Record.Show.View: UITableViewDelegate {
 }
 
 extension Reactive where Base: Record.Show.View {
+    var headerImage: AnyObserver<UIImage> {
+        return Binder<UIImage>(base) { v, img in
+            if let head = v.tableView.headerView(forSection: 0) as? ImageHeadView {
+                head.imageView.image = img
+            }
+        }.asObserver()
+    }
+    
     var scrollAction: AnyObserver<Void> {
         return Binder<Void>(base) { v, _ in
             let tv = v.tableView

@@ -31,6 +31,10 @@ extension Record {
         let user: Account.User?
         let detail: Detail
         
+        var id: Int {
+            return detail.id
+        }
+        
         enum CodingKeys: String, CodingKey {
             case user
             case detail = "message"
@@ -42,6 +46,10 @@ extension Record {
         
         static func myRecordModel(with detail: Detail) -> Model {
             return Model(user: Account.Manager.shared.user, detail: detail)
+        }
+        
+        var isEmpty: Bool {
+            return user == nil && detail.isEmtpy
         }
     }
     
@@ -73,7 +81,11 @@ extension Record {
         }
         
         static var emptyModel: Detail {
-            return Detail(id: -1, userId: "", type: .blackboard, longitude: 0, latitude: 0, text: "", time: 0, imageUrl: nil, locationStr: "")
+            return Detail(id: -1, userId: "", type: .blackboard, longitude: 0, latitude: 0, text: "加载中...", time: 0, imageUrl: nil, locationStr: "留言地点")
+        }
+        
+        var isEmtpy: Bool {
+            return id == -1
         }
     }
 }
@@ -82,7 +94,7 @@ extension Record.Detail: MyRecordRepresentable { }
 
 extension Record.Model: RecordContentRepresentable {
     var userNickname: String {
-        return user?.userNickname ?? "未登录"
+        return user?.userNickname ?? "用户名"
     }
     
     var time: String {
@@ -105,5 +117,11 @@ extension Record.Model: RecordContentRepresentable {
         return url
     }
     
-    
+    var imageResource: Resource? {
+        guard let urlStr = detail.imageUrl,
+            let url = URL(string: urlStr) else {
+                return nil
+        }
+        return url
+    }
 }
