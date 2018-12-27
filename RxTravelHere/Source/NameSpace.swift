@@ -18,6 +18,7 @@ enum Home { }
 
 enum Record {
     enum Show { }
+    enum Reply { }
     enum Edit { }
 }
 

@@ -28,11 +28,15 @@ extension Record.Show {
         var loadMoreComment: AnyObserver<Void> {
             return _loadMoreComment.asObserver()
         }
+        var sendComment: AnyObserver<String> {
+            return _sendComment.asObserver()
+        }
         
         private let _loadMoreComment = PublishSubject<Void>()
-        private let _recordSubject = BehaviorRelay<Record.Model>(value: .emptyModel)
+        private let _recordSubject = BehaviorRelay<Record.Model>(value: .empty)
         private let _commentsSubject = BehaviorRelay<[Comment.Model]>(value: [])
         private let _refreshStatus = BehaviorRelay<RefreshStatus>(value: RefreshStatus.InvalidData)
+        private let _sendComment = PublishSubject<String>()
         private let _disposeBag = DisposeBag()
         
         private var _commentPage = 0
@@ -57,6 +61,30 @@ extension Record.Show {
         }
         
         init() {
+            let loadDataByRecord = _recordSubject
+                .do(onNext: { [unowned self] _ in
+                    self._commentPage = 0
+                    self._loadMoreComment.onNext(())
+                })
+                .map { [SectionModel<String, Any>(model: "R", items: [$0]),
+                        SectionModel<String, Any>(model: "C", items: self._commentsSubject.value)] }
+                .asDriver(onErrorJustReturn: [SectionModel<String, Any>(model: "R", items: [Record.Model.empty]),
+                                              SectionModel<String, Any>(model: "C", items: self._commentsSubject.value)])
+            
+            let loadDataByComments = _commentsSubject
+                .map { [SectionModel<String, Any>(model: "R", items: [self._recordSubject.value]),
+                        SectionModel<String, Any>(model: "C", items: $0)] }
+                .asDriver(onErrorJustReturn: [SectionModel<String, Any>(model: "R", items: [self._recordSubject.value]),
+                                              SectionModel<String, Any>(model: "C", items: [])])
+            
+            data = Driver.of(loadDataByRecord, loadDataByComments).merge()
+            
+            headImage = _recordSubject
+                .map { $0.imageResource }
+                .filter { $0 != nil }
+                .flatMapLatest {KingfisherManager.shared.rx.loadImage(with: $0!)}
+                .asDriver(onErrorJustReturn: UIImage(named: "test_head_img")!)
+            
             _loadMoreComment.asDriver(onErrorJustReturn: ())
                 .filter { [unowned self] _ in !self._recordSubject.value.isEmpty }
                 .do(onNext: { [unowned self] _ in self._commentPage += 1 })
@@ -84,45 +112,49 @@ extension Record.Show {
                 .drive(_commentsSubject)
                 .disposed(by: _disposeBag)
             
-            let loadDataByRecord = _recordSubject
-                .do(onNext: { [unowned self] _ in
-                    self._commentPage = 0
-                    self._loadMoreComment.onNext(())
+            _sendComment
+                .asDriver(onErrorJustReturn: "")
+                .filter { (text) -> Bool in
+                    if text.isEmpty {
+                        SVProgressHUD.showTip(status: "请输入评论内容")
+                        return false
+                    } else {
+                        return true
+                    }
+                }
+                .flatMapLatest { [unowned self] reply in
+                    self.commentProvider.rx
+                        .request(.sendComment(
+                            messageId: self._recordSubject.value.id,
+                            commentContent: reply))
+                        .map(NetworkResponse<Comment.Model>.self)
+                        .map { $0.data }
+                    .asDriver(onErrorJustReturn: Comment.Model.empty)
+                }
+                .filter({ (comment) -> Bool in
+                    if comment.isEmpty {
+                        SVProgressHUD.showError(status: "评论失败")
+                    } else {
+                        SVProgressHUD.showSuccess(status: "评论成功")
+                    }
+                    return !comment.isEmpty
                 })
-                .map { [SectionModel<String, Any>(model: "R", items: [$0]),
-                        SectionModel<String, Any>(model: "C", items: self._commentsSubject.value)] }
-                .asDriver(onErrorJustReturn: [SectionModel<String, Any>(model: "R", items: [Record.Model.emptyModel]),
-                                              SectionModel<String, Any>(model: "C", items: self._commentsSubject.value)])
-            
-            let loadDataByComments = _commentsSubject
-                .map { [SectionModel<String, Any>(model: "R", items: [self._recordSubject.value]),
-                        SectionModel<String, Any>(model: "C", items: $0)] }
-                .asDriver(onErrorJustReturn: [SectionModel<String, Any>(model: "R", items: [self._recordSubject.value]),
-                                              SectionModel<String, Any>(model: "C", items: [])])
-            
-            data = Driver.of(loadDataByRecord, loadDataByComments).merge()
-            
-            headImage = _recordSubject
-                .map { $0.imageResource }
-                .filter { $0 != nil }
-                .flatMapLatest {KingfisherManager.shared.rx.loadImage(with: $0!)}
-                .asDriver(onErrorJustReturn: UIImage(named: "test_head_img")!)
+                .map { [unowned self] new in [new] + self._commentsSubject.value }
+                .drive(_commentsSubject)
+                .disposed(by: _disposeBag)
         }
         
-        public func sendComment(with text: String) {
-            SVProgressHUD.show(withStatus: "正在发送")
-            commentProvider.rx
-                .request(.sendComment(
-                    messageId: _recordSubject.value.id,
-                    commentContent: text))
-                .map(NetworkResponse<Comment.Model>.self)
-                .subscribe(onSuccess: { [unowned self] (response) in
-                    SVProgressHUD.showSuccess(status: "评论成功")
-                    let models = [response.data] + self._commentsSubject.value
-                    self._commentsSubject.accept(models)
-                }) { (err) in
-                    SVProgressHUD.showError(status: "评论失败")
-                }.disposed(by: _disposeBag)
+        public func getReplyViewModel(indexPath: IndexPath) -> Record.Reply.ViewModel? {
+            if _recordSubject.value.user != Account.Manager.shared.user { return nil }
+            let comment = _commentsSubject.value[indexPath.row]
+            if comment.reply != nil { return nil }
+            return Record.Reply.ViewModel(with: comment) { [unowned self] replyText -> Void in
+                var comments = self._commentsSubject.value
+                var comment = comments[indexPath.row]
+                comment.reply(text: replyText)
+                comments[indexPath.row] = comment
+                self._commentsSubject.accept(comments)
+            }
         }
     }
 }

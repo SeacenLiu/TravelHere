@@ -61,6 +61,10 @@
 		142A688F21D2692F00221926 /* THInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142A688E21D2692F00221926 /* THInputView.swift */; };
 		142A689121D269BB00221926 /* THTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142A689021D269BA00221926 /* THTextView.swift */; };
 		142A689321D26ADA00221926 /* Notification+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142A689221D26ADA00221926 /* Notification+Ex.swift */; };
+		142A689621D4532F00221926 /* Record.Reply.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142A689521D4532F00221926 /* Record.Reply.View.swift */; };
+		142A689821D4534000221926 /* Record.Reply.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142A689721D4534000221926 /* Record.Reply.ViewModel.swift */; };
+		142A689A21D4568000221926 /* UILabel+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142A689921D4568000221926 /* UILabel+Ex.swift */; };
+		142A689C21D4577C00221926 /* UIImageView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142A689B21D4577C00221926 /* UIImageView+Ex.swift */; };
 		1434ACB921B002A500A140C4 /* SVProgressHUD+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434ACB821B002A500A140C4 /* SVProgressHUD+Ex.swift */; };
 		1434ACC721B012CD00A140C4 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434ACC621B012CD00A140C4 /* Error.swift */; };
 		1434ACC921B0224A00A140C4 /* Account.Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1434ACC821B0224A00A140C4 /* Account.Model.swift */; };
@@ -99,6 +103,7 @@
 		146A6C7621BA97860066732C /* MAMapView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A6C7521BA97860066732C /* MAMapView+Ex.swift */; };
 		146A6C7821BA99AE0066732C /* CLLocationManager+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A6C7721BA99AE0066732C /* CLLocationManager+Ex.swift */; };
 		146A6C7A21BAB2770066732C /* MAMapView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A6C7921BAB2770066732C /* MAMapView+Rx.swift */; };
+		1495D49E21D4CABF00EE506F /* THInputView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495D49D21D4CABF00EE506F /* THInputView+Rx.swift */; };
 		14ED87DD21C8F71A0019F861 /* MJRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED87DC21C8F71A0019F861 /* MJRefresh+Rx.swift */; };
 		14ED87E021CB3DCB0019F861 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED87DF21CB3DCB0019F861 /* UIViewController+Rx.swift */; };
 		6651C8CDC1021B3CDEEFC508 /* Pods_RxTravelHere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E8D2174BF8E6DCAA4DE9F1 /* Pods_RxTravelHere.framework */; };
@@ -186,6 +191,10 @@
 		142A688E21D2692F00221926 /* THInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THInputView.swift; sourceTree = "<group>"; };
 		142A689021D269BA00221926 /* THTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THTextView.swift; sourceTree = "<group>"; };
 		142A689221D26ADA00221926 /* Notification+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+Ex.swift"; sourceTree = "<group>"; };
+		142A689521D4532F00221926 /* Record.Reply.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.Reply.View.swift; sourceTree = "<group>"; };
+		142A689721D4534000221926 /* Record.Reply.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.Reply.ViewModel.swift; sourceTree = "<group>"; };
+		142A689921D4568000221926 /* UILabel+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ex.swift"; sourceTree = "<group>"; };
+		142A689B21D4577C00221926 /* UIImageView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ex.swift"; sourceTree = "<group>"; };
 		1434ACB821B002A500A140C4 /* SVProgressHUD+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SVProgressHUD+Ex.swift"; sourceTree = "<group>"; };
 		1434ACC621B012CD00A140C4 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		1434ACC821B0224A00A140C4 /* Account.Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.Model.swift; sourceTree = "<group>"; };
@@ -224,6 +233,7 @@
 		146A6C7521BA97860066732C /* MAMapView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MAMapView+Ex.swift"; sourceTree = "<group>"; };
 		146A6C7721BA99AE0066732C /* CLLocationManager+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationManager+Ex.swift"; sourceTree = "<group>"; };
 		146A6C7921BAB2770066732C /* MAMapView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MAMapView+Rx.swift"; sourceTree = "<group>"; };
+		1495D49D21D4CABF00EE506F /* THInputView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "THInputView+Rx.swift"; sourceTree = "<group>"; };
 		14ED87DC21C8F71A0019F861 /* MJRefresh+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefresh+Rx.swift"; sourceTree = "<group>"; };
 		14ED87DF21CB3DCB0019F861 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		3A662F8E49B5C849B1E7545A /* Pods-RxTravelHere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxTravelHere.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxTravelHere/Pods-RxTravelHere.release.xcconfig"; sourceTree = "<group>"; };
@@ -324,10 +334,10 @@
 			children = (
 				140ED15821AF73F100F1D1D2 /* NameSpace.swift */,
 				146A6C6021B7EC970066732C /* Model */,
-				146A6C6721B7ED2D0066732C /* Record */,
-				1427363D21CCDB62000AA31D /* Comment */,
 				140ED14221AE8D3B00F1D1D2 /* Account */,
 				146A6C4D21B7D39B0066732C /* Home */,
+				146A6C6721B7ED2D0066732C /* Record */,
+				1427363D21CCDB62000AA31D /* Comment */,
 				14590E2C21C72FE500843EBA /* UserCenter */,
 				140ED13F21AE8C7000F1D1D2 /* Global */,
 			);
@@ -380,6 +390,8 @@
 				146A6C7521BA97860066732C /* MAMapView+Ex.swift */,
 				146A6C7721BA99AE0066732C /* CLLocationManager+Ex.swift */,
 				1427366021CF6672000AA31D /* UITableView+Ex.swift */,
+				142A689921D4568000221926 /* UILabel+Ex.swift */,
+				142A689B21D4577C00221926 /* UIImageView+Ex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -481,6 +493,7 @@
 				14ED87DC21C8F71A0019F861 /* MJRefresh+Rx.swift */,
 				14ED87DF21CB3DCB0019F861 /* UIViewController+Rx.swift */,
 				142A688C21D263CC00221926 /* KingfisherManager+Rx.swift */,
+				1495D49D21D4CABF00EE506F /* THInputView+Rx.swift */,
 			);
 			path = Rx;
 			sourceTree = "<group>";
@@ -504,6 +517,15 @@
 				1428894521B611FF0057F79E /* KingfisherControl.swift */,
 			);
 			path = Control;
+			sourceTree = "<group>";
+		};
+		142A689421D4527A00221926 /* Record.Reply */ = {
+			isa = PBXGroup;
+			children = (
+				142A689521D4532F00221926 /* Record.Reply.View.swift */,
+				142A689721D4534000221926 /* Record.Reply.ViewModel.swift */,
+			);
+			path = Record.Reply;
 			sourceTree = "<group>";
 		};
 		1434ACB321AFC07300A140C4 /* Network */ = {
@@ -608,6 +630,7 @@
 				14590DF821C54E3D00843EBA /* Record.NetworkTarget.swift */,
 				146A6C6821B7ED5E0066732C /* Record.Model.swift */,
 				1427364621CD1169000AA31D /* Record.Show */,
+				142A689421D4527A00221926 /* Record.Reply */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -918,6 +941,8 @@
 				146A6C7221BA93950066732C /* AnnotationView.swift in Sources */,
 				142A689321D26ADA00221926 /* Notification+Ex.swift in Sources */,
 				1428893C21B586910057F79E /* ActionSheetControl.swift in Sources */,
+				1495D49E21D4CABF00EE506F /* THInputView+Rx.swift in Sources */,
+				142A689A21D4568000221926 /* UILabel+Ex.swift in Sources */,
 				1427363F21CCDB78000AA31D /* Comment.Model.swift in Sources */,
 				146A6C7421BA97560066732C /* HomeView.swift in Sources */,
 				146A6C4F21B7D3EE0066732C /* Home.View.swift in Sources */,
@@ -929,6 +954,7 @@
 				14590E5321C88EEC00843EBA /* UserCenter.MyRecord.ViewModel.swift in Sources */,
 				146A6C5521B7D57E0066732C /* Home.Annotation.swift in Sources */,
 				1428893821B573B40057F79E /* YYImageClipViewController.m in Sources */,
+				142A689621D4532F00221926 /* Record.Reply.View.swift in Sources */,
 				1427365821CD18E5000AA31D /* RecordContentCell.swift in Sources */,
 				140ED15921AF73F100F1D1D2 /* NameSpace.swift in Sources */,
 				1427364E21CD1731000AA31D /* UIDevice+Ex.swift in Sources */,
@@ -954,6 +980,7 @@
 				143DB46C21B6B790001F57E1 /* YYImagePickerController+Rx.swift in Sources */,
 				1428891621B3BCFA0057F79E /* Account.NetworkTarget.swift in Sources */,
 				140ED10C21AE884E00F1D1D2 /* AppDelegate.swift in Sources */,
+				142A689C21D4577C00221926 /* UIImageView+Ex.swift in Sources */,
 				1428894621B611FF0057F79E /* KingfisherControl.swift in Sources */,
 				143DB46A21B6B6DF001F57E1 /* ImageClipControl.swift in Sources */,
 				1428892221B555AC0057F79E /* UIImagePickerController+Rx.swift in Sources */,
@@ -980,6 +1007,7 @@
 				14590E5121C7F3CA00843EBA /* UserCenter.Interaction.Model.swift in Sources */,
 				146A6C4C21B7D3260066732C /* UserDefaults+Ex.swift in Sources */,
 				1427366121CF6672000AA31D /* UITableView+Ex.swift in Sources */,
+				142A689821D4534000221926 /* Record.Reply.ViewModel.swift in Sources */,
 				1428891821B3C5710057F79E /* NetworkModel.swift in Sources */,
 				1427364521CD1141000AA31D /* Record.Show.View.swift in Sources */,
 				1434ACB921B002A500A140C4 /* SVProgressHUD+Ex.swift in Sources */,

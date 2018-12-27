@@ -31,10 +31,6 @@ class RxMapViewDelegateProxy: DelegateProxy<MAMapView, MAMapViewDelegate>, Deleg
         object.delegate = delegate
     }
     
-//    override open func setForwardToDelegate(_ delegate: MAMapViewDelegate?, retainDelegate: Bool) {
-//        super.setForwardToDelegate(delegate, retainDelegate: false)
-//    }
-    
     // 现在只有一个地图，暂且放这里，首页就不需要写代理了
     private var userView: MAAnnotationView?
 

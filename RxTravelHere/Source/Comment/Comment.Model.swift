@@ -22,6 +22,14 @@ extension Comment {
             case user
             case detail = "comment"
         }
+        
+        static var empty: Model {
+            return Model(user: .empty, detail: .empty)
+        }
+        
+        var isEmpty: Bool {
+            return user == Account.User.empty || detail == Detail.empty
+        }
     }
 }
 
@@ -41,6 +49,10 @@ extension Comment {
             case text = "commentContent"
             case reply = "commentReplyContent"
             case userId
+        }
+        
+        static var empty: Detail {
+            return Detail(id: -1, recordId: 0, userId: "", text: "", time: 0, reply: nil)
         }
     }
 }

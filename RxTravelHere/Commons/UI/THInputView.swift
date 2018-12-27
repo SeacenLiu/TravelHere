@@ -7,12 +7,25 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
+@objc protocol THInputViewDelegate: NSObjectProtocol {
+    @objc optional func inPuterFrameDidChange(inputView: THInputView, frame: CGRect)
+    @objc optional func inPuterDidEnter(inputView: THInputView, text: String)
+}
+
+/**
+ 随键盘出现输入框
+ * handleSend 不为空执行闭包，为空时再执行代理
+ */
 class THInputView: UIView {
     
     typealias THSendBlock = (_ text: String)->()
     // MARK: - public
     public var handleSend: THSendBlock?
+    
+    weak var delegate: THInputViewDelegate?
     
     /// 是否显示
     public var isShow = false
@@ -25,6 +38,7 @@ class THInputView: UIView {
     
     public func show(with placeHolder: String? = nil) {
         if isEnable == false { return }
+        isMe = true
         if let str = placeHolder {
             textView.placeHolder = str
         } else {
@@ -39,12 +53,14 @@ class THInputView: UIView {
     public func dismiss() {
         if isEnable == false { return }
         if isShow {
+            isMe = true
             textView.endEditing(true)
         }
     }
     
-    // MARK: - action
+    // MARK: - notification
     @objc private func keyboardWillShowAction(note: Notification) {
+        if !isMe { return } ; isMe = false
         guard let dict = note.userInfo else { return }
         if isEnable == false { return }
         let keyboardF = dict[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
@@ -59,8 +75,10 @@ class THInputView: UIView {
         UIView.animate(withDuration: duration, delay: 0, options: [curve], animations: {
             self.frame = newFrame
         }) { _ in
-            // post notification
-            NotificationCenter.default.post(name: .inPuterFrameDidChangeNotification, object: self)
+            if let delegate = self.delegate,
+                delegate.responds(to: #selector(THInputViewDelegate.inPuterFrameDidChange(inputView:frame:))) {
+                delegate.inPuterFrameDidChange!(inputView: self, frame: self.frame)
+            }
         }
         
         originY = newFrame.origin.y
@@ -69,6 +87,7 @@ class THInputView: UIView {
     }
     
     @objc private func keyboardWillHideAction(note: Notification) {
+        if !isMe { return } ; isMe = false
         guard let dict = note.userInfo else { return }
         if isEnable == false { return }
         if isContinueShow { return }
@@ -88,7 +107,7 @@ class THInputView: UIView {
     }
 
     // MARK: - init
-    init(handleSend: @escaping THSendBlock) {
+    init(handleSend: THSendBlock? = nil) {
         self.handleSend = handleSend
         super.init(frame: CGRect(x: 0, y: UIScreen.main.bounds.height-inputViewH, width: UIScreen.main.bounds.width, height: inputViewH))
         // set up ui
@@ -134,6 +153,8 @@ class THInputView: UIView {
     
     private var inputViewH: CGFloat = 46
     
+    /// 是否是通知自己
+    private var isMe = false
 }
 
 extension THInputView: UITextViewDelegate {
@@ -156,14 +177,21 @@ extension THInputView: UITextViewDelegate {
         // 解决自适应高度UITextContainerView抖动问题
         textView.scrollRangeToVisible(textView.selectedRange)
         
-        // post notification
-        NotificationCenter.default.post(name: .inPuterFrameDidChangeNotification, object: self)
+        if let delegate = self.delegate,
+            delegate.responds(to: #selector(THInputViewDelegate.inPuterFrameDidChange(inputView:frame:))) {
+            delegate.inPuterFrameDidChange!(inputView: self, frame: self.frame)
+        }
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             if let callBack = handleSend {
                 callBack(textView.text)
+            } else {
+                if let delegate = self.delegate,
+                    delegate.responds(to: #selector(THInputViewDelegate.inPuterDidEnter(inputView:text:))) {
+                    delegate.inPuterDidEnter!(inputView: self, text: textView.text)
+                }
             }
             textView.text = ""
             if let tv = textView as? THTextView {
@@ -174,8 +202,4 @@ extension THInputView: UITextViewDelegate {
             return true
         }
     }
-}
-
-extension Notification.Name {
-    static let inPuterFrameDidChangeNotification = Notification.Name(rawValue: "com.seacen.app.inPuterFrameDidChangeNotification")
 }

@@ -54,11 +54,7 @@ extension Record.Show {
             CommentCell.registered(by: $0)
         }
         private lazy var drawBtn = UIButton(image: #imageLiteral(resourceName: "edit_comment_btn"))
-        private lazy var inputer = THInputView() { [weak self] (text: String)->Void in
-            guard let `self` = self else { return }
-            self._viewModel.sendComment(with: text)
-            self.inputer.dismiss()
-        }
+        private lazy var inputer = THInputView()
         
         // MARK: - compute relate
         private var headerH: CGFloat {
@@ -89,6 +85,16 @@ extension Record.Show.View {
         
         tableView.rx.itemSelected.subscribe(onNext: { [unowned self] ip in
             self.tableView.deselectRow(at: ip, animated: true)
+            guard let vm = self._viewModel.getReplyViewModel(indexPath: ip) else {
+                return
+            }
+            ActionSheetControl
+                .show(from: self, menu: ["回复"])
+                .debug("Sheet")
+                .subscribe(onNext: { _ in
+                    let v = Record.Reply.View(with: vm)
+                    self.navigationController?.pushViewController(v, animated: true)
+                }).disposed(by: self._disposeBag)
         }).disposed(by: _disposeBag)
         
         drawBtn.rx.tap.subscribe(onNext: { [unowned self] btn in
@@ -99,6 +105,10 @@ extension Record.Show.View {
     private func binding() {
         MJRefreshBackNormalFooter.create(from: tableView)
             .bind(to: _viewModel.loadMoreComment)
+            .disposed(by: _disposeBag)
+        inputer.rx.clickEnter
+            .do(onNext: { [unowned self] _ in self.inputer.dismiss() })
+            .bind(to: _viewModel.sendComment)
             .disposed(by: _disposeBag)
         
         tableView.rx.setDelegate(self).disposed(by: _disposeBag)

@@ -12,6 +12,10 @@ class NavBarView: UIView {
     
     var navigationController: UINavigationController?
     
+    var Height: CGFloat {
+        return UIDevice.statusBarH + 44
+    }
+    
     public var barColor: UIColor = #colorLiteral(red: 0, green: 0.7176470588, blue: 0.8039215686, alpha: 1) {
         didSet {
             backgroundColor = barColor.withAlphaComponent(barAlpha)

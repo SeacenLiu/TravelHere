@@ -40,8 +40,8 @@ extension Record {
             case detail = "message"
         }
         
-        static var emptyModel: Model {
-            return Model(user: nil, detail: .emptyModel)
+        static var empty: Model {
+            return Model(user: nil, detail: .empty)
         }
         
         static func myRecordModel(with detail: Detail) -> Model {
@@ -80,7 +80,7 @@ extension Record {
             case locationStr = "messageAddress"
         }
         
-        static var emptyModel: Detail {
+        static var empty: Detail {
             return Detail(id: -1, userId: "", type: .blackboard, longitude: 0, latitude: 0, text: "加载中...", time: 0, imageUrl: nil, locationStr: "留言地点")
         }
         

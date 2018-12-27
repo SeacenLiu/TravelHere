@@ -46,5 +46,16 @@ extension Account {
             userNickname = aDecoder.decodeObject(forKey: "userNickname") as! String
             userAvatar = aDecoder.decodeObject(forKey: "userAvatar") as? String
         }
+        
+        init(userId: String, userNickname: String, userAvatar: String?) {
+            self.userId = userId
+            self.userNickname = userNickname
+            self.userAvatar = userAvatar
+            super.init()
+        }
+        
+        static var empty: User {
+            return User(userId: "-1", userNickname: "", userAvatar: nil)
+        }
     }
 }
