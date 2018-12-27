@@ -63,6 +63,18 @@ extension Account.ValidateLogin.View {
     func setupUI() {
         _codeView.phoneLb.text = showViewModel.phoneNum
     }
+    
+    fileprivate func showCodeError() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self._codeView.errorToast.alpha = 1
+        }) { (_) in
+            DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
+                UIView.animate(withDuration: 0.25, animations: {
+                    self._codeView.errorToast.alpha = 0
+                })
+            })
+        }
+    }
 }
 
 extension Reactive where Base: Account.ValidateLogin.View {
@@ -74,7 +86,7 @@ extension Reactive where Base: Account.ValidateLogin.View {
                     Account.Edit.View(),
                     animated: true)
             } else {
-                c.showHUD(errorText: "登录失败")
+                c.showCodeError()
             }
         }.asObserver()
     }
@@ -84,6 +96,8 @@ final class CodeView: UIView {
     @IBOutlet weak var codeTf: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var phoneLb: UILabel!
+    // TODO: - 需要一个正常的 Toast
+    @IBOutlet weak var errorToast: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
