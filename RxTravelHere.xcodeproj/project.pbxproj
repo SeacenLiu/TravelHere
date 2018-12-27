@@ -104,6 +104,8 @@
 		146A6C7821BA99AE0066732C /* CLLocationManager+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A6C7721BA99AE0066732C /* CLLocationManager+Ex.swift */; };
 		146A6C7A21BAB2770066732C /* MAMapView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A6C7921BAB2770066732C /* MAMapView+Rx.swift */; };
 		1495D49E21D4CABF00EE506F /* THInputView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495D49D21D4CABF00EE506F /* THInputView+Rx.swift */; };
+		1495D4A121D4FC9B00EE506F /* Record.Edit.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495D4A021D4FC9B00EE506F /* Record.Edit.ViewModel.swift */; };
+		1495D4A321D4FCAD00EE506F /* Record.Edit.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495D4A221D4FCAD00EE506F /* Record.Edit.View.swift */; };
 		14ED87DD21C8F71A0019F861 /* MJRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED87DC21C8F71A0019F861 /* MJRefresh+Rx.swift */; };
 		14ED87E021CB3DCB0019F861 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED87DF21CB3DCB0019F861 /* UIViewController+Rx.swift */; };
 		6651C8CDC1021B3CDEEFC508 /* Pods_RxTravelHere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E8D2174BF8E6DCAA4DE9F1 /* Pods_RxTravelHere.framework */; };
@@ -234,6 +236,8 @@
 		146A6C7721BA99AE0066732C /* CLLocationManager+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationManager+Ex.swift"; sourceTree = "<group>"; };
 		146A6C7921BAB2770066732C /* MAMapView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MAMapView+Rx.swift"; sourceTree = "<group>"; };
 		1495D49D21D4CABF00EE506F /* THInputView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "THInputView+Rx.swift"; sourceTree = "<group>"; };
+		1495D4A021D4FC9B00EE506F /* Record.Edit.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.Edit.ViewModel.swift; sourceTree = "<group>"; };
+		1495D4A221D4FCAD00EE506F /* Record.Edit.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.Edit.View.swift; sourceTree = "<group>"; };
 		14ED87DC21C8F71A0019F861 /* MJRefresh+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefresh+Rx.swift"; sourceTree = "<group>"; };
 		14ED87DF21CB3DCB0019F861 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		3A662F8E49B5C849B1E7545A /* Pods-RxTravelHere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxTravelHere.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxTravelHere/Pods-RxTravelHere.release.xcconfig"; sourceTree = "<group>"; };
@@ -629,6 +633,7 @@
 			children = (
 				14590DF821C54E3D00843EBA /* Record.NetworkTarget.swift */,
 				146A6C6821B7ED5E0066732C /* Record.Model.swift */,
+				1495D49F21D4FC7600EE506F /* Record.Edit */,
 				1427364621CD1169000AA31D /* Record.Show */,
 				142A689421D4527A00221926 /* Record.Reply */,
 			);
@@ -644,6 +649,15 @@
 				146A6C5621B7D5B40066732C /* HomeView.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		1495D49F21D4FC7600EE506F /* Record.Edit */ = {
+			isa = PBXGroup;
+			children = (
+				1495D4A221D4FCAD00EE506F /* Record.Edit.View.swift */,
+				1495D4A021D4FC9B00EE506F /* Record.Edit.ViewModel.swift */,
+			);
+			path = Record.Edit;
 			sourceTree = "<group>";
 		};
 		85F5B907BE55DF93852D9046 /* Pods */ = {
@@ -975,6 +989,7 @@
 				1428893E21B58BEE0057F79E /* ImagePickerControl.swift in Sources */,
 				142A689121D269BB00221926 /* THTextView.swift in Sources */,
 				1427365921CD18E5000AA31D /* CommentCell.swift in Sources */,
+				1495D4A121D4FC9B00EE506F /* Record.Edit.ViewModel.swift in Sources */,
 				1427363C21CCD9A3000AA31D /* UserCenter.Interaction.ViewModel.swift in Sources */,
 				146A6C6921B7ED5E0066732C /* Record.Model.swift in Sources */,
 				1428893A21B5743D0057F79E /* UIViewController+Ex.swift in Sources */,
@@ -1000,6 +1015,7 @@
 				1427364321CCE48D000AA31D /* UserCenter.Interaction.NetworkTarget.swift in Sources */,
 				14590E3B21C7313400843EBA /* RedPointView.swift in Sources */,
 				146A6C5121B7D4090066732C /* Home.ViewModel.swift in Sources */,
+				1495D4A321D4FCAD00EE506F /* Record.Edit.View.swift in Sources */,
 				142A688D21D263CC00221926 /* KingfisherManager+Rx.swift in Sources */,
 				140ED16621AF8D2B00F1D1D2 /* Account.ValidateLogin.View.swift in Sources */,
 				146A6C7A21BAB2770066732C /* MAMapView+Rx.swift in Sources */,
@@ -1187,7 +1203,10 @@
 				DEVELOPMENT_TEAM = 6426K9AWKV;
 				INFOPLIST_FILE = RxTravelHere/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cppteam.com.RxTravelHere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RxTravelHere/RxTravelHere-Bridging-Header.h";
@@ -1207,7 +1226,10 @@
 				DEVELOPMENT_TEAM = 6426K9AWKV;
 				INFOPLIST_FILE = RxTravelHere/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cppteam.com.RxTravelHere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RxTravelHere/RxTravelHere-Bridging-Header.h";
@@ -1225,7 +1247,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6426K9AWKV;
 				INFOPLIST_FILE = RxTravelHereTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cppteam.com.RxTravelHereTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1243,7 +1269,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6426K9AWKV;
 				INFOPLIST_FILE = RxTravelHereTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cppteam.com.RxTravelHereTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1260,7 +1290,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6426K9AWKV;
 				INFOPLIST_FILE = RxTravelHereUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cppteam.com.RxTravelHereUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1277,7 +1311,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6426K9AWKV;
 				INFOPLIST_FILE = RxTravelHereUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cppteam.com.RxTravelHereUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
