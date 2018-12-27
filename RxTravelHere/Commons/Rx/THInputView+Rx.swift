@@ -53,3 +53,11 @@ extension Reactive where Base: THInputView {
         }
     }
 }
+
+extension Reactive where Base: THInputView {
+    var dismiss: AnyObserver<Void> {
+        return Binder<Void>(base) { v, _ in
+            v.dismiss()
+        }.asObserver()
+    }
+}

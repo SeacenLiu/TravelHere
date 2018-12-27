@@ -10,6 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import RxDataSources
+import RxGesture
 import MJRefresh
 
 extension Record.Show {
@@ -54,55 +55,70 @@ extension Record.Show {
             CommentCell.registered(by: $0)
         }
         private lazy var drawBtn = UIButton(image: #imageLiteral(resourceName: "edit_comment_btn"))
-        private lazy var inputer = THInputView()
+        fileprivate lazy var inputer = THInputView()
         
         // MARK: - compute relate
         private var headerH: CGFloat {
             return ImageHeadView.headerHeight(with: self.tableView)
         }
-        private var contentH: CGFloat = 0
+        fileprivate var contentH: CGFloat = 0
         private let cutH = CutView.headerHeight
-        private var showBottomY: CGFloat = 0
+        fileprivate var showBottomY: CGFloat {
+            return contentH + headerH + cutH
+        }
     }
 }
 
 extension Record.Show.View {
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUI()
-        binding()
+        bindingViewModel()
         
         tableView.rx.didScroll
             .observeOn(MainScheduler.asyncInstance)
             .bind(to: rx.scrollAction)
             .disposed(by: _disposeBag)
         
-        tableView.rx.willDisplayCell.subscribe(onNext: { [unowned self] cell ,ip in
-            if ip.section == 0 {
-                self.contentH = cell.bounds.height
-            }
-        }).disposed(by: _disposeBag)
+        tableView.rx.panGesture()
+            .map { _ in return () }
+            .bind(to: inputer.rx.dismiss)
+            .disposed(by: _disposeBag)
+        
+        tableView.rx
+            .tapGesture(configuration: { tap, _ in
+                tap.cancelsTouchesInView = false
+            })
+            .map { _ in return () }
+            .bind(to: inputer.rx.dismiss)
+            .disposed(by: _disposeBag)
+        
+        inputer.rx.frameChange
+            .bind(to: rx.tableViewContentOffset)
+            .disposed(by: _disposeBag)
+        
+        tableView.rx.willDisplayCell
+            .bind(to: rx.contentHeight)
+            .disposed(by: _disposeBag)
         
         tableView.rx.itemSelected.subscribe(onNext: { [unowned self] ip in
             self.tableView.deselectRow(at: ip, animated: true)
             guard let vm = self._viewModel.getReplyViewModel(indexPath: ip) else {
                 return
             }
-            ActionSheetControl
-                .show(from: self, menu: ["回复"])
-                .debug("Sheet")
+            ActionSheetControl.show(from: self, menu: ["回复"])
                 .subscribe(onNext: { _ in
                     let v = Record.Reply.View(with: vm)
                     self.navigationController?.pushViewController(v, animated: true)
                 }).disposed(by: self._disposeBag)
         }).disposed(by: _disposeBag)
         
-        drawBtn.rx.tap.subscribe(onNext: { [unowned self] btn in
-            self.showInputer()
-        }).disposed(by: _disposeBag)
+        drawBtn.rx.tap.bind(to: rx.showInputer).disposed(by: _disposeBag)
     }
     
-    private func binding() {
+    private func bindingViewModel() {
+        // binding input
         MJRefreshBackNormalFooter.create(from: tableView)
             .bind(to: _viewModel.loadMoreComment)
             .disposed(by: _disposeBag)
@@ -110,7 +126,7 @@ extension Record.Show.View {
             .do(onNext: { [unowned self] _ in self.inputer.dismiss() })
             .bind(to: _viewModel.sendComment)
             .disposed(by: _disposeBag)
-        
+        // binding output
         tableView.rx.setDelegate(self).disposed(by: _disposeBag)
         _viewModel.data
             .drive(tableView.rx.items(dataSource: _dataSource))
@@ -147,16 +163,8 @@ extension Record.Show.View {
     }
 }
 
-// MARK: - input view relate
-private extension Record.Show.View {
-    func showInputer(indexPath: IndexPath = IndexPath(row: 0, section: 0)) {
-        showBottomY = contentH + headerH + cutH
-        inputer.show(with: "评论:")
-    }
-}
-
+// MARK: - UITableViewDelegate
 extension Record.Show.View: UITableViewDelegate {
-    // TODO: - 美化代理
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             return ImageHeadView.load(with: tableView)
@@ -182,12 +190,38 @@ extension Record.Show.View: UITableViewDelegate {
     }
 }
 
+// MARK: - Reactive
 extension Reactive where Base: Record.Show.View {
+    var showInputer: AnyObserver<Void> {
+        return Binder<Void>(base) { v, _ in
+            v.inputer.show(with: "评论:")
+        }.asObserver()
+    }
+    
+    // table view part
     var headerImage: AnyObserver<UIImage> {
         return Binder<UIImage>(base) { v, img in
             if let head = v.tableView.headerView(forSection: 0) as? ImageHeadView {
                 head.imageView.image = img
             }
+            }.asObserver()
+    }
+    
+    var contentHeight: AnyObserver<WillDisplayCellEvent> {
+        return Binder<WillDisplayCellEvent>(base) { v, tuple in
+            if tuple.1.section == 0 {
+                v.contentH = tuple.0.bounds.height
+            }
+            }.asObserver()
+    }
+    
+    var tableViewContentOffset: AnyObserver<CGRect> {
+        return Binder<CGRect>(base) { v, rect in
+            let inputerT = rect.minY - (UIScreen.main.bounds.height - v.view.frame.maxY)
+            let cellB = v.showBottomY
+            var offset = cellB - inputerT
+            if offset < 0 { offset = 0 }
+            v.tableView.setContentOffset(CGPoint(x: 0, y: offset), animated: true)
         }.asObserver()
     }
     
@@ -198,6 +232,6 @@ extension Reactive where Base: Record.Show.View {
             if let head = tv.headerView(forSection: 0) as? ImageHeadView {
                 head.change(with: tv)
             }
-        }.asObserver()
+            }.asObserver()
     }
 }

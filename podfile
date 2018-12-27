@@ -11,6 +11,7 @@ target 'RxTravelHere' do
   pod 'RxSwift', '~> 4.3.1'
   pod 'RxCocoa', '~> 4.3.1'
   pod 'RxDataSources', '~> 3.1.0'
+  pod 'RxGesture', '~> 2.0.1'
   
   # Alamofire (4.7.3)
   # Moya (11.0.2)
