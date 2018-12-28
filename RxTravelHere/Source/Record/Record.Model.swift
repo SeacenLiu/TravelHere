@@ -25,6 +25,17 @@ extension Record {
                 return #imageLiteral(resourceName: "map_blackboard")
             }
         }
+        
+        var contentImage: UIImage {
+            switch self {
+            case .heart:
+                return #imageLiteral(resourceName: "heart_edit_img")
+            case .note:
+                return #imageLiteral(resourceName: "note_edit_img")
+            case .blackboard:
+                return #imageLiteral(resourceName: "blackboard_edit_img")
+            }
+        }
     }
     
     struct Model: Codable {

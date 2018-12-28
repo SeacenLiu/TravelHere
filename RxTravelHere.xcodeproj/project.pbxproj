@@ -106,6 +106,10 @@
 		1495D49E21D4CABF00EE506F /* THInputView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495D49D21D4CABF00EE506F /* THInputView+Rx.swift */; };
 		1495D4A121D4FC9B00EE506F /* Record.Edit.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495D4A021D4FC9B00EE506F /* Record.Edit.ViewModel.swift */; };
 		1495D4A321D4FCAD00EE506F /* Record.Edit.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495D4A221D4FCAD00EE506F /* Record.Edit.View.swift */; };
+		1495D4A621D5A79500EE506F /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495D4A521D5A79500EE506F /* EditView.swift */; };
+		1495D4A821D5A7CC00EE506F /* EditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1495D4A721D5A7CC00EE506F /* EditView.xib */; };
+		1495D4AA21D6434100EE506F /* ShapeTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495D4A921D6434100EE506F /* ShapeTypeCell.swift */; };
+		1495D4AD21D6575B00EE506F /* ShapeTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1495D4AC21D6575A00EE506F /* ShapeTypeCell.xib */; };
 		14ED87DD21C8F71A0019F861 /* MJRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED87DC21C8F71A0019F861 /* MJRefresh+Rx.swift */; };
 		14ED87E021CB3DCB0019F861 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED87DF21CB3DCB0019F861 /* UIViewController+Rx.swift */; };
 		6651C8CDC1021B3CDEEFC508 /* Pods_RxTravelHere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E8D2174BF8E6DCAA4DE9F1 /* Pods_RxTravelHere.framework */; };
@@ -238,6 +242,10 @@
 		1495D49D21D4CABF00EE506F /* THInputView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "THInputView+Rx.swift"; sourceTree = "<group>"; };
 		1495D4A021D4FC9B00EE506F /* Record.Edit.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.Edit.ViewModel.swift; sourceTree = "<group>"; };
 		1495D4A221D4FCAD00EE506F /* Record.Edit.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.Edit.View.swift; sourceTree = "<group>"; };
+		1495D4A521D5A79500EE506F /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		1495D4A721D5A7CC00EE506F /* EditView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditView.xib; sourceTree = "<group>"; };
+		1495D4A921D6434100EE506F /* ShapeTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeTypeCell.swift; sourceTree = "<group>"; };
+		1495D4AC21D6575A00EE506F /* ShapeTypeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShapeTypeCell.xib; sourceTree = "<group>"; };
 		14ED87DC21C8F71A0019F861 /* MJRefresh+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefresh+Rx.swift"; sourceTree = "<group>"; };
 		14ED87DF21CB3DCB0019F861 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		3A662F8E49B5C849B1E7545A /* Pods-RxTravelHere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxTravelHere.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxTravelHere/Pods-RxTravelHere.release.xcconfig"; sourceTree = "<group>"; };
@@ -654,10 +662,22 @@
 		1495D49F21D4FC7600EE506F /* Record.Edit */ = {
 			isa = PBXGroup;
 			children = (
+				1495D4A421D5A75700EE506F /* Views */,
 				1495D4A221D4FCAD00EE506F /* Record.Edit.View.swift */,
 				1495D4A021D4FC9B00EE506F /* Record.Edit.ViewModel.swift */,
 			);
 			path = Record.Edit;
+			sourceTree = "<group>";
+		};
+		1495D4A421D5A75700EE506F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1495D4A521D5A79500EE506F /* EditView.swift */,
+				1495D4A721D5A7CC00EE506F /* EditView.xib */,
+				1495D4A921D6434100EE506F /* ShapeTypeCell.swift */,
+				1495D4AC21D6575A00EE506F /* ShapeTypeCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		85F5B907BE55DF93852D9046 /* Pods */ = {
@@ -796,7 +816,9 @@
 				140ED14821AE927B00F1D1D2 /* PhoneView.xib in Resources */,
 				1427364B21CD169D000AA31D /* NavBarView.xib in Resources */,
 				140ED11621AE884F00F1D1D2 /* LaunchScreen.storyboard in Resources */,
+				1495D4A821D5A7CC00EE506F /* EditView.xib in Resources */,
 				146A6C5921B7DF070066732C /* MapSetting.bundle in Resources */,
+				1495D4AD21D6575B00EE506F /* ShapeTypeCell.xib in Resources */,
 				140ED11321AE884F00F1D1D2 /* Assets.xcassets in Resources */,
 				146A6C5721B7D5B40066732C /* HomeView.xib in Resources */,
 				140ED14F21AEC4C900F1D1D2 /* EditInfoView.xib in Resources */,
@@ -948,6 +970,7 @@
 			files = (
 				140ED15421AECECF00F1D1D2 /* UIImage+Ex.swift in Sources */,
 				140ED15C21AF8B8A00F1D1D2 /* Account.Edit.View.swift in Sources */,
+				1495D4AA21D6434100EE506F /* ShapeTypeCell.swift in Sources */,
 				14590E3D21C7337600843EBA /* UserCenter.MyRecord.View.swift in Sources */,
 				146A6C7821BA99AE0066732C /* CLLocationManager+Ex.swift in Sources */,
 				14ED87DD21C8F71A0019F861 /* MJRefresh+Rx.swift in Sources */,
@@ -1008,6 +1031,7 @@
 				140ED16821AF8D3200F1D1D2 /* Account.ValidateLogin.ViewModel.swift in Sources */,
 				140ED14421AE8D9E00F1D1D2 /* Account.View.swift in Sources */,
 				14590E4921C7F0B300843EBA /* RecordCell.swift in Sources */,
+				1495D4A621D5A79500EE506F /* EditView.swift in Sources */,
 				14590DF921C54E3D00843EBA /* Record.NetworkTarget.swift in Sources */,
 				1427365121CD18B6000AA31D /* ImageHeadView.swift in Sources */,
 				140ED15621AECF9000F1D1D2 /* UIButton+Ex.swift in Sources */,

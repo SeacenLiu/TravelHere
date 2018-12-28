@@ -42,14 +42,19 @@ extension Home.View {
         setupUI()
         checkLocationAuthorization()
         
-        _homeView.userBtn.rx
-            .controlEvent(UIControlEvents.touchUpInside)
+        _homeView.userBtn.rx.tap
             .subscribe { (_) in
                 Account.Manager.shared.ensureLogin(curVC: self, handle: {
                     self.present(UserCenter.View.viewForNavigation(), animated: true)
                 })
         }
         .disposed(by: _disposeBag)
+        
+        _homeView.editBtn.rx.tap.subscribe(onNext: { [unowned self] _ in
+            Account.Manager.shared.ensureLogin(curVC: self, handle: {
+                self.present(Record.Edit.View(), animated: true)
+            })
+        }).disposed(by: _disposeBag)
 
         _viewModel.avatar
             .drive(_homeView.userBtn.rx.image(for: .normal))
