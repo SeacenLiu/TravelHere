@@ -24,13 +24,16 @@ extension Home {
     
     final class ViewModel {
         
-        // 输出流
+        // Output
         private var _showRecord: Driver<MapShowResult>?
         var showRecord: Driver<MapShowResult> {
             return _showRecord!
         }
         
+        // Input
         let avatar: Driver<UIImage>
+        
+        private let _disposeBag = DisposeBag()
         
         // 保存状态用
         var curRecordModels: [Record.Model]?
@@ -38,6 +41,10 @@ extension Home {
         
         init(input: (locations: Observable<CLLocationCoordinate2D>, refreshTap: Signal<()>)) {
             let provider = MoyaProvider<Record.NetworkTarget>()
+            
+            input.locations
+                .bind(to: PositionManager.shared.rx.location)
+                .disposed(by: _disposeBag)
             
             avatar = Account.Manager.shared.avatar
                 .asDriver(onErrorJustReturn: UIImage(named: "unlogin_avator")!)

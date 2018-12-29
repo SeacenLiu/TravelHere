@@ -10,50 +10,59 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Moya
+import SVProgressHUD
 
 extension Record.Edit {
     internal class ViewModel {
-        typealias Content = (text: String, img: String, type: Int)
+        typealias Content = (text: String, img: String, type: Int, location: SearchResult)
         
         let publishSuccess: Driver<Bool>
+        let image: Driver<UIImage>
         let typeData: Driver<[ShapeTypeViewModel]>
+        let publishEnable: Driver<Bool>
         
-        init(input: (text: Driver<String>, img: Driver<UIImage?>, type: Driver<Int>, doneTap: Signal<Void>)) {
+        init(input: (text: Driver<String>, img: Driver<UIImage?>, type: Driver<Int>, location: Driver<SearchResult>, doneTap: Signal<Void>)) {
             
             let provider = MoyaProvider<Record.NetworkTarget>()
             let imageProvider = MoyaProvider<FileNetworkTarget>()
-            
-            let content = Driver.combineLatest(input.text, input.img, input.type.startWith(0))
-            
+
+            publishEnable = input.location
+                .map { _ in true }
+                .startWith(false)
+                .asDriver(onErrorJustReturn: false)
             typeData = input.type.map { ShapeTypeViewModel.dataProvide(selectIdx: $0) }
+            image = input.img.filter {$0 != nil}.map { $0! }
+            
+            let content = Driver.combineLatest(input.text, input.img, input.type.startWith(0), input.location)
+            
             publishSuccess = input.doneTap.withLatestFrom(content)
-                .flatMapLatest { (text, img, type) ->  Driver<NetworkValid<Content>> in
-                    guard let img = img else { return .of(.success(value: (text, "", type))) }
+                .flatMapLatest { (text, img, type, location) ->  Driver<NetworkValid<Content>> in
+                    guard let img = img else { return .of(.success(value: (text, "", type, location))) }
                     return imageProvider.rx
                         .request(FileNetworkTarget(img.imageJpgData!))
                         .map(NetworkResponse<ImageInfo>.self)
-                        .map { .success(value: (text, $0.data.path, type)) }
+                        .map { .success(value: (text, $0.data.path, type, location)) }
                         .asDriver(onErrorJustReturn: .failure)
                 }
-                .flatMapLatest { result -> Driver<Bool> in
-                    switch result {
+                .flatMapLatest { network -> Driver<Bool> in
+                    switch network {
                     case let .success(content):
                         return provider.rx
                             .request(.uploadRecord(
                                 messageContent: content.text,
                                 modelId: content.type,
-                                messageLongitude: -1,
-                                messageLatitude: -1,
+                                messageLongitude: content.location.longitude,
+                                messageLatitude: content.location.latitude,
                                 messageImage: content.img,
-                                messageAddress: "通过高德地图获取"))
-                            .map(NetworkResponse<Account.User>.self)
+                                messageAddress: content.location.address))
+                            .map(NetworkResponse<Record.Detail>.self)
                             .do(onSuccess: { _ in
                                 // TODO: - 通知地图和AR模块增加留言
                             })
                             .map { $0.code == .success }
                             .asDriver(onErrorJustReturn: false)
                     case .failure:
-                        return Driver<Bool>.just(false)
+                        return .just(false)
                     }
             }
         }

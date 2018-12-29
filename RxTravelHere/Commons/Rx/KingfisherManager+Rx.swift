@@ -19,7 +19,7 @@ extension Reactive where Base: KingfisherManager {
                 with: resource,
                 options: nil,
                 progressBlock: nil,
-                completionHandler: { (image, error, _, _) in
+                completionHandler: { (image, error, type, _) in
                     if let err = error {
                         observer.onError(err)
                     } else if let img = image {

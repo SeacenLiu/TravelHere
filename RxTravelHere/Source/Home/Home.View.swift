@@ -140,6 +140,7 @@ extension Home.View: CLLocationManagerDelegate {
         switch status {
         case .authorizedWhenInUse:
             log("authorizedWhenInUse")
+            startLocation()
         case .denied:
             log("denied")
         default:

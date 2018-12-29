@@ -134,9 +134,6 @@ extension Record.Show.View {
         _viewModel.refreshStatus
             .drive(tableView.rx.mj_refreshStatus)
             .disposed(by: _disposeBag)
-        _viewModel.headImage
-            .drive(rx.headerImage)
-            .disposed(by: _disposeBag)
     }
     
     private func setupUI() {
@@ -167,7 +164,9 @@ extension Record.Show.View {
 extension Record.Show.View: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            return ImageHeadView.load(with: tableView)
+            let header = ImageHeadView.load(with: tableView)
+            _viewModel.headImage.drive(header.imageView.rx.image).disposed(by: _disposeBag)
+            return header
         } else {
             return CutView.load(with: tableView)
         }

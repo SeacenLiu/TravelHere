@@ -28,7 +28,7 @@ extension Account.Edit {
                     }
                     .filter {image in image != nil}
                     .flatMap { [weak self] image in
-                        ImageClipControl.cropImage(image!, isCycle: true, from: self)
+                        ImageClipControl.cropImage(image!, hwRatio: 1, isCycle: true, from: self)
                     }
                     .asDriver(onErrorJustReturn: UIImage()),
                 name: self._editView.nameTf.rx.text.orEmpty.asDriver(),

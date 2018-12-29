@@ -11,10 +11,10 @@ import RxSwift
 import RxCocoa
 
 class ImageClipControl {
-    static func show(_ image: UIImage, isCycle: Bool, from: UIViewController?) -> Observable<YYImageClipViewController> {
+    static func show(_ image: UIImage, hwRatio: CGFloat, isCycle: Bool, from: UIViewController?) -> Observable<YYImageClipViewController> {
         return Observable.create { [weak from] observer in
             let w = UIScreen.main.bounds.width
-            let h = w //  * imagescaleHW
+            let h = w * hwRatio
             let x: CGFloat = 0
             let y: CGFloat = (UIScreen.main.bounds.height - h) * 0.5
             let rect = CGRect(x: x, y: y, width: w, height: h)
@@ -40,8 +40,8 @@ class ImageClipControl {
         }
     }
     
-    static func cropImage(_ image: UIImage, isCycle: Bool, from: UIViewController?) -> Observable<UIImage> {
-        return self.show(image, isCycle: isCycle, from: from).debug()
+    static func cropImage(_ image: UIImage, hwRatio: CGFloat, isCycle: Bool, from: UIViewController?) -> Observable<UIImage> {
+        return self.show(image, hwRatio: hwRatio, isCycle: isCycle, from: from).debug()
             .flatMap { $0.rx.didFinished }
     }
 }

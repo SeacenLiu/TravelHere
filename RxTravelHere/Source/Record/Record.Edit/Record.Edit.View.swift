@@ -9,11 +9,12 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SVProgressHUD
 
 extension Record.Edit {
     internal class View: UIViewController {
         private let _disposeBag = DisposeBag()
-        private var _editView: EditView { return view as! EditView }
+        fileprivate var _editView: EditView { return view as! EditView }
         override func loadView() { view = EditView.nibView() }
         private lazy var _viewModel = ViewModel(input: (
             text: self._editView.textView.rx.text.orEmpty.asDriver(),
@@ -24,7 +25,7 @@ extension Record.Edit {
                     ImagePickerControl.showActionAndGetImage(from: self)
                 }
                 .flatMap { [weak self] image in
-                    ImageClipControl.cropImage(image!, isCycle: true, from: self)
+                    ImageClipControl.cropImage(image!, hwRatio: 195.0/312.0, isCycle: false, from: self)
                 }
                 .map { img -> UIImage? in img }
                 .asDriver(onErrorJustReturn: nil)
@@ -33,6 +34,17 @@ extension Record.Edit {
                 .map { $0.row }
                 .asDriver(onErrorJustReturn: 0)
                 .startWith(0),
+            location: LocationSearcher(location: PositionManager.shared.currentLocation)
+                .rx.search()
+                .do(onSuccess: { _ in
+                    SVProgressHUD.showSuccess(status: "获取位置成功")
+                }, onError: { (err) in
+                    SVProgressHUD.showError(status: "获取位置失败")
+                    // TODO: - 引导用户连接网络或者打开定位
+                }, onSubscribe: {
+                    SVProgressHUD.show(withStatus: "正在获取位置信息")
+                })
+                .asDriver(onErrorJustReturn: .failure),
             doneTap: self._editView.publishBtn.rx.tap.asSignal()))
         
     }
@@ -42,8 +54,14 @@ extension Record.Edit.View {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindingViewModel()
+        view.rx
+            .tapGesture(configuration: { tap, _ in
+                tap.cancelsTouchesInView = false
+            })
+            .map { _ in return () }
+            .bind(to: rx.endEditing)
+            .disposed(by: _disposeBag)
         _editView.closeBtn.rx.tap.bind(to: rx.dismissAction).disposed(by: _disposeBag)
-        
     }
     
     private func bindingViewModel() {
@@ -53,5 +71,37 @@ extension Record.Edit.View {
                 cellType: ShapeTypeCell.self)) { (row, vm, cell) in
                     cell.config(with: vm)
         }.disposed(by: _disposeBag)
+        
+        _viewModel.publishEnable
+            .drive(_editView.publishBtn.rx.isEnabled)
+            .disposed(by: _disposeBag)
+        
+        _viewModel.publishSuccess.drive(rx.handlePublish).disposed(by: _disposeBag)
+        
+        _viewModel.image.drive(rx.image).disposed(by: _disposeBag)
+    }
+}
+
+// MARK: - Reactive
+extension Reactive where Base: Record.Edit.View {
+    var handlePublish: AnyObserver<Bool> {
+        return Binder<Bool>(base) { c, success in
+            if success {
+                c.showHUD(successText: "发布成功") {
+                    // TODO: - 判断是否需要提示举起手机
+                    c.dismiss(animated: true)
+                }
+            } else {
+                c.showHUD(errorText: "发布失败")
+            }
+        }.asObserver()
+    }
+    
+    var image: AnyObserver<UIImage> {
+        return Binder<UIImage>(base) { c, img in
+            c._editView.addImgBtn.isHidden = true
+            c._editView.imgBtn.isHidden = false
+            c._editView.imgBtn.setBackgroundImage(img, for: .normal)
+        }.asObserver()
     }
 }

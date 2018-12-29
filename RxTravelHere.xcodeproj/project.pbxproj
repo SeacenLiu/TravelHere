@@ -110,6 +110,10 @@
 		1495D4A821D5A7CC00EE506F /* EditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1495D4A721D5A7CC00EE506F /* EditView.xib */; };
 		1495D4AA21D6434100EE506F /* ShapeTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495D4A921D6434100EE506F /* ShapeTypeCell.swift */; };
 		1495D4AD21D6575B00EE506F /* ShapeTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1495D4AC21D6575A00EE506F /* ShapeTypeCell.xib */; };
+		1495D4B021D6F97900EE506F /* PositionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495D4AF21D6F97900EE506F /* PositionManager.swift */; };
+		1495D4B221D6FA1300EE506F /* PositionManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495D4B121D6FA1300EE506F /* PositionManager+Rx.swift */; };
+		1495D4B421D6FCEE00EE506F /* LocationSearcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495D4B321D6FCEE00EE506F /* LocationSearcher.swift */; };
+		1495D4B621D6FF0200EE506F /* LocationSearcher+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495D4B521D6FF0200EE506F /* LocationSearcher+Rx.swift */; };
 		14ED87DD21C8F71A0019F861 /* MJRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED87DC21C8F71A0019F861 /* MJRefresh+Rx.swift */; };
 		14ED87E021CB3DCB0019F861 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED87DF21CB3DCB0019F861 /* UIViewController+Rx.swift */; };
 		6651C8CDC1021B3CDEEFC508 /* Pods_RxTravelHere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E8D2174BF8E6DCAA4DE9F1 /* Pods_RxTravelHere.framework */; };
@@ -246,6 +250,10 @@
 		1495D4A721D5A7CC00EE506F /* EditView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditView.xib; sourceTree = "<group>"; };
 		1495D4A921D6434100EE506F /* ShapeTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeTypeCell.swift; sourceTree = "<group>"; };
 		1495D4AC21D6575A00EE506F /* ShapeTypeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShapeTypeCell.xib; sourceTree = "<group>"; };
+		1495D4AF21D6F97900EE506F /* PositionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionManager.swift; sourceTree = "<group>"; };
+		1495D4B121D6FA1300EE506F /* PositionManager+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PositionManager+Rx.swift"; sourceTree = "<group>"; };
+		1495D4B321D6FCEE00EE506F /* LocationSearcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearcher.swift; sourceTree = "<group>"; };
+		1495D4B521D6FF0200EE506F /* LocationSearcher+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationSearcher+Rx.swift"; sourceTree = "<group>"; };
 		14ED87DC21C8F71A0019F861 /* MJRefresh+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefresh+Rx.swift"; sourceTree = "<group>"; };
 		14ED87DF21CB3DCB0019F861 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		3A662F8E49B5C849B1E7545A /* Pods-RxTravelHere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxTravelHere.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxTravelHere/Pods-RxTravelHere.release.xcconfig"; sourceTree = "<group>"; };
@@ -376,6 +384,8 @@
 		140ED13C21AE8C1000F1D1D2 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				1495D4AF21D6F97900EE506F /* PositionManager.swift */,
+				1495D4B321D6FCEE00EE506F /* LocationSearcher.swift */,
 				1434ACB321AFC07300A140C4 /* Network */,
 				14590E3621C7312B00843EBA /* UI */,
 				1428894021B60DD60057F79E /* Control */,
@@ -506,6 +516,8 @@
 				14ED87DF21CB3DCB0019F861 /* UIViewController+Rx.swift */,
 				142A688C21D263CC00221926 /* KingfisherManager+Rx.swift */,
 				1495D49D21D4CABF00EE506F /* THInputView+Rx.swift */,
+				1495D4B121D6FA1300EE506F /* PositionManager+Rx.swift */,
+				1495D4B521D6FF0200EE506F /* LocationSearcher+Rx.swift */,
 			);
 			path = Rx;
 			sourceTree = "<group>";
@@ -984,6 +996,7 @@
 				142A689A21D4568000221926 /* UILabel+Ex.swift in Sources */,
 				1427363F21CCDB78000AA31D /* Comment.Model.swift in Sources */,
 				146A6C7421BA97560066732C /* HomeView.swift in Sources */,
+				1495D4B021D6F97900EE506F /* PositionManager.swift in Sources */,
 				146A6C4F21B7D3EE0066732C /* Home.View.swift in Sources */,
 				14590E2E21C7300F00843EBA /* UserCenter.View.swift in Sources */,
 				14ED87E021CB3DCB0019F861 /* UIViewController+Rx.swift in Sources */,
@@ -992,6 +1005,7 @@
 				146A6C7621BA97860066732C /* MAMapView+Ex.swift in Sources */,
 				14590E5321C88EEC00843EBA /* UserCenter.MyRecord.ViewModel.swift in Sources */,
 				146A6C5521B7D57E0066732C /* Home.Annotation.swift in Sources */,
+				1495D4B421D6FCEE00EE506F /* LocationSearcher.swift in Sources */,
 				1428893821B573B40057F79E /* YYImageClipViewController.m in Sources */,
 				142A689621D4532F00221926 /* Record.Reply.View.swift in Sources */,
 				1427365821CD18E5000AA31D /* RecordContentCell.swift in Sources */,
@@ -1017,6 +1031,7 @@
 				146A6C6921B7ED5E0066732C /* Record.Model.swift in Sources */,
 				1428893A21B5743D0057F79E /* UIViewController+Ex.swift in Sources */,
 				1428891221B3B8710057F79E /* NetworkConfig.swift in Sources */,
+				1495D4B621D6FF0200EE506F /* LocationSearcher+Rx.swift in Sources */,
 				143DB46C21B6B790001F57E1 /* YYImagePickerController+Rx.swift in Sources */,
 				1428891621B3BCFA0057F79E /* Account.NetworkTarget.swift in Sources */,
 				140ED10C21AE884E00F1D1D2 /* AppDelegate.swift in Sources */,
@@ -1044,6 +1059,7 @@
 				140ED16621AF8D2B00F1D1D2 /* Account.ValidateLogin.View.swift in Sources */,
 				146A6C7A21BAB2770066732C /* MAMapView+Rx.swift in Sources */,
 				14590E4121C78C4B00843EBA /* TouchBigBtn.swift in Sources */,
+				1495D4B221D6FA1300EE506F /* PositionManager+Rx.swift in Sources */,
 				140ED14B21AEB44B00F1D1D2 /* UIView+Ex.swift in Sources */,
 				1428891421B3B8BC0057F79E /* NetworkInterface.swift in Sources */,
 				14590E5121C7F3CA00843EBA /* UserCenter.Interaction.Model.swift in Sources */,
