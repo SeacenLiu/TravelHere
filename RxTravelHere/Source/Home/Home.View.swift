@@ -24,6 +24,7 @@ extension Home {
             bundle: "MapSetting",
             frame: self.view.bounds
         )
+        private var userView: MAAnnotationView?
         
         /// ViewModel
         private lazy var _viewModel = ViewModel(input: (
@@ -55,13 +56,19 @@ extension Home.View {
                 self.present(Record.Edit.View(), animated: true)
             })
         }).disposed(by: _disposeBag)
+        
+        _homeView.arBtn.rx.tap.subscribe(onNext: { [unowned self] _ in
+            let av = AR.View(with: self._viewModel.aRViewModel)
+            self.navigationController?.pushViewController(av, animated: true)
+        }).disposed(by: _disposeBag)
+        
+        mapView.rx.setDelegate(self).disposed(by: _disposeBag)
 
         _viewModel.avatar
             .drive(_homeView.userBtn.rx.image(for: .normal))
             .disposed(by: _disposeBag)
         
         _viewModel.showRecord
-            .debug()
             .drive(rx.homeShowArround)
             .disposed(by: _disposeBag)
     }
@@ -84,6 +91,30 @@ extension Home.View {
         mapView.update(r)
         // 默认的视角
         mapView.setDefaultVisual()
+    }
+}
+
+// MARK: - 锚点
+extension Home.View: MAMapViewDelegate {
+    func mapView(_ mapView: MAMapView!, viewFor annotation: MAAnnotation!) -> MAAnnotationView! {
+        if let annotation = annotation as? MAUserLocation {
+            let annotationView = UserAnnotationView.userAnnotationView(mapView, annotation)
+            DispatchQueue.main.async {
+                mapView.selectAnnotation(annotation, animated: false)
+            }
+            userView = annotationView
+            return annotationView
+        }
+        if let annotation = annotation as? Home.Annotation {
+            log("Home.Annotation。location: \(annotation.description)")
+            let annotationView = AnnotationView.annotationView(mapView, annotation)
+            // mapView的第二个子视图是 MAAnnotationContainerView
+            if let userView = userView {
+                mapView.subviews[1].bringSubviewToFront(userView)
+            }
+            return annotationView
+        }
+        return nil
     }
 }
 

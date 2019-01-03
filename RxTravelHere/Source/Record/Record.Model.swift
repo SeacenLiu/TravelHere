@@ -91,6 +91,10 @@ extension Record {
             case locationStr = "messageAddress"
         }
         
+        var coordinate: CLLocationCoordinate2D {
+            return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        }
+        
         static var empty: Detail {
             return Detail(id: -1, userId: "", type: .blackboard, longitude: 0, latitude: 0, text: "加载中...", time: 0, imageUrl: nil, locationStr: "留言地点")
         }

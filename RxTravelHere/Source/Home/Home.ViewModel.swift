@@ -42,7 +42,7 @@ extension Home {
         init(input: (locations: Observable<CLLocationCoordinate2D>, refreshTap: Signal<()>)) {
             let provider = MoyaProvider<Record.NetworkTarget>()
             
-            input.locations
+            input.locations.debug("location")
                 .bind(to: PositionManager.shared.rx.location)
                 .disposed(by: _disposeBag)
             
@@ -89,5 +89,12 @@ extension Home {
                         .asDriver(onErrorJustReturn: .defaultResult)
             }
         }
+    }
+}
+
+
+extension Home.ViewModel {
+    var aRViewModel: AR.ViewModel {
+        return AR.ViewModel(with: curRecordModels)
     }
 }

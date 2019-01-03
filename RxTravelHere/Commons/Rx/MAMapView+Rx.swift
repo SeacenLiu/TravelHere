@@ -31,32 +31,14 @@ class RxMapViewDelegateProxy: DelegateProxy<MAMapView, MAMapViewDelegate>, Deleg
         object.delegate = delegate
     }
     
-    // 现在只有一个地图，暂且放这里，首页就不需要写代理了
-    private var userView: MAAnnotationView?
-
-    func mapView(_ mapView: MAMapView!, viewFor annotation: MAAnnotation!) -> MAAnnotationView! {
-        log("viewFor in `RxMapViewDelegateProxy`")
-        if let annotation = annotation as? MAUserLocation {
-            let annotationView = UserAnnotationView.userAnnotationView(mapView, annotation)
-            DispatchQueue.main.async {
-                mapView.selectAnnotation(annotation, animated: false)
-            }
-            userView = annotationView
-            return annotationView
-        }
-        if let annotation = annotation as? Home.Annotation {
-            let annotationView = AnnotationView.annotationView(mapView, annotation)
-            // mapView的第二个子视图是 MAAnnotationContainerView
-            if let userView = userView {
-                mapView.subviews[1].bringSubviewToFront(userView)
-            }
-            return annotationView
-        }
-        return nil
-    }
 }
 
 extension Reactive where Base: MAMapView {
+    public func setDelegate(_ delegate: MAMapViewDelegate)
+        -> Disposable {
+            return RxMapViewDelegateProxy.installForwardDelegate(delegate, retainDelegate: false, onProxyForObject: self.base)
+    }
+    
     var delegate: RxMapViewDelegateProxy {
         return RxMapViewDelegateProxy.proxy(for: base)
     }

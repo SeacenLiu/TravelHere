@@ -29,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        window?.rootViewController = Account.View()
 //        window?.rootViewController = UserCenter.View.viewForNavigation()
 //        window?.rootViewController = Account.Edit.View()
+        
+        // normal
         window?.rootViewController = MainNavigationController(rootViewController: Home.View())
         window?.makeKeyAndVisible()
     }

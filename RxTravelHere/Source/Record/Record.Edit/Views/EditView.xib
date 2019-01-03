@@ -114,11 +114,11 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                     <cells/>
-                    <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="jch-cW-LIf">
+                    <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="typeheader_id" id="jch-cW-LIf">
                         <rect key="frame" x="0.0" y="0.0" width="24" height="166"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </collectionReusableView>
-                    <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NP7-XA-qrM">
+                    <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="typefooterer_id" id="NP7-XA-qrM">
                         <rect key="frame" x="24" y="0.0" width="24" height="166"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </collectionReusableView>

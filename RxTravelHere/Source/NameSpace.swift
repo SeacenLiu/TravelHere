@@ -28,3 +28,5 @@ enum UserCenter {
     enum MyRecord { }
     enum Interaction { }
 }
+
+enum AR { }

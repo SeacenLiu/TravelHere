@@ -12,26 +12,26 @@ import SVProgressHUD
 private let kSVDefaultDuration: TimeInterval = 1.5
 
 extension SVProgressHUD {
-    class func showTip(status: String, completion: (()->())? = nil) {
+    class func showTip(status: String, duration: TimeInterval = kSVDefaultDuration, completion: (()->())? = nil) {
         SVProgressHUD.showInfo(withStatus: status)
         SVProgressHUD.dismiss(withDelay: kSVDefaultDuration)
-        DispatchQueue.main.asyncAfter(deadline: .now() + kSVDefaultDuration) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
             completion?()
         }
     }
     
-    class func showSuccess(status: String, completion: (()->())? = nil) {
+    class func showSuccess(status: String, duration: TimeInterval = kSVDefaultDuration, completion: (()->())? = nil) {
         SVProgressHUD.showSuccess(withStatus: status)
         SVProgressHUD.dismiss(withDelay: kSVDefaultDuration)
-        DispatchQueue.main.asyncAfter(deadline: .now() + kSVDefaultDuration) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
             completion?()
         }
     }
     
-    class func showError(status: String, completion: (()->())? = nil) {
+    class func showError(status: String, duration: TimeInterval = kSVDefaultDuration, completion: (()->())? = nil) {
         SVProgressHUD.showError(withStatus: status)
         SVProgressHUD.dismiss(withDelay: kSVDefaultDuration)
-        DispatchQueue.main.asyncAfter(deadline: .now() + kSVDefaultDuration) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
             completion?()
         }
     }
