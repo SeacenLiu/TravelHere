@@ -88,6 +88,7 @@
 		14590E4D21C7F0B300843EBA /* InteractionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14590E4821C7F0B300843EBA /* InteractionCell.swift */; };
 		14590E5121C7F3CA00843EBA /* UserCenter.Interaction.Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14590E5021C7F3CA00843EBA /* UserCenter.Interaction.Model.swift */; };
 		14590E5321C88EEC00843EBA /* UserCenter.MyRecord.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14590E5221C88EEC00843EBA /* UserCenter.MyRecord.ViewModel.swift */; };
+		1462186721E1AAB800AA468C /* Record.Show.CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1462186621E1AAB800AA468C /* Record.Show.CardView.swift */; };
 		146A6C4C21B7D3260066732C /* UserDefaults+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A6C4B21B7D3260066732C /* UserDefaults+Ex.swift */; };
 		146A6C4F21B7D3EE0066732C /* Home.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A6C4E21B7D3EE0066732C /* Home.View.swift */; };
 		146A6C5121B7D4090066732C /* Home.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A6C5021B7D4090066732C /* Home.ViewModel.swift */; };
@@ -247,6 +248,7 @@
 		14590E4821C7F0B300843EBA /* InteractionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionCell.swift; sourceTree = "<group>"; };
 		14590E5021C7F3CA00843EBA /* UserCenter.Interaction.Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenter.Interaction.Model.swift; sourceTree = "<group>"; };
 		14590E5221C88EEC00843EBA /* UserCenter.MyRecord.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenter.MyRecord.ViewModel.swift; sourceTree = "<group>"; };
+		1462186621E1AAB800AA468C /* Record.Show.CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.Show.CardView.swift; sourceTree = "<group>"; };
 		146A6C4B21B7D3260066732C /* UserDefaults+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Ex.swift"; sourceTree = "<group>"; };
 		146A6C4E21B7D3EE0066732C /* Home.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.View.swift; sourceTree = "<group>"; };
 		146A6C5021B7D4090066732C /* Home.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.ViewModel.swift; sourceTree = "<group>"; };
@@ -533,6 +535,7 @@
 		1427364621CD1169000AA31D /* Record.Show */ = {
 			isa = PBXGroup;
 			children = (
+				1462186621E1AAB800AA468C /* Record.Show.CardView.swift */,
 				1427364F21CD18AD000AA31D /* Views */,
 				1427364421CD1141000AA31D /* Record.Show.View.swift */,
 				1427364721CD12C1000AA31D /* Record.Show.ViewModel.swift */,
@@ -1108,6 +1111,7 @@
 				1427365921CD18E5000AA31D /* CommentCell.swift in Sources */,
 				1495D4A121D4FC9B00EE506F /* Record.Edit.ViewModel.swift in Sources */,
 				1427363C21CCD9A3000AA31D /* UserCenter.Interaction.ViewModel.swift in Sources */,
+				1462186721E1AAB800AA468C /* Record.Show.CardView.swift in Sources */,
 				146A6C6921B7ED5E0066732C /* Record.Model.swift in Sources */,
 				1428893A21B5743D0057F79E /* UIViewController+Ex.swift in Sources */,
 				1428891221B3B8710057F79E /* NetworkConfig.swift in Sources */,

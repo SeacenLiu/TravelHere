@@ -78,7 +78,7 @@ extension Home {
                                     longitude: $0.detail.longitude
                                 )
                             }
-                        }
+                        }.debug("record")
                         .map({ (annotations) -> MapShowResult in
                             defer { self.curAnnotations = annotations}
                             return MapShowResult(

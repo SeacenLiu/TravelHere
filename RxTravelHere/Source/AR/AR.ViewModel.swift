@@ -15,7 +15,7 @@ extension AR {
     internal class ViewModel {
         var records = [Record.Model]()
         
-        let nodes: Driver<[THBaseNode]>
+        let nodes: Driver<[THShowNode]>
         
         init(with records: [Record.Model]?) {
             if let ms = records {
@@ -25,6 +25,10 @@ extension AR {
             nodes = Driver.of(self.records).map{$0.map{THBaseNode(with: $0)}}
         }
         
-//        public func
+        public func getRecordViewModel(with node: THShowNode) -> Record.Show.ViewModel {
+            let m = node.model
+            let vm = Record.Show.ViewModel(with: m)
+            return vm
+        }
     }
 }

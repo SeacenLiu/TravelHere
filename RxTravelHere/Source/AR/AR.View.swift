@@ -43,6 +43,30 @@ extension AR {
         private var isFirstShow = true
         private var isFirstNormal = true
         private var isRunning = false
+        
+        // MARK: - show view relate
+        private lazy var recordCardView = Record.Show.CardView()
+        private lazy var dismissTap: UITapGestureRecognizer = {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(dissmissRecordTap(gesture:)))
+            tap.isEnabled = false
+            return tap
+        }()
+        
+        private var isShowView = false {
+            didSet {
+                nodeTap.isEnabled = !isShowView
+                let alpha: CGFloat = isShowView ? 0 : 1
+                UIView.animate(withDuration: 0.25) {
+                    self.backBtn.alpha = alpha
+                    self.drawLb.alpha = alpha
+                    self.drawBtn.alpha = alpha
+                }
+            }
+        }
+        
+        private lazy var nodeTap = UITapGestureRecognizer(target: self, action: #selector(selectNodeTapAction(gesture:)))
+        
+        private var selectNode: THShowNode?
     }
 }
 
@@ -51,6 +75,7 @@ extension AR.View {
         super.viewDidLoad()
         setupUI()
         setupAR()
+        addGesture()
         bindingViewModel()
         
         backBtn.rx.tap.bind(to: rx.dismissAction).disposed(by: _dispoeBag)
@@ -66,15 +91,14 @@ extension AR.View {
         super.viewWillDisappear(animated)
         pauseAR()
         // 隐藏弹框
-//        dissmissRecordTap(gesture: dismissTap)
+        dissmissRecordTap(gesture: dismissTap)
     }
     
     private func bindingViewModel() {
         arView.session.rx.cameraDidChangeNormal
             .withLatestFrom(_viewModel.nodes)
             .drive(onNext: { [unowned self] nodes in
-                log("加载...")
-                log("当前:\n\(nodes)")
+                log("加载...当前:\n\(nodes)")
                 self.setupARNode(with: nodes)
             })
             .disposed(by: _dispoeBag)
@@ -107,7 +131,78 @@ extension AR.View {
     }
 }
 
+// MARK: - gesture
+private extension AR.View {
+    @objc func dissmissRecordTap(gesture: UITapGestureRecognizer) {
+        if isShowView {
+            dismissRecordCardView()
+            // 禁用dismiss手势
+            gesture.isEnabled = false
+            // 恢复被选中结点
+            if let node = selectNode {
+                node.unSelectAction()
+            }
+            selectNode = nil
+        }
+    }
+    
+    @objc func selectNodeTapAction(gesture: UITapGestureRecognizer) {
+        let point = gesture.location(in: arView)
+        let results = arView.hitTest(point, options: [SCNHitTestOption.boundingBoxOnly : true, SCNHitTestOption.firstFoundOnly: true])
+        if let node = results.first?.node as? THShowNode {
+            // 选中结点
+            selectNode = node
+            // 执行被结点被选中动画
+            node.selectAction()
+            // 显示留言视图
+            showRecordCardView(with: node)
+            // 开启dismiss手势
+            dismissTap.isEnabled = true
+            
+            // 如果是新消息云 需要移除
+//            if let cloud = node as? THCloudNode {
+//                THRedPointManager.shared.readComment(cid: cloud.commentModel.id) {
+//                    self.removeCloud()
+//                    self.selectNode = nil
+//                }
+//            }
+        }
+    }
+    
+    func addGesture() {
+        arView.addGestureRecognizer(nodeTap)
+        arView.addGestureRecognizer(dismissTap)
+    }
+}
+
+// MARK: - Related Record CardView
+extension AR.View {
+    func showRecordCardView(with node: THShowNode) {
+        let vm = _viewModel.getRecordViewModel(with: node)
+        recordCardView.config(with: vm)
+        let horizontalMargin: CGFloat = 30
+        let verticalMargin: CGFloat = 40
+        let recordW = UIScreen.main.bounds.width - horizontalMargin * 2
+        let recoedH = UIScreen.main.bounds.height - verticalMargin * 2
+        let rect = CGRect(x: horizontalMargin, y: verticalMargin, width: recordW, height: recoedH)
+        recordCardView.showView(frame: rect) {
+            self.isShowView = true
+        }
+    }
+    
+    func dismissRecordCardView() {
+        if isShowView {
+            recordCardView.closeView {
+                self.isShowView = false
+            }
+        }
+    }
+}
+
+// MARK: - AR part
 extension AR.View: ARSessionDelegate {
+    // TODO: - func shotNode(with model: THRecordModel)
+    
     /// 设置 AR 留言结点
     func setupARNode(with nodes: [THShowNode]) {
         arView.scene.rootNode.childNodes.forEach { $0.removeFromParentNode() }

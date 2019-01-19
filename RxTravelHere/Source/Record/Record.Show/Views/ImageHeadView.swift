@@ -72,10 +72,5 @@ class ImageHeadView: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    lazy var imageView: UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(named: "test_head_img")
-        return iv
-    }()
-    
+    var imageView = UIImageView(image: UIImage(named: "test_head_img"))
 }
