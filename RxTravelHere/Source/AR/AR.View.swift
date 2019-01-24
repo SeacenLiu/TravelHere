@@ -37,9 +37,7 @@ extension AR {
         
         // MARK: - AR
         private lazy var configuration = ARWorldTrackingConfiguration(worldAlignment: .gravityAndHeading)
-        
         private lazy var omniLightNode = THLightNode()
-        
         private var isFirstShow = true
         private var isFirstNormal = true
         private var isRunning = false
@@ -51,7 +49,6 @@ extension AR {
             tap.isEnabled = false
             return tap
         }()
-        
         private var isShowView = false {
             didSet {
                 nodeTap.isEnabled = !isShowView
@@ -63,9 +60,7 @@ extension AR {
                 }
             }
         }
-        
         private lazy var nodeTap = UITapGestureRecognizer(target: self, action: #selector(selectNodeTapAction(gesture:)))
-        
         private var selectNode: THShowNode?
     }
 }
@@ -79,7 +74,11 @@ extension AR.View {
         bindingViewModel()
         
         backBtn.rx.tap.bind(to: rx.dismissAction).disposed(by: _dispoeBag)
-        
+        drawBtn.rx.tap.subscribe(onNext: { [unowned self] _ in
+            let editView = Record.Edit.View()
+            editView.delegate = self
+            self.present(editView, animated: true)
+        }).disposed(by: _dispoeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,7 +89,6 @@ extension AR.View {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         pauseAR()
-        // 隐藏弹框
         dissmissRecordTap(gesture: dismissTap)
     }
     
@@ -128,6 +126,17 @@ extension AR.View {
             make.bottom.equalTo(drawLb.snp.top).offset(-6)
             make.centerX.equalTo(drawLb)
         }
+    }
+}
+
+extension AR.View: RecordEditViewDelegate {
+    func recordEditViewDidPublish(v: Record.Edit.View, isSussess: Bool) {
+        // 1> 重新设置 AR
+        runAR()
+        // 2> 弹框提示用户举起手机
+        
+        // 3> 发射模型
+        
     }
 }
 
@@ -201,7 +210,35 @@ extension AR.View {
 
 // MARK: - AR part
 extension AR.View: ARSessionDelegate {
-    // TODO: - func shotNode(with model: THRecordModel)
+    /// 发射模型
+//    func shotNode(with model: THRecordModel) {
+//        let node = THBaseNode(with: model)
+//        if let currentFrame = arView.session.currentFrame {
+//            let cameratransform = SCNMatrix4(currentFrame.camera.transform)
+//            node.transform = cameratransform
+//            arView.scene.rootNode.addChildNode(node)
+//
+//            var translation = matrix_identity_float4x4
+//            translation.columns.3.z = -2
+//            let newTransform = SCNMatrix4Mult(SCNMatrix4(translation), cameratransform)
+//
+//            let animation = CAKeyframeAnimation(keyPath: "transform")
+//            animation.values = [node.transform, newTransform]
+//            animation.duration = 0.5
+//            animation.isRemovedOnCompletion = false
+//            animation.fillMode = CAMediaTimingFillMode.forwards
+//            node.addAnimation(animation, forKey: "shot")
+//
+//            // 修改留言的经纬度
+//            let aimNode = SCNNode()
+//            aimNode.transform = newTransform
+//            let aimPosition = aimNode.position
+//            log("变化前的坐标: \(node.position)")
+//            log("变化后的坐标: \(aimPosition)")
+//            let newLocation = THPositionManager.shared.computeCoordinate2D(position: aimPosition)
+//            THRecordStore.shared.fixRecordLocation(messageId: model.id, location: newLocation)
+//        }
+//    }
     
     /// 设置 AR 留言结点
     func setupARNode(with nodes: [THShowNode]) {

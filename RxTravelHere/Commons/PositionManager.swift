@@ -14,9 +14,9 @@ class PositionManager {
     private(set) var currentLocation: CLLocationCoordinate2D = CLLocationCoordinate2D()
     
     public func changeCurrent(coordinate: CLLocationCoordinate2D) {
-//        currentLocation = coordinate
+        currentLocation = coordinate
         // FIXME: - 写死定位
-        currentLocation = CLLocationCoordinate2D(latitude: 21.15209852430555, longitude: 110.3004633246528)
+//        currentLocation = CLLocationCoordinate2D(latitude: 21.15209852430555, longitude: 110.3004633246528)
     }
     
     private init() {}

@@ -11,6 +11,10 @@ import RxSwift
 import RxCocoa
 import SVProgressHUD
 
+protocol RecordEditViewDelegate: class {
+    func recordEditViewDidPublish(v: Record.Edit.View, isSussess: Bool)
+}
+
 extension Record.Edit {
     internal class View: UIViewController {
         private let _disposeBag = DisposeBag()
@@ -46,7 +50,8 @@ extension Record.Edit {
                 })
                 .asDriver(onErrorJustReturn: .failure),
             doneTap: self._editView.publishBtn.rx.tap.asSignal()))
-        
+        /// 代理 有：会自动DisMiss 无：需要手动DisMiss
+        public weak var delegate: RecordEditViewDelegate?
     }
 }
 
@@ -87,12 +92,16 @@ extension Reactive where Base: Record.Edit.View {
     var handlePublish: AnyObserver<Bool> {
         return Binder<Bool>(base) { c, success in
             if success {
-                c.showHUD(successText: "发布成功") {
-                    // TODO: - 判断是否需要提示举起手机
-                    c.dismiss(animated: true)
-                }
+                c.showHUD(successText: "发布成功")
             } else {
                 c.showHUD(errorText: "发布失败")
+            }
+            if let delegate = c.delegate {
+                delegate.recordEditViewDidPublish(v: c, isSussess: success)
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
+                    c.dismiss(animated: true)
+                })
             }
         }.asObserver()
     }

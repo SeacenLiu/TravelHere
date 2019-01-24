@@ -59,7 +59,7 @@ class ImageHeadView: UITableViewHeaderFooterView {
         } else {
             hv = ImageHeadView(reuseIdentifier: self.reuseIdentifier)
         }
-        hv.imageView.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: ImageHeadView.headerHeight(with: tableView))
+        hv.imageView.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: headerHeight(with: tableView))
         return hv
     }
     

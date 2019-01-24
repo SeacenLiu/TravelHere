@@ -79,6 +79,7 @@ extension Record.Show {
             CutView.registered(by: $0)
             RecordContentCell.registered(by: $0)
             CommentCell.registered(by: $0)
+            $0.allowsSelection = false
         }
         private lazy var drawBtn = UIButton(image: #imageLiteral(resourceName: "edit_comment_btn"))
         fileprivate lazy var inputer = THInputView()
@@ -173,7 +174,7 @@ extension Record.Show.CardView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let header = ImageHeadView.load(with: tableView)
-            // FIXME: - 无法修改图片
+            // FIXME: - 无法修改图片 frame（无效）
             header.imageView = headImageView
             return header
         } else {
@@ -239,6 +240,8 @@ extension Reactive where Base: Record.Show.CardView {
             if let head = tv.headerView(forSection: 0) as? ImageHeadView {
                 head.change(with: tv)
             }
+            log(v.headImageView.frame)
+//            ImageHeadView.change(with: v.tableView, section: 0)
             }.asObserver()
     }
 }
