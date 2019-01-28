@@ -227,14 +227,10 @@ extension AR.View: ARSessionDelegate {
             animation.fillMode = CAMediaTimingFillMode.forwards
             node.addAnimation(animation, forKey: "shot")
 
-            // TODO: - 修改留言的经纬度
-//            let aimNode = SCNNode()
-//            aimNode.transform = newTransform
-//            let aimPosition = aimNode.position
-//            log("变化前的坐标: \(node.position)")
-//            log("变化后的坐标: \(aimPosition)")
-//            let newLocation = THPositionManager.shared.computeCoordinate2D(position: aimPosition)
-//            THRecordStore.shared.fixRecordLocation(messageId: model.id, location: newLocation)
+            let aimNode = SCNNode()
+            aimNode.transform = newTransform
+            let aimPosition = aimNode.position
+            _viewModel.changeRecordLocation(node: node, aimPosition: aimPosition)
         }
     }
     

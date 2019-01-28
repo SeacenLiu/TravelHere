@@ -10,6 +10,7 @@ import Foundation
 import SceneKit
 import RxSwift
 import RxCocoa
+import Moya
 
 extension AR {
     internal class ViewModel {
@@ -29,6 +30,20 @@ extension AR {
             let m = node.model
             let vm = Record.Show.ViewModel(with: m)
             return vm
+        }
+        
+        public func changeRecordLocation(node: THShowNode, aimPosition: SCNVector3) {
+            let newLocation = PositionManager.shared.computeCoordinate2D(position: aimPosition)
+            let provider = MoyaProvider<Record.NetworkTarget>()
+            _ = provider.rx.request(
+                .modifyRecord(messageId: node.model.id,
+                              messageLongitude:
+                    newLocation.longitude, messageLatitude: newLocation.latitude))
+                .subscribe(onSuccess: { (_) in
+                    log("成功修改")
+                }) { (err) in
+                    log("修改错误: \(err)")
+            }
         }
     }
 }
