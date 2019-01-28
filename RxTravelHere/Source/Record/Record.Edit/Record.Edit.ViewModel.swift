@@ -13,10 +13,19 @@ import Moya
 import SVProgressHUD
 
 extension Record.Edit {
+    struct Result {
+        let model: Record.Detail
+        let success: Bool
+        
+        static var empty: Result {
+            return Result(model: .empty, success: false)
+        }
+    }
+    
     internal class ViewModel {
         typealias Content = (text: String, img: String, type: Int, location: SearchResult)
         
-        let publishSuccess: Driver<Bool>
+        let publishResult: Driver<Result>
         let image: Driver<UIImage>
         let typeData: Driver<[ShapeTypeViewModel]>
         let publishEnable: Driver<Bool>
@@ -35,7 +44,7 @@ extension Record.Edit {
             
             let content = Driver.combineLatest(input.text, input.img, input.type.startWith(0), input.location)
             
-            publishSuccess = input.doneTap.withLatestFrom(content)
+            publishResult = input.doneTap.withLatestFrom(content)
                 .flatMapLatest { (text, img, type, location) ->  Driver<NetworkValid<Content>> in
                     guard let img = img else { return .of(.success(value: (text, "", type, location))) }
                     return imageProvider.rx
@@ -44,7 +53,7 @@ extension Record.Edit {
                         .map { .success(value: (text, $0.data.path, type, location)) }
                         .asDriver(onErrorJustReturn: .failure)
                 }
-                .flatMapLatest { network -> Driver<Bool> in
+                .flatMapLatest { network -> Driver<Result> in
                     switch network {
                     case let .success(content):
                         return provider.rx
@@ -59,10 +68,10 @@ extension Record.Edit {
                             .do(onSuccess: { _ in
                                 // TODO: - 通知地图和AR模块增加留言
                             })
-                            .map { $0.code == .success }
-                            .asDriver(onErrorJustReturn: false)
+                            .map { Result(model: $0.data, success: $0.code == .success) }
+                            .asDriver(onErrorJustReturn: .empty)
                     case .failure:
-                        return .just(false)
+                        return .just(.empty)
                     }
             }
         }

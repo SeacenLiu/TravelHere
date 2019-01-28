@@ -12,7 +12,7 @@ import RxCocoa
 import SVProgressHUD
 
 protocol RecordEditViewDelegate: class {
-    func recordEditViewDidPublish(v: Record.Edit.View, isSussess: Bool)
+    func recordEditViewDidPublish(v: Record.Edit.View, showNode: THShowNode, isSussess: Bool)
 }
 
 extension Record.Edit {
@@ -81,7 +81,7 @@ extension Record.Edit.View {
             .drive(_editView.publishBtn.rx.isEnabled)
             .disposed(by: _disposeBag)
         
-        _viewModel.publishSuccess.drive(rx.handlePublish).disposed(by: _disposeBag)
+        _viewModel.publishResult.drive(rx.handlePublish).disposed(by: _disposeBag)
         
         _viewModel.image.drive(rx.image).disposed(by: _disposeBag)
     }
@@ -89,19 +89,23 @@ extension Record.Edit.View {
 
 // MARK: - Reactive
 extension Reactive where Base: Record.Edit.View {
-    var handlePublish: AnyObserver<Bool> {
-        return Binder<Bool>(base) { c, success in
-            if success {
-                c.showHUD(successText: "发布成功")
+    var handlePublish: AnyObserver<Record.Edit.Result> {
+        return Binder<Record.Edit.Result>(base) { c, result in
+            if result.success {
+                c.showHUD(successText: "发布成功") {
+                    if let delegate = c.delegate {
+                        let detail = result.model
+                        let model = Record.Model.myRecordModel(with: detail)
+                        let node = THBaseNode(with: model)
+                        c.dismiss(animated: true) {
+                            delegate.recordEditViewDidPublish(v: c, showNode: node, isSussess: result.success)
+                        }
+                    } else {
+                        c.dismiss(animated: true)
+                    }
+                }
             } else {
                 c.showHUD(errorText: "发布失败")
-            }
-            if let delegate = c.delegate {
-                delegate.recordEditViewDidPublish(v: c, isSussess: success)
-            } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
-                    c.dismiss(animated: true)
-                })
             }
         }.asObserver()
     }

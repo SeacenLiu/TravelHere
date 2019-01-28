@@ -130,13 +130,12 @@ extension AR.View {
 }
 
 extension AR.View: RecordEditViewDelegate {
-    func recordEditViewDidPublish(v: Record.Edit.View, isSussess: Bool) {
-        // 1> 重新设置 AR
-        runAR()
-        // 2> 弹框提示用户举起手机
-        
-        // 3> 发射模型
-        
+    func recordEditViewDidPublish(v: Record.Edit.View, showNode: THShowNode, isSussess: Bool) {
+        // 1> 弹框提示用户举起手机
+        self.showAlert(title: "提示", message: "竖起手机发射留言", doneStr: "我知道了", handler: { (_) in
+            // 2> 发射模型
+            self.shotNode(with: showNode)
+        })
     }
 }
 
@@ -211,25 +210,24 @@ extension AR.View {
 // MARK: - AR part
 extension AR.View: ARSessionDelegate {
     /// 发射模型
-//    func shotNode(with model: THRecordModel) {
-//        let node = THBaseNode(with: model)
-//        if let currentFrame = arView.session.currentFrame {
-//            let cameratransform = SCNMatrix4(currentFrame.camera.transform)
-//            node.transform = cameratransform
-//            arView.scene.rootNode.addChildNode(node)
-//
-//            var translation = matrix_identity_float4x4
-//            translation.columns.3.z = -2
-//            let newTransform = SCNMatrix4Mult(SCNMatrix4(translation), cameratransform)
-//
-//            let animation = CAKeyframeAnimation(keyPath: "transform")
-//            animation.values = [node.transform, newTransform]
-//            animation.duration = 0.5
-//            animation.isRemovedOnCompletion = false
-//            animation.fillMode = CAMediaTimingFillMode.forwards
-//            node.addAnimation(animation, forKey: "shot")
-//
-//            // 修改留言的经纬度
+    func shotNode(with node: THShowNode) {
+        if let currentFrame = arView.session.currentFrame {
+            let cameratransform = SCNMatrix4(currentFrame.camera.transform)
+            node.transform = cameratransform
+            arView.scene.rootNode.addChildNode(node)
+
+            var translation = matrix_identity_float4x4
+            translation.columns.3.z = -2
+            let newTransform = SCNMatrix4Mult(SCNMatrix4(translation), cameratransform)
+
+            let animation = CAKeyframeAnimation(keyPath: "transform")
+            animation.values = [node.transform, newTransform]
+            animation.duration = 0.5
+            animation.isRemovedOnCompletion = false
+            animation.fillMode = CAMediaTimingFillMode.forwards
+            node.addAnimation(animation, forKey: "shot")
+
+            // TODO: - 修改留言的经纬度
 //            let aimNode = SCNNode()
 //            aimNode.transform = newTransform
 //            let aimPosition = aimNode.position
@@ -237,8 +235,8 @@ extension AR.View: ARSessionDelegate {
 //            log("变化后的坐标: \(aimPosition)")
 //            let newLocation = THPositionManager.shared.computeCoordinate2D(position: aimPosition)
 //            THRecordStore.shared.fixRecordLocation(messageId: model.id, location: newLocation)
-//        }
-//    }
+        }
+    }
     
     /// 设置 AR 留言结点
     func setupARNode(with nodes: [THShowNode]) {

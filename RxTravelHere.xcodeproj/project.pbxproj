@@ -720,10 +720,10 @@
 		1470EEF521DCEAA900550B30 /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
-				1470EEF721DCEABB00550B30 /* SCTextNode.swift */,
+				1470EEF621DCEABB00550B30 /* THShowNode.swift */,
 				1470EEF921DCEABB00550B30 /* THBaseNode.swift */,
 				1470EEF821DCEABB00550B30 /* THCloudNode.swift */,
-				1470EEF621DCEABB00550B30 /* THShowNode.swift */,
+				1470EEF721DCEABB00550B30 /* SCTextNode.swift */,
 				1470EF0221DCF29200550B30 /* THLightNode.swift */,
 			);
 			path = Nodes;

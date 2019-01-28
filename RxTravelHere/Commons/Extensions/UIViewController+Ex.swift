@@ -27,7 +27,7 @@ extension UIViewController {
     }
     
     /// 弹框 单个按钮
-    func showAlert(title: String, message: String, doneStr: String, handler: ((UIAlertAction) -> Void)?, showCompletion: (() -> Void)?) {
+    func showAlert(title: String, message: String, doneStr: String, handler: ((UIAlertAction) -> Void)?, showCompletion: (() -> Void)? = nil) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: doneStr, style: .cancel, handler: handler)
         alertVC.addAction(action)
