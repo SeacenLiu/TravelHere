@@ -71,6 +71,9 @@ extension Home.View {
         _viewModel.showRecord
             .drive(rx.homeShowArround)
             .disposed(by: _disposeBag)
+        
+        _viewModel.refreshEnable
+            .drive(_homeView.refreshBtn.rx.isEnabled).disposed(by: _disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -140,12 +143,12 @@ extension Reactive where Base: Home.View {
     var homeShowArround: AnyObserver<Home.MapShowResult> {
         return Binder<Home.MapShowResult>(base) { c, v in
             if let news = v.news {
+                if let olds = v.olds {
+                    c.mapView.removeAnnotations(olds)
+                }
                 if news.isEmpty {
-                    c.showHUD(infoText: "附近没有留言")
+                    c.showHUD(infoText: "附近没有留言，刷新试试？")
                 } else {
-                    if let olds = v.olds {
-                        c.mapView.removeAnnotations(olds)
-                    }
                     c.mapView.addAnnotations(news)
                 }
             } else {
