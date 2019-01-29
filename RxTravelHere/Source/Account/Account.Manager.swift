@@ -16,8 +16,12 @@ extension Account {
         
         private(set) var user: User? {
             didSet {
-                guard let user = user else { fatalError("用户为空") }
-                name.onNext(user.userNickname)
+                guard let user = user else {
+                    name.accept("未登录")
+                    avatar.accept(UIImage(named: "unlogin_avator")!)
+                    return
+                }
+                name.accept(user.userNickname)
                 KingfisherControl
                     .getImage(with: user.userAvatar ?? "", placeholder: "unlogin_avator")
                     .subscribe(onNext: { (image) in
@@ -30,7 +34,7 @@ extension Account {
         private(set) var token: String?
         
         let _disposeBag = DisposeBag()
-        let name = BehaviorSubject<String>(value: "")
+        let name = BehaviorRelay<String>(value: "")
         let avatar = BehaviorRelay<UIImage>(value: UIImage(named: "unlogin_avator")!)
         
         var isLogin: Bool {
@@ -68,15 +72,12 @@ extension Account {
             token = nil
             user = nil
             UserDefaults.removeUserInfo()
+            // TODO: - 后续还需要对小红点有所调整
         }
         
         /// 修改信息
         public func modifyUserInfo(with user: User) {
             self.user = user
-            log("===")
-            log(user.userNickname)
-            log(user.userAvatar)
-            log("===")
             UserDefaults.account = model
             UserDefaults.standard.synchronize()
         }

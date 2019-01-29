@@ -11,6 +11,29 @@ import RxSwift
 import RxCocoa
 
 class ActionSheetControl {
+    static func showKey(from: UIViewController?, doneTitle: String, title: String? = nil) -> Observable<Bool> {
+        return Observable.create({ [weak from] observer in
+            let actionSheet = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+            actionSheet.addAction(UIAlertAction(title: doneTitle, style: .destructive, handler: { (_) in
+                observer.onNext(true)
+                observer.onCompleted()
+            }))
+            actionSheet.addAction(UIAlertAction(title: "取消", style: .cancel, handler: { (_) in
+                observer.onNext(false)
+                observer.onCompleted()
+            }))
+            guard let from = from else {
+                observer.onCompleted()
+                return Disposables.create()
+            }
+            
+            from.present(actionSheet, animated: true)
+            return Disposables.create {
+                actionSheet.dismiss(animated: true)
+            }
+        })
+    }
+    
     static func show(from: UIViewController?, menu: [String], title: String? = nil) -> Observable<Int> {
         return Observable.create({ [weak from] observer in
             let actionSheet = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)

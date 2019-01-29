@@ -34,6 +34,12 @@ extension UserCenter.Setting {
                                            text: Account.Manager.shared.user?.userNickname)
                         .do(onNext: { (_) in SVProgressHUD.show() })
                         .asDriver(onErrorJustReturn: "无名氏")
+            },
+            exitEnable: self.exitBtn.rx.tap.asDriver()
+                .flatMapLatest { [weak self] _ in
+                    ActionSheetControl
+                        .showKey(from: self, doneTitle: "退出登录", title: "真的要退出？")
+                        .asDriver(onErrorJustReturn: false)
         })
         )
         
@@ -61,9 +67,8 @@ extension UserCenter.Setting.View {
                 self.showHUD(errorText: "修改失败")
             }
         }).disposed(by: _disposeBag)
-        
-        exitBtn.rx.tap.subscribe(onNext: { _ in
-            log("退出操作")
+        _viewModel.exit.drive(onNext: { [unowned self] _ in
+            self.navigationController?.viewControllers.first?.dismiss(animated: true)
         }).disposed(by: _disposeBag)
     }
     

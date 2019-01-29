@@ -17,8 +17,9 @@ extension UserCenter.Setting {
         let avatar: Driver<UIImage>
         let name: Driver<String>
         let modifySuccess: Driver<Bool>
+        let exit: Driver<Bool>
         
-        init(input:(avatar: Driver<UIImage>, name: Driver<String>)) {
+        init(input:(avatar: Driver<UIImage>, name: Driver<String>, exitEnable: Driver<Bool>)) {
             avatar = Driver.merge(
                 Account.Manager.shared.avatar.asDriver(),
                 input.avatar)
@@ -62,6 +63,10 @@ extension UserCenter.Setting {
                     .asDriver(onErrorJustReturn: false)
             }
             modifySuccess = Driver.merge(avatarSuccess, nameSuccess).debug("success")
+            
+            exit = input.exitEnable.filter { $0 == true }.do(onNext: { (_) in
+                Account.Manager.shared.logout()
+            })
         }
     }
 }
