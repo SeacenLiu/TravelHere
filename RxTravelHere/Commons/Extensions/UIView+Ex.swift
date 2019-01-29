@@ -24,3 +24,10 @@ extension UIView {
         return v
     }
 }
+
+extension UIView {
+    convenience init(color: UIColor) {
+        self.init(frame: .zero)
+        backgroundColor = color
+    }
+}

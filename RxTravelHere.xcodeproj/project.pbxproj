@@ -134,6 +134,9 @@
 		1495D4B921D746DB00EE506F /* CLLocationManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495D4B821D746DB00EE506F /* CLLocationManager+Rx.swift */; };
 		1495D4BC21D74DCB00EE506F /* AR.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495D4BB21D74DCB00EE506F /* AR.View.swift */; };
 		1495D4BE21D74DD500EE506F /* AR.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1495D4BD21D74DD500EE506F /* AR.ViewModel.swift */; };
+		14E2554B21FEF9B000C83902 /* UserCenter.Setting.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2554A21FEF9B000C83902 /* UserCenter.Setting.View.swift */; };
+		14E2554D21FEF9BC00C83902 /* UserCenter.Setting.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2554C21FEF9BC00C83902 /* UserCenter.Setting.ViewModel.swift */; };
+		14E2554F21FFDD8800C83902 /* ActionAlertControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2554E21FFDD8800C83902 /* ActionAlertControl.swift */; };
 		14ED87DD21C8F71A0019F861 /* MJRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED87DC21C8F71A0019F861 /* MJRefresh+Rx.swift */; };
 		14ED87E021CB3DCB0019F861 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED87DF21CB3DCB0019F861 /* UIViewController+Rx.swift */; };
 		6651C8CDC1021B3CDEEFC508 /* Pods_RxTravelHere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E8D2174BF8E6DCAA4DE9F1 /* Pods_RxTravelHere.framework */; };
@@ -294,6 +297,9 @@
 		1495D4B821D746DB00EE506F /* CLLocationManager+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationManager+Rx.swift"; sourceTree = "<group>"; };
 		1495D4BB21D74DCB00EE506F /* AR.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AR.View.swift; sourceTree = "<group>"; };
 		1495D4BD21D74DD500EE506F /* AR.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AR.ViewModel.swift; sourceTree = "<group>"; };
+		14E2554A21FEF9B000C83902 /* UserCenter.Setting.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenter.Setting.View.swift; sourceTree = "<group>"; };
+		14E2554C21FEF9BC00C83902 /* UserCenter.Setting.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenter.Setting.ViewModel.swift; sourceTree = "<group>"; };
+		14E2554E21FFDD8800C83902 /* ActionAlertControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionAlertControl.swift; sourceTree = "<group>"; };
 		14ED87DC21C8F71A0019F861 /* MJRefresh+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefresh+Rx.swift"; sourceTree = "<group>"; };
 		14ED87DF21CB3DCB0019F861 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		3A662F8E49B5C849B1E7545A /* Pods-RxTravelHere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxTravelHere.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxTravelHere/Pods-RxTravelHere.release.xcconfig"; sourceTree = "<group>"; };
@@ -588,6 +594,7 @@
 		1428894021B60DD60057F79E /* Control */ = {
 			isa = PBXGroup;
 			children = (
+				14E2554E21FFDD8800C83902 /* ActionAlertControl.swift */,
 				1428893B21B586910057F79E /* ActionSheetControl.swift */,
 				1428893D21B58BEE0057F79E /* ImagePickerControl.swift */,
 				143DB46921B6B6DF001F57E1 /* ImageClipControl.swift */,
@@ -620,6 +627,7 @@
 		14590E2C21C72FE500843EBA /* UserCenter */ = {
 			isa = PBXGroup;
 			children = (
+				14E2554721FEF97E00C83902 /* UserCenter.Setting */,
 				14590E4E21C7F1F400843EBA /* UserCenter.MyRecord */,
 				14590E4F21C7F22500843EBA /* UserCenter.Interaction */,
 				14590E3121C7309700843EBA /* Views */,
@@ -758,6 +766,15 @@
 				1495D4BD21D74DD500EE506F /* AR.ViewModel.swift */,
 			);
 			path = AR;
+			sourceTree = "<group>";
+		};
+		14E2554721FEF97E00C83902 /* UserCenter.Setting */ = {
+			isa = PBXGroup;
+			children = (
+				14E2554A21FEF9B000C83902 /* UserCenter.Setting.View.swift */,
+				14E2554C21FEF9BC00C83902 /* UserCenter.Setting.ViewModel.swift */,
+			);
+			path = UserCenter.Setting;
 			sourceTree = "<group>";
 		};
 		85F5B907BE55DF93852D9046 /* Pods */ = {
@@ -1098,9 +1115,11 @@
 				1427364C21CD169D000AA31D /* NavBarView.swift in Sources */,
 				146A6C7021BA927B0066732C /* UserAnnotationView.swift in Sources */,
 				14590E3F21C7339A00843EBA /* UserCenter.Interaction.View.swift in Sources */,
+				14E2554F21FFDD8800C83902 /* ActionAlertControl.swift in Sources */,
 				1428891D21B54BC50057F79E /* UIButton+Rx.swift in Sources */,
 				1434ACC721B012CD00A140C4 /* Error.swift in Sources */,
 				142A688F21D2692F00221926 /* THInputView.swift in Sources */,
+				14E2554B21FEF9B000C83902 /* UserCenter.Setting.View.swift in Sources */,
 				140ED16421AF8D1800F1D1D2 /* Account.PhoneLogin.ViewModel.swift in Sources */,
 				14590E3021C7301900843EBA /* UserCenter.ViewModel.swift in Sources */,
 				1495D4BC21D74DCB00EE506F /* AR.View.swift in Sources */,
@@ -1139,6 +1158,7 @@
 				1427364321CCE48D000AA31D /* UserCenter.Interaction.NetworkTarget.swift in Sources */,
 				1470EF0121DCF20C00550B30 /* ARWorldTrackingConfiguration+Ex.swift in Sources */,
 				14590E3B21C7313400843EBA /* RedPointView.swift in Sources */,
+				14E2554D21FEF9BC00C83902 /* UserCenter.Setting.ViewModel.swift in Sources */,
 				146A6C5121B7D4090066732C /* Home.ViewModel.swift in Sources */,
 				1495D4A321D4FCAD00EE506F /* Record.Edit.View.swift in Sources */,
 				142A688D21D263CC00221926 /* KingfisherManager+Rx.swift in Sources */,

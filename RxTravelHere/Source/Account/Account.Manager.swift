@@ -73,6 +73,10 @@ extension Account {
         /// 修改信息
         public func modifyUserInfo(with user: User) {
             self.user = user
+            log("===")
+            log(user.userNickname)
+            log(user.userAvatar)
+            log("===")
             UserDefaults.account = model
             UserDefaults.standard.synchronize()
         }

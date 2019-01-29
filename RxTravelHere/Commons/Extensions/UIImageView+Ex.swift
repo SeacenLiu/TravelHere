@@ -15,4 +15,14 @@ extension UIImageView {
         layer.cornerRadius = side * 0.5
         layer.masksToBounds = true
     }
+    
+    convenience init(imageName: String, radius: CGFloat? = 0) {
+        self.init(frame: .zero)
+        image = UIImage(named: imageName)
+        if let radius = radius {
+            layer.cornerRadius = radius
+            layer.masksToBounds = true
+        }
+        sizeToFit()
+    }
 }

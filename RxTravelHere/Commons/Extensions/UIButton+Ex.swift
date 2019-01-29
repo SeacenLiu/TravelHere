@@ -13,6 +13,14 @@ extension UIButton {
         self.init()
         self.setImage(image, for: .normal)
     }
+    
+    convenience init(title: String, titleColor: UIColor, fontSize: CGFloat) {
+        self.init()
+        setTitle(title, for: .normal)
+        setTitleColor(titleColor, for: .normal)
+        titleLabel?.font = UIFont.systemFont(ofSize: fontSize)
+        sizeToFit()
+    }
 }
 
 extension UIButton {

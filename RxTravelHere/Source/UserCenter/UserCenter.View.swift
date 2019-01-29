@@ -44,6 +44,11 @@ extension UserCenter.View {
             .drive(_userCenterView.nameLb.rx.text)
             .disposed(by: _disposeBag)
         
+        _userCenterView.userBtn.rx.tap.subscribe(onNext: { [unowned self] _ in
+            let v = UserCenter.Setting.View()
+            self.navigationController?.pushViewController(v, animated: true)
+        }).disposed(by: _disposeBag)
+        
         _userCenterView.closeBtn.rx.tap
             .bind(to: rx.dismissAction)
         .disposed(by: _disposeBag)

@@ -27,6 +27,7 @@ enum Comment { }
 enum UserCenter {
     enum MyRecord { }
     enum Interaction { }
+    enum Setting { }
 }
 
 enum AR { }

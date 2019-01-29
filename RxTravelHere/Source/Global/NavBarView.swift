@@ -28,6 +28,12 @@ class NavBarView: UIView {
         }
     }
     
+    public var backTitle: String = "" {
+        didSet {
+            backBtn.setTitle(backTitle, for: .normal)
+        }
+    }
+    
     public func change(with scrollView: UIScrollView, headerH: CGFloat) {
         let offsetY = scrollView.contentOffset.y
         let aim = headerH - 44.0 - UIDevice.statusBarH
@@ -39,13 +45,15 @@ class NavBarView: UIView {
         }
     }
 
+    @IBOutlet weak var backBtn: TouchBigBtn!
     @IBAction func backBtnClick(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
     
-    class func naviBarView(with nav: UINavigationController?) -> NavBarView {
+    class func naviBarView(with nav: UINavigationController?, config: ((NavBarView) -> ())? = nil) -> NavBarView {
         let v = self.nibView() as! NavBarView
         v.navigationController = nav
+        config?(v)
         return v
     }
 
