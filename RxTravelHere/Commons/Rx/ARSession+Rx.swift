@@ -10,6 +10,7 @@ import ARKit
 import RxSwift
 import RxCocoa
 
+@available(iOS 11.0, *)
 class RXARSessionDelegateProxy: DelegateProxy<ARSession, ARSessionDelegate>, DelegateProxyType, ARSessionDelegate {
     
     private(set) var session: ARSession?
@@ -32,6 +33,7 @@ class RXARSessionDelegateProxy: DelegateProxy<ARSession, ARSessionDelegate>, Del
     }
 }
 
+@available(iOS 11.0, *)
 extension Reactive where Base: ARSession {
     var delegate: RXARSessionDelegateProxy {
         return RXARSessionDelegateProxy.proxy(for: base)
@@ -79,6 +81,7 @@ extension Reactive where Base: ARSession {
 //    }
 }
 
+@available(iOS 11.0, *)
 extension ARCamera.TrackingState {
     var isNormal: Bool {
         switch self {

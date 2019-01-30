@@ -58,8 +58,12 @@ extension Home.View {
         }).disposed(by: _disposeBag)
         
         _homeView.arBtn.rx.tap.subscribe(onNext: { [unowned self] _ in
-            let av = AR.View(with: self._viewModel.aRViewModel)
-            self.navigationController?.pushViewController(av, animated: true)
+            if #available(iOS 11.0, *) {
+                let av = AR.View(with: self._viewModel.aRViewModel)
+                self.navigationController?.pushViewController(av, animated: true)
+            } else {
+                self.showHUD(infoText: "该设备不支持AR功能")
+            }
         }).disposed(by: _disposeBag)
         
         mapView.rx.setDelegate(self).disposed(by: _disposeBag)

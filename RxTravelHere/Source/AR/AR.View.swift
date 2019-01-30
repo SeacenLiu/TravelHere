@@ -14,6 +14,7 @@ import SVProgressHUD
 import SnapKit
 
 // TODO: - 引导用户扫平面后才出现结点
+@available(iOS 11.0, *)
 extension AR {
     internal class View: UIViewController {
         private let _dispoeBag = DisposeBag()
@@ -62,36 +63,37 @@ extension AR {
         }
         private lazy var nodeTap = UITapGestureRecognizer(target: self, action: #selector(selectNodeTapAction(gesture:)))
         private var selectNode: THShowNode?
+        
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            setupUI()
+            setupAR()
+            addGesture()
+            bindingViewModel()
+            
+            backBtn.rx.tap.bind(to: rx.dismissAction).disposed(by: _dispoeBag)
+            drawBtn.rx.tap.subscribe(onNext: { [unowned self] _ in
+                let editView = Record.Edit.View()
+                editView.delegate = self
+                self.present(editView, animated: true)
+            }).disposed(by: _dispoeBag)
+        }
+        
+        override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            runAR()
+        }
+        
+        override func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(animated)
+            pauseAR()
+            dissmissRecordTap(gesture: dismissTap)
+        }
     }
 }
 
+@available(iOS 11.0, *)
 extension AR.View {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
-        setupAR()
-        addGesture()
-        bindingViewModel()
-        
-        backBtn.rx.tap.bind(to: rx.dismissAction).disposed(by: _dispoeBag)
-        drawBtn.rx.tap.subscribe(onNext: { [unowned self] _ in
-            let editView = Record.Edit.View()
-            editView.delegate = self
-            self.present(editView, animated: true)
-        }).disposed(by: _dispoeBag)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        runAR()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        pauseAR()
-        dissmissRecordTap(gesture: dismissTap)
-    }
-    
     private func bindingViewModel() {
         arView.session.rx.cameraDidChangeNormal
             .withLatestFrom(_viewModel.nodes)
@@ -129,6 +131,7 @@ extension AR.View {
     }
 }
 
+@available(iOS 11.0, *)
 extension AR.View: RecordEditViewDelegate {
     func recordEditViewDidPublish(v: Record.Edit.View, showNode: THShowNode, isSussess: Bool) {
         // 1> 弹框提示用户举起手机
@@ -140,6 +143,7 @@ extension AR.View: RecordEditViewDelegate {
 }
 
 // MARK: - gesture
+@available(iOS 11.0, *)
 private extension AR.View {
     @objc func dissmissRecordTap(gesture: UITapGestureRecognizer) {
         if isShowView {
@@ -184,6 +188,7 @@ private extension AR.View {
 }
 
 // MARK: - Related Record CardView
+@available(iOS 11.0, *)
 extension AR.View {
     func showRecordCardView(with node: THShowNode) {
         let vm = _viewModel.getRecordViewModel(with: node)
@@ -208,6 +213,7 @@ extension AR.View {
 }
 
 // MARK: - AR part
+@available(iOS 11.0, *)
 extension AR.View: ARSessionDelegate {
     /// 发射模型
     func shotNode(with node: THShowNode) {

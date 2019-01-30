@@ -20,8 +20,14 @@ extension UserDefaults {
             guard let account = newValue else { UserDefaults.standard.removeObject(forKey: accountKey); return }
 //            guard c else { fatalError("存档失败") }
             do {
-                let data = try NSKeyedArchiver.archivedData(withRootObject: account, requiringSecureCoding: false)
-                UserDefaults.standard.set(data, forKey: accountKey)
+                if #available(iOS 11.0, *) {
+                    let data = try NSKeyedArchiver.archivedData(withRootObject: account, requiringSecureCoding: false)
+                    UserDefaults.standard.set(data, forKey: accountKey)
+                } else {
+                    // Fallback on earlier versions
+                    let data = NSKeyedArchiver.archivedData(withRootObject: account)
+                    UserDefaults.standard.set(data, forKey: accountKey)
+                }
             } catch {
                 log(error)
             }

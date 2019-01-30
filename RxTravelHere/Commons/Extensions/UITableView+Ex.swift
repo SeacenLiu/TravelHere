@@ -12,7 +12,11 @@ extension UITableView {
     convenience init(style: Style, config: (_ tv: UITableView) -> ()) {
         self.init(frame: .zero, style: style)
         self.showsVerticalScrollIndicator = false
-        self.contentInsetAdjustmentBehavior = .never
+        if #available(iOS 11.0, *) {
+            self.contentInsetAdjustmentBehavior = .never
+        } else {
+            // Fallback on earlier versions
+        }
         self.separatorStyle = .none
         self.backgroundColor = .white
         config(self)

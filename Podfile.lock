@@ -5,7 +5,15 @@ PODS:
   - AMapFoundation (1.5.5)
   - AMapSearch (6.5.0):
     - AMapFoundation (~> 1.4)
+  - CocoaAsyncSocket (7.4.3):
+    - CocoaAsyncSocket/All (= 7.4.3)
+  - CocoaAsyncSocket/All (7.4.3):
+    - CocoaAsyncSocket/GCD
+    - CocoaAsyncSocket/RunLoop
+  - CocoaAsyncSocket/GCD (7.4.3)
+  - CocoaAsyncSocket/RunLoop (7.4.3)
   - Differentiator (3.1.0)
+  - JKVValue (1.3.3)
   - Kingfisher (4.10.0)
   - MJRefresh (3.1.15.7)
   - Moya/Core (11.0.2):
@@ -15,6 +23,9 @@ PODS:
     - Moya/Core
     - RxSwift (~> 4.0)
   - Result (3.2.4)
+  - RMQClient (0.10.0):
+    - CocoaAsyncSocket (~> 7.4.0)
+    - JKVValue
   - RxCocoa (4.3.1):
     - RxSwift (~> 4.0)
   - RxDataSources (3.1.0):
@@ -30,10 +41,11 @@ PODS:
 
 DEPENDENCIES:
   - AMap3DMap (~> 6.5.0)
-  - AMapSearch
+  - AMapSearch (~> 6.5.0)
   - Kingfisher (~> 4.10.0)
   - MJRefresh (~> 3.1.15.7)
   - Moya/RxSwift
+  - RMQClient (~> 0.10.0)
   - RxCocoa (~> 4.3.1)
   - RxDataSources (~> 3.1.0)
   - RxGesture (~> 2.0.1)
@@ -47,11 +59,14 @@ SPEC REPOS:
     - AMap3DMap
     - AMapFoundation
     - AMapSearch
+    - CocoaAsyncSocket
     - Differentiator
+    - JKVValue
     - Kingfisher
     - MJRefresh
     - Moya
     - Result
+    - RMQClient
     - RxCocoa
     - RxDataSources
     - RxGesture
@@ -64,11 +79,14 @@ SPEC CHECKSUMS:
   AMap3DMap: cbe10cc4302ac3f2817ef4221e1259d7e18d1c2f
   AMapFoundation: 652bd70ba579f48a98bdf0c74d6e62a89a06ca58
   AMapSearch: c22d8c98e04aad30615834e567781ec1367c4f36
+  CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  JKVValue: d7941071b1cf9ba35c194fd40bcf4c4d9b5462e9
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  RMQClient: e9bfea2d08f151b6b12df82ad115c78bd8de2106
   RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxGesture: 26ede4ed13ffc6336d29dbd9a8dff229bdb72de7
@@ -76,6 +94,6 @@ SPEC CHECKSUMS:
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 6d79df16e5b9d89fe9772fbe91fd2d064e432660
+PODFILE CHECKSUM: 0b6c8cca057cad6553954f3946d6c2a66cf2d8de
 
 COCOAPODS: 1.5.0

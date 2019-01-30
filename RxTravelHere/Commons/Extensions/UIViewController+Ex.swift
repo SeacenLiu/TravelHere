@@ -40,9 +40,16 @@ extension UIViewController {
         let tempAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
         }
         let callAction = UIAlertAction(title: "立即设置", style: .default) { (action) in
-            let url = NSURL.init(string: UIApplication.openSettingsURLString)
-            if(UIApplication.shared.canOpenURL(url! as URL)) {
-                UIApplication.shared.open(url! as URL, options: [:])
+            if #available(iOS 10.0, *) {
+                let url = NSURL.init(string: UIApplication.openSettingsURLString)
+                if (UIApplication.shared.canOpenURL(url! as URL)) {
+                    UIApplication.shared.open(url! as URL, options: [:])
+                }
+            } else {
+                let url = URL(string: "prefs:root=LOCATION_SERVICES")!
+                if (UIApplication.shared.canOpenURL(url)) {
+                    UIApplication.shared.openURL(url)
+                }
             }
         }
         aleat.addAction(tempAction)

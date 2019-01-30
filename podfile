@@ -27,6 +27,9 @@ target 'RxTravelHere' do
   # LBS
   pod 'AMap3DMap', '~> 6.5.0'
   pod 'AMapSearch', '~> 6.5.0'
+  
+  # MQ
+  pod 'RMQClient', '~> 0.10.0'
 
   target 'RxTravelHereTests' do
     inherit! :search_paths

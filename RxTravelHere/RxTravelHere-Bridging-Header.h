@@ -8,3 +8,4 @@
 
 #import "YYImageClipViewController.h"
 
+#import <RMQClient/RMQClient.h>

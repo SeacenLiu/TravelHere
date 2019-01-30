@@ -8,6 +8,7 @@
 
 import ARKit
 
+@available(iOS 11.0, *)
 extension ARWorldTrackingConfiguration {
     convenience init(worldAlignment: WorldAlignment) {
         self.init()
