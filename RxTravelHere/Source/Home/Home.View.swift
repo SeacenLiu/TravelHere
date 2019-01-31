@@ -67,8 +67,12 @@ extension Home.View {
         
         _homeView.arBtn.rx.tap.subscribe(onNext: { [unowned self] _ in
             if #available(iOS 11.0, *) {
-                let av = AR.View(with: self._viewModel.aRViewModel)
-                self.navigationController?.pushViewController(av, animated: true)
+                let arVM = self._viewModel.aRViewModel
+                let arV = AR.View(with: arVM)
+                arVM.addNodeSubject
+                    .bind(to: self.addRecordSubject)
+                    .disposed(by: self._disposeBag)
+                self.navigationController?.pushViewController(arV, animated: true)
             } else {
                 self.showHUD(infoText: "该设备不支持AR功能")
             }

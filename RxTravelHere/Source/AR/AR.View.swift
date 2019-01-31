@@ -72,7 +72,8 @@ extension AR {
             addGesture()
             bindingViewModel()
             
-            backBtn.rx.tap.bind(to: rx.dismissAction).disposed(by: _dispoeBag)
+            backBtn.rx.tap.bind(to: rx.popAction)
+                .disposed(by: _dispoeBag)
             drawBtn.rx.tap.subscribe(onNext: { [unowned self] _ in
                 let editView = Record.Edit.View()
                 editView.delegate = self

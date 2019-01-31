@@ -18,6 +18,7 @@ extension AR {
         
         let arroundNodes: Driver<[THShowNode]>
         let newClound: Driver<CloudNodeModel>
+        let addNodeSubject = PublishSubject<Record.Model>()
         
         init(with records: [Record.Model]?) {
             if let ms = records {
@@ -47,7 +48,7 @@ extension AR {
             var model = node.model
             model.changeCoordinate(with: newLocation)
             // TODO: - 将修改后的模型告诉首页
-            
+            addNodeSubject.onNext(model)
             // 更新后台留言
             let provider = MoyaProvider<Record.NetworkTarget>()
             _ = provider.rx.request(

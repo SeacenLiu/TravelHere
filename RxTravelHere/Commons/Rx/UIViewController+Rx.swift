@@ -17,6 +17,12 @@ extension Reactive where Base: UIViewController {
         }.asObserver()
     }
     
+    var popAction: AnyObserver<Void> {
+        return Binder<Void>(base) { c, _ in
+            c.navigationController?.popViewController(animated: true)
+        }.asObserver()
+    }
+    
     var endEditing: AnyObserver<Void> {
         return Binder<Void>(base) { c, _ in
             c.view.endEditing(true)
