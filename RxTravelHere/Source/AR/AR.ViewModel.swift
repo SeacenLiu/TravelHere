@@ -19,7 +19,6 @@ extension AR {
         let arroundNodes: Driver<[THShowNode]>
         let newClound: Driver<CloudNodeModel>
         
-        
         init(with records: [Record.Model]?) {
             if let ms = records {
                 self.records = ms
@@ -45,9 +44,14 @@ extension AR {
         
         public func changeRecordLocation(node: THShowNode, aimPosition: SCNVector3) {
             let newLocation = PositionManager.shared.computeCoordinate2D(position: aimPosition)
+            var model = node.model
+            model.changeCoordinate(with: newLocation)
+            // TODO: - 将修改后的模型告诉首页
+            
+            // 更新后台留言
             let provider = MoyaProvider<Record.NetworkTarget>()
             _ = provider.rx.request(
-                .modifyRecord(messageId: node.model.id,
+                .modifyRecord(messageId: model.id,
                               messageLongitude:
                     newLocation.longitude, messageLatitude: newLocation.latitude))
                 .subscribe(onSuccess: { (_) in

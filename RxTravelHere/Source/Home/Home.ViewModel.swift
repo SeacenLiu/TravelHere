@@ -23,19 +23,19 @@ extension Home {
     }
     
     final class ViewModel {
+        private var _refreshEnableSubject = BehaviorRelay<Bool>(value: true)
         // Output
         private var _showRecord: Driver<MapShowResult>?
         var showRecord: Driver<MapShowResult> {
             return _showRecord!
         }
-        private var _refreshEnableSubject = BehaviorRelay<Bool>(value: true)
         var refreshEnable: Driver<Bool> {
             return _refreshEnableSubject
                 .asObservable().asDriver(onErrorJustReturn: false)
         }
+        let avatar: Driver<UIImage>
         let redPoint = THRedPointManager.shared.unread
             .map { $0.isEmpty }.asDriver(onErrorJustReturn: true)
-        let avatar: Driver<UIImage>
         
         private let _disposeBag = DisposeBag()
         
@@ -44,7 +44,7 @@ extension Home {
         var curAnnotations: [Annotation]?
         var page = 0
         
-        init(input: (locations: Observable<CLLocationCoordinate2D>, refreshTap: Signal<()>)) {
+        init(input: (locations: Observable<CLLocationCoordinate2D>, refreshTap: Signal<()>, addRecord: Observable<Record.Model>)) {
             let provider = MoyaProvider<Record.NetworkTarget>()
             
             input.locations.debug("location")
@@ -61,10 +61,10 @@ extension Home {
                     .asDriver(onErrorJustReturn: CLLocationCoordinate2D()))
                 .asObservable()
             
-            let concat = Observable.concat(firstLocation, tapRefresh)
+            let location = Observable.merge(firstLocation, tapRefresh)
                 .do(onNext: {(_) -> () in self.page += 1; })
             
-            _showRecord = concat
+            let loadRecords = location
                 .asDriver(onErrorJustReturn: CLLocationCoordinate2D())
                 .do(onNext: { [unowned self] (_) in
                     self._refreshEnableSubject.accept(false)
@@ -103,10 +103,28 @@ extension Home {
                             self._refreshEnableSubject.accept(true)
                         })
             }
+            
+            let addRecord = input.addRecord
+                .map { [unowned self] record -> Annotation in
+                defer { self.curRecordModels?.insert(record, at: 0) }
+                return Annotation(
+                    type: record.detail.type,
+                    latitude: record.detail.latitude,
+                    longitude: record.detail.longitude
+                    )
+                }.map({ [unowned self] (annotation) -> MapShowResult in
+                    let olds = self.curAnnotations
+                    self.curAnnotations?.insert(annotation, at: 0)
+                    return MapShowResult(
+                        olds: olds,
+                        news: self.curAnnotations
+                    )
+                }).asDriver(onErrorJustReturn: .defaultResult)
+            
+            _showRecord = Driver.merge(loadRecords, addRecord)
         }
     }
 }
-
 
 extension Home.ViewModel {
     var aRViewModel: AR.ViewModel {

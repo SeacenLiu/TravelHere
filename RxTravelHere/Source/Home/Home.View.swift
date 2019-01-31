@@ -29,7 +29,11 @@ extension Home {
         /// ViewModel
         private lazy var _viewModel = ViewModel(input: (
             locations: self.mapView.rx.didUpdateUserLocation.map{ $0.location.coordinate },
-            refreshTap: self._homeView.refreshBtn.rx.tap.asSignal()))
+            refreshTap: self._homeView.refreshBtn.rx.tap.asSignal(),
+            addRecord: addRecordSubject.asObservable())
+        )
+        
+        public let addRecordSubject = PublishSubject<Record.Model>()
         
         private lazy var locationManager = CLLocationManager(delegate: self)
         // TODO: - 没有定位权限使用高斯模糊
@@ -53,7 +57,11 @@ extension Home.View {
         
         _homeView.editBtn.rx.tap.subscribe(onNext: { [unowned self] _ in
             Account.Manager.shared.ensureLogin(curVC: self, handle: {
-                self.present(Record.Edit.View(), animated: true)
+                let editV = Record.Edit.View()
+                editV.viewModel.publishSubject
+                    .bind(to: self.addRecordSubject)
+                    .disposed(by: self._disposeBag)
+                self.present(editV, animated: true)
             })
         }).disposed(by: _disposeBag)
         

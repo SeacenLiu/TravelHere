@@ -40,7 +40,7 @@ extension Record {
     
     struct Model: Codable {
         let user: Account.User?
-        let detail: Detail
+        var detail: Detail
         
         var id: Int {
             return detail.id
@@ -61,6 +61,11 @@ extension Record {
         
         var isEmpty: Bool {
             return user == nil && detail.isEmtpy
+        }
+        
+        mutating func changeCoordinate(with newLocation: CLLocationCoordinate2D) {
+            detail.latitude = newLocation.latitude
+            detail.longitude = newLocation.longitude
         }
     }
     
@@ -102,6 +107,12 @@ extension Record {
         var isEmtpy: Bool {
             return id == -1
         }
+    }
+}
+
+extension Record.Detail: Equatable {
+    static func == (lhs: Record.Detail, rhs: Record.Detail) -> Bool {
+        return lhs.id == rhs.id
     }
 }
 

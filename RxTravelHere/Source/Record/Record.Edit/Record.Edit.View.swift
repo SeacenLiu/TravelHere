@@ -20,7 +20,7 @@ extension Record.Edit {
         private let _disposeBag = DisposeBag()
         fileprivate var _editView: EditView { return view as! EditView }
         override func loadView() { view = EditView.nibView() }
-        private lazy var _viewModel = ViewModel(input: (
+        lazy var viewModel = ViewModel(input: (
             text: self._editView.textView.rx.text.orEmpty.asDriver(),
             img: Observable.merge(
                 self._editView.imgBtn.rx.tap.asObservable(),
@@ -70,20 +70,20 @@ extension Record.Edit.View {
     }
     
     private func bindingViewModel() {
-        _viewModel.typeData
+        viewModel.typeData
             .drive(_editView.templateView.rx.items(
                 cellIdentifier: ShapeTypeCell.reuseIdentifier,
                 cellType: ShapeTypeCell.self)) { (row, vm, cell) in
                     cell.config(with: vm)
         }.disposed(by: _disposeBag)
         
-        _viewModel.publishEnable
+        viewModel.publishEnable
             .drive(_editView.publishBtn.rx.isEnabled)
             .disposed(by: _disposeBag)
         
-        _viewModel.publishResult.drive(rx.handlePublish).disposed(by: _disposeBag)
+        viewModel.publishResult.drive(rx.handlePublish).disposed(by: _disposeBag)
         
-        _viewModel.image.drive(rx.image).disposed(by: _disposeBag)
+        viewModel.image.drive(rx.image).disposed(by: _disposeBag)
     }
 }
 

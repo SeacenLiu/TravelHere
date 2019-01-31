@@ -13,12 +13,16 @@ import Moya
 import SVProgressHUD
 
 extension Record.Edit {
-    struct Result {
+    struct Result: Equatable {
         let model: Record.Detail
         let success: Bool
         
         static var empty: Result {
             return Result(model: .empty, success: false)
+        }
+        
+        static func == (lhs: Record.Edit.Result, rhs: Record.Edit.Result) -> Bool {
+            return lhs.model == rhs.model
         }
     }
     
@@ -29,6 +33,9 @@ extension Record.Edit {
         let image: Driver<UIImage>
         let typeData: Driver<[ShapeTypeViewModel]>
         let publishEnable: Driver<Bool>
+        let publishSubject = PublishSubject<Record.Model>()
+        
+        private let _disposeBag = DisposeBag()
         
         init(input: (text: Driver<String>, img: Driver<UIImage?>, type: Driver<Int>, location: Driver<SearchResult>, doneTap: Signal<Void>)) {
             
@@ -65,15 +72,19 @@ extension Record.Edit {
                                 messageImage: content.img,
                                 messageAddress: content.location.address))
                             .map(NetworkResponse<Record.Detail>.self)
-                            .do(onSuccess: { _ in
-                                // TODO: - 通知地图和AR模块增加留言
-                            })
                             .map { Result(model: $0.data, success: $0.code == .success) }
                             .asDriver(onErrorJustReturn: .empty)
                     case .failure:
                         return .just(.empty)
                     }
             }
+            
+            publishResult
+                .asObservable()
+                .filter { $0 != .empty }
+                .map { Record.Model.myRecordModel(with: $0.model) }
+                .bind(to: publishSubject.asObserver())
+                .disposed(by: _disposeBag)
         }
     }
     
