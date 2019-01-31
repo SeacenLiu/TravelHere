@@ -16,7 +16,7 @@ class THRedPointManager {
     
     private init() { }
     
-    var unreadDriver: Observable<[Int]> {
+    var unread: Observable<[Int]> {
         return unreadSubject.asObservable()
     }
     var unreadArray: [Int] {
@@ -53,6 +53,7 @@ class THRedPointManager {
         // 点击进去 根据 CommentId 去除小红点
         var unreadInteractions = unreadArray
         unreadInteractions = unreadInteractions.filter {$0 != cid}
+        unreadSubject.onNext(unreadInteractions)
         // 保存
         saveFile(with: unreadInteractions)
         completeHandler?()

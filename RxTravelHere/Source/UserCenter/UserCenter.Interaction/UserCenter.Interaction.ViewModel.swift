@@ -22,6 +22,7 @@ extension UserCenter.Interaction {
         private let _count = 20
         private var _loadData = PublishSubject<Int>()
         private var _dataArray = [Model]()
+        private let _disposeBag = DisposeBag()
         
         init() {
             let provider = MoyaProvider<NetworkTarget>()
@@ -51,6 +52,15 @@ extension UserCenter.Interaction {
                         return self._dataArray
                     })
                 }.asDriver(onErrorJustReturn: self._dataArray)
+            
+            // 有新消息之后需要重新加载
+            // FIXME: - 其实我需要一个 Model
+            // 后台 RabbitMQ 那里返回的东西需要重新商定才可继续优化
+            THRedPointManager.shared.newComment
+                .asDriver(onErrorJustReturn: .empty)
+                .drive(onNext: { [unowned self] _ in
+                self.reloadData()
+            }).disposed(by: _disposeBag)
         }
         
         func reloadData() {
@@ -69,6 +79,11 @@ extension UserCenter.Interaction {
             return Record.Show.ViewModel(with: recordId)
         }
         
+        public func readRecord(at indexPath: IndexPath, complete: (()->())? = nil) {
+            let cid = _dataArray[indexPath.row].commentId
+            THRedPointManager.shared.readComment(cid: cid, completeHandler: complete)
+        }
+ 
         deinit {
             log("UserCenter.Interaction.ViewModel deinit.")
         }

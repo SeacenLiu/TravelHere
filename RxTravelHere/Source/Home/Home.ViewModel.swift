@@ -23,7 +23,6 @@ extension Home {
     }
     
     final class ViewModel {
-        
         // Output
         private var _showRecord: Driver<MapShowResult>?
         var showRecord: Driver<MapShowResult> {
@@ -34,8 +33,8 @@ extension Home {
             return _refreshEnableSubject
                 .asObservable().asDriver(onErrorJustReturn: false)
         }
-        
-        // Input
+        let redPoint = THRedPointManager.shared.unread
+            .map { $0.isEmpty }.asDriver(onErrorJustReturn: true)
         let avatar: Driver<UIImage>
         
         private let _disposeBag = DisposeBag()
@@ -88,7 +87,7 @@ extension Home {
                                     longitude: $0.detail.longitude
                                 )
                             }
-                        }.debug("record")
+                        }
                         .map({ [unowned self] (annotations) -> MapShowResult in
                             defer { self.curAnnotations = annotations}
                             if annotations.isEmpty {

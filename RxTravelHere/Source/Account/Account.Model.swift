@@ -57,5 +57,13 @@ extension Account {
         static var empty: User {
             return User(userId: "-1", userNickname: "", userAvatar: nil)
         }
+        
+        override func isEqual(_ object: Any?) -> Bool {
+            if let other = object as? User {
+                return userId == other.userId
+            } else {
+                return super.isEqual(object)
+            }
+        }
     }
 }

@@ -29,4 +29,8 @@ extension UserCenter.Interaction.Model: Equatable {
     }
 }
 
-extension UserCenter.Interaction.Model: InteractionRepresentable {}
+extension UserCenter.Interaction.Model: InteractionRepresentable {
+    var isHideRedPoint: Bool {
+        return THRedPointManager.shared.isUnreadComment(cid: commentId)
+    }
+}

@@ -13,6 +13,7 @@ protocol InteractionRepresentable {
     var userNickname: String {get}
     var messageAddress: String {get}
     var commentReplyContent: String? {get}
+    var isHideRedPoint: Bool { get }
     var status: Int { get }
 }
 
@@ -60,9 +61,7 @@ class InteractionCell: UITableViewCell {
             replyBottom.constant = 0
             bgView.isHidden = true
         }
-        
-        // TODO: - 设置小红点
-        //            setHiddenRedPoint(value: THRedPointManager.shared.isUnreadComment(cid: model.commentId))
+        setHiddenRedPoint(value: vm.isHideRedPoint)
     }
     
     override func awakeFromNib() {

@@ -50,6 +50,13 @@ extension UserCenter.Interaction.View {
         
         tableView.rx.itemSelected.subscribe(onNext: { [unowned self] indexPath in
             self.tableView.deselectRow(at: indexPath, animated: true)
+            // 标记小红点
+            self._viewModel.readRecord(at: indexPath) {
+                if let cell = self.tableView.cellForRow(at: indexPath) as? InteractionCell {
+                    cell.setHiddenRedPoint(value: true)
+                }
+            }
+            // 跳转
             let vm = self._viewModel.getRecordShowViewModel(with: indexPath)
             let showView = Record.Show.View(with: vm)
             self.navigationController?.pushViewController(showView, animated: true)

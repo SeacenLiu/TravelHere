@@ -68,16 +68,7 @@ extension Home.View {
         
         mapView.rx.setDelegate(self).disposed(by: _disposeBag)
 
-        _viewModel.avatar
-            .drive(_homeView.userBtn.rx.image(for: .normal))
-            .disposed(by: _disposeBag)
-        
-        _viewModel.showRecord
-            .drive(rx.homeShowArround)
-            .disposed(by: _disposeBag)
-        
-        _viewModel.refreshEnable
-            .drive(_homeView.refreshBtn.rx.isEnabled).disposed(by: _disposeBag)
+        bindingViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,6 +79,21 @@ extension Home.View {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         closeLocation()
+    }
+    
+    func bindingViewModel() {
+        _viewModel.avatar
+            .drive(_homeView.userBtn.rx.image(for: .normal))
+            .disposed(by: _disposeBag)
+        _viewModel.showRecord
+            .drive(rx.homeShowArround)
+            .disposed(by: _disposeBag)
+        _viewModel.refreshEnable
+            .drive(_homeView.refreshBtn.rx.isEnabled)
+            .disposed(by: _disposeBag)
+        _viewModel.redPoint
+            .drive(_homeView.redPoint.rx.isHidden)
+            .disposed(by: _disposeBag)
     }
     
     func setupUI() {

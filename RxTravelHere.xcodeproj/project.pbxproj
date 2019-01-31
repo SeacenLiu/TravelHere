@@ -139,6 +139,7 @@
 		14E2554F21FFDD8800C83902 /* ActionAlertControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2554E21FFDD8800C83902 /* ActionAlertControl.swift */; };
 		14E25552220139FE00C83902 /* RabbitMQManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E25551220139FE00C83902 /* RabbitMQManager.swift */; };
 		14E2555422013DF700C83902 /* THRedPointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2555322013DF700C83902 /* THRedPointManager.swift */; };
+		14E2559122032F0F00C83902 /* LPSliderView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2559022032F0F00C83902 /* LPSliderView+Rx.swift */; };
 		14ED87DD21C8F71A0019F861 /* MJRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED87DC21C8F71A0019F861 /* MJRefresh+Rx.swift */; };
 		14ED87E021CB3DCB0019F861 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED87DF21CB3DCB0019F861 /* UIViewController+Rx.swift */; };
 		6651C8CDC1021B3CDEEFC508 /* Pods_RxTravelHere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E8D2174BF8E6DCAA4DE9F1 /* Pods_RxTravelHere.framework */; };
@@ -304,6 +305,7 @@
 		14E2554E21FFDD8800C83902 /* ActionAlertControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionAlertControl.swift; sourceTree = "<group>"; };
 		14E25551220139FE00C83902 /* RabbitMQManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RabbitMQManager.swift; sourceTree = "<group>"; };
 		14E2555322013DF700C83902 /* THRedPointManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THRedPointManager.swift; sourceTree = "<group>"; };
+		14E2559022032F0F00C83902 /* LPSliderView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LPSliderView+Rx.swift"; sourceTree = "<group>"; };
 		14ED87DC21C8F71A0019F861 /* MJRefresh+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefresh+Rx.swift"; sourceTree = "<group>"; };
 		14ED87DF21CB3DCB0019F861 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		3A662F8E49B5C849B1E7545A /* Pods-RxTravelHere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxTravelHere.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxTravelHere/Pods-RxTravelHere.release.xcconfig"; sourceTree = "<group>"; };
@@ -669,6 +671,7 @@
 			children = (
 				14590E3821C7313400843EBA /* LPSliderView.swift */,
 				14590E3921C7313400843EBA /* RedPointView.swift */,
+				14E2559022032F0F00C83902 /* LPSliderView+Rx.swift */,
 			);
 			path = SliderView;
 			sourceTree = "<group>";
@@ -1097,6 +1100,7 @@
 				14590E3A21C7313400843EBA /* LPSliderView.swift in Sources */,
 				146A6C7221BA93950066732C /* AnnotationView.swift in Sources */,
 				142A689321D26ADA00221926 /* Notification+Ex.swift in Sources */,
+				14E2559122032F0F00C83902 /* LPSliderView+Rx.swift in Sources */,
 				1428893C21B586910057F79E /* ActionSheetControl.swift in Sources */,
 				1470EEFB21DCEABB00550B30 /* SCTextNode.swift in Sources */,
 				1495D49E21D4CABF00EE506F /* THInputView+Rx.swift in Sources */,

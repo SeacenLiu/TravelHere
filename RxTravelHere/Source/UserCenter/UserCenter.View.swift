@@ -35,15 +35,7 @@ extension UserCenter.View {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
-        _viewModel.avatarImg
-            .drive(_userCenterView.avatarImg.rx.image)
-            .disposed(by: _disposeBag)
-        
-        _viewModel.name
-            .drive(_userCenterView.nameLb.rx.text)
-            .disposed(by: _disposeBag)
-        
+        bindingViewModel()
         _userCenterView.userBtn.rx.tap.subscribe(onNext: { [unowned self] _ in
             let v = UserCenter.Setting.View()
             self.navigationController?.pushViewController(v, animated: true)
@@ -52,6 +44,18 @@ extension UserCenter.View {
         _userCenterView.closeBtn.rx.tap
             .bind(to: rx.dismissAction)
         .disposed(by: _disposeBag)
+    }
+    
+    func bindingViewModel() {
+        _viewModel.avatarImg
+            .drive(_userCenterView.avatarImg.rx.image)
+            .disposed(by: _disposeBag)
+        _viewModel.name
+            .drive(_userCenterView.nameLb.rx.text)
+            .disposed(by: _disposeBag)
+        _viewModel.redPoints
+            .drive(_userCenterView.sliderView.rx.redPoints)
+            .disposed(by: _disposeBag)
     }
     
     func setupUI() {
@@ -69,8 +73,6 @@ extension UserCenter.View {
             contentView.sliderHeight = 2
             contentView.titles = ["我的留言", "评论互动"]
             contentView.contentViews = [myRecordView.view, interactionView.view]
-            //        let count = THRedPointManager.shared.unreadInteractions.count
-            //        contentView.redPoints = [0, count]
         }
     }
 }
