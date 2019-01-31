@@ -165,7 +165,10 @@ extension Record.Show.View: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let header = ImageHeadView.load(with: tableView)
-            _viewModel.headImage.drive(header.imageView.rx.image).disposed(by: _disposeBag)
+            // FIXME: - 绑定位置奇特
+            _viewModel.headImage
+                .drive(header.imageView.rx.image)
+                .disposed(by: _disposeBag)
             return header
         } else {
             return CutView.load(with: tableView)

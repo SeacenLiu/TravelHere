@@ -11,7 +11,7 @@ import Foundation
 class RabbitMQManager {
     static let shared = RabbitMQManager()
     
-    private let uri = "amqp://guest:guest@119.23.47.182"//"amqp://guest:guest@116.196.113.170"
+    private let uri = "amqp://guest:guest@119.23.47.182"
     
     private init() {}
     

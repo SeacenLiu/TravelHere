@@ -22,8 +22,6 @@ class ImageHeadView: UITableViewHeaderFooterView {
         tableView.register(ImageHeadView.self, forHeaderFooterViewReuseIdentifier: self.reuseIdentifier)
     }
     
-    private let limitOffsetY: CGFloat = -150
-    
     static func change(with scrollView: UIScrollView, section: Int) {
         guard let v = scrollView as? UITableView,
             let head = v.headerView(forSection: section) as? ImageHeadView else {
@@ -33,6 +31,7 @@ class ImageHeadView: UITableViewHeaderFooterView {
     }
     
     func change(with scrollView: UIScrollView) {
+        let limitOffsetY: CGFloat = -150
         let offsetY = scrollView.contentOffset.y
         let imageHeight = ImageHeadView.headerHeight(with: scrollView)
         // 上拉不处理

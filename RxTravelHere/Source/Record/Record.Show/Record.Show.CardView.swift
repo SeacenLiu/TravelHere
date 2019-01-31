@@ -18,7 +18,10 @@ extension Record.Show {
         private let _disposeBag = DisposeBag()
         private var _bindingBag: DisposeBag?
         
+        private var _viewModel: ViewModel?
+        
         func config(with vm: ViewModel) {
+            _viewModel = vm
             // Binding !!!
             _bindingBag = DisposeBag()
             guard let disposeBag = _bindingBag else { fatalError("_bindingBag 错误.") }
@@ -38,9 +41,7 @@ extension Record.Show {
             vm.refreshStatus
                 .drive(tableView.rx.mj_refreshStatus)
                 .disposed(by: disposeBag)
-            vm.headImage
-                .drive(headImageView.rx.image)
-                .disposed(by: disposeBag)
+            // 图片在后面代理中绑定
         }
         
         init() {
@@ -73,7 +74,6 @@ extension Record.Show {
         } )
         
         // MARK: - UI Element
-        lazy var headImageView = UIImageView(image: UIImage(named: "test_head_img"))
         fileprivate lazy var tableView = UITableView(style: .grouped) {
             ImageHeadView.registered(by: $0)
             CutView.registered(by: $0)
@@ -174,8 +174,11 @@ extension Record.Show.CardView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let header = ImageHeadView.load(with: tableView)
-            // FIXME: - 无法修改图片 frame（无效）
-            header.imageView = headImageView
+            // FIXME: - 绑定位置奇特
+            _viewModel?.headImage
+                .drive(header.imageView.rx.image)
+                .disposed(by: _bindingBag ?? _disposeBag)
+            // 使frame无效代码: header.imageView = headImageView
             return header
         } else {
             return CutView.load(with: tableView)
@@ -240,8 +243,6 @@ extension Reactive where Base: Record.Show.CardView {
             if let head = tv.headerView(forSection: 0) as? ImageHeadView {
                 head.change(with: tv)
             }
-            log(v.headImageView.frame)
-//            ImageHeadView.change(with: v.tableView, section: 0)
             }.asObserver()
     }
 }
