@@ -26,6 +26,10 @@ class THRedPointManager {
         let array = self.getDataFromFile() ?? [Int]()
         return BehaviorSubject<[Int]>(value: array)
     }()
+    private let newCommentSubject = PublishSubject<Comment.Detail>()
+    public var newComment: Observable<Comment.Detail> {
+        return newCommentSubject.asObservable()
+    }
     
     public func addComment(model: Comment.Detail) {
         // 防止重复
@@ -40,6 +44,9 @@ class THRedPointManager {
         unreadSubject.onNext(unreadInteractions)
         // 保存
         saveFile(with: unreadInteractions)
+        
+        // 分发新消息
+        newCommentSubject.onNext(model)
     }
     
     public func readComment(cid: Int, completeHandler: (()->())?) {

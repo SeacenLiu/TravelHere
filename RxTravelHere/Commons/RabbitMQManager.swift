@@ -11,11 +11,16 @@ import Foundation
 class RabbitMQManager {
     static let shared = RabbitMQManager()
     
-    private let uri = "amqp://guest:guest@116.196.113.170"
+    private let uri = "amqp://guest:guest@119.23.47.182"//"amqp://guest:guest@116.196.113.170"
     
     private init() {}
     
-    var connection: RMQConnection?
+    private var connection: RMQConnection?
+    
+    public func createCommentConnection(with userId: String) {
+        let queue = "comment:\(userId)"
+        creatNewConnection(queue: queue)
+    }
     
     public func creatNewConnection(queue: String) {
         if let conn = connection {
@@ -42,6 +47,13 @@ class RabbitMQManager {
                 log("信息不合法")
             }
         })
+    }
+    
+    public func cutConnection() {
+        defer { connection = nil }
+        if let conn = connection {
+            conn.close()
+        }
     }
     
 }

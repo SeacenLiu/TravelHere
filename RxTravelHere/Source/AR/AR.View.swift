@@ -63,6 +63,7 @@ extension AR {
         }
         private lazy var nodeTap = UITapGestureRecognizer(target: self, action: #selector(selectNodeTapAction(gesture:)))
         private var selectNode: THShowNode?
+        private var newCloudNode: THCloudNode?
         
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -96,12 +97,16 @@ extension AR {
 extension AR.View {
     private func bindingViewModel() {
         arView.session.rx.cameraDidChangeNormal
-            .withLatestFrom(_viewModel.nodes)
+            .withLatestFrom(_viewModel.arroundNodes)
             .drive(onNext: { [unowned self] nodes in
                 log("加载...当前:\n\(nodes)")
                 self.setupARNode(with: nodes)
             })
             .disposed(by: _dispoeBag)
+        
+        _viewModel.newClound.drive(onNext: { [unowned self] vm in
+            self.createCloud(with: vm)
+        }).disposed(by: _dispoeBag)
     }
     
     private func setupUI() {
@@ -172,12 +177,13 @@ private extension AR.View {
             dismissTap.isEnabled = true
             
             // 如果是新消息云 需要移除
-//            if let cloud = node as? THCloudNode {
-//                THRedPointManager.shared.readComment(cid: cloud.commentModel.id) {
-//                    self.removeCloud()
-//                    self.selectNode = nil
-//                }
-//            }
+            if let cloud = node as? THCloudNode {
+                THRedPointManager.shared.readComment(cid: cloud.commentDetail.id) {
+                    [unowned self] in
+                    self.removeCloud()
+                    self.selectNode = nil
+                }
+            }
         }
     }
     
@@ -215,6 +221,43 @@ extension AR.View {
 // MARK: - AR part
 @available(iOS 11.0, *)
 extension AR.View: ARSessionDelegate {
+    /// 显示新消息云
+    func createCloud(with vm: CloudNodeModel) {
+        removeCloud()
+        
+        let node = THCloudNode(with: vm)
+        if let currentFrame = arView.session.currentFrame {
+            let cameratransform = SCNMatrix4(currentFrame.camera.transform)
+            let originTransform = node.transform
+            node.transform = cameratransform
+            arView.scene.rootNode.addChildNode(node)
+            var translation = matrix_identity_float4x4
+            translation.columns.3.z = -1
+            let newTransform = SCNMatrix4Mult(SCNMatrix4(translation), cameratransform)
+            node.transform = newTransform
+            var position = node.position
+            node.transform = originTransform
+            position.y = 0.4
+            node.position = position
+        }
+        newCloudNode = node
+        
+        // 直接添加
+        arView.scene.rootNode.addChildNode(node)
+        
+        // 震动一下
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+        // 动画
+        node.showAnimate()
+    }
+    
+    func removeCloud() {
+        if newCloudNode != nil {
+            newCloudNode?.removeFromParentNode()
+            newCloudNode = nil
+        }
+    }
+    
     /// 发射模型
     func shotNode(with node: THShowNode) {
         if let currentFrame = arView.session.currentFrame {

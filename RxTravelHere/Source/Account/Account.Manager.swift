@@ -57,13 +57,16 @@ extension Account {
             // 持久化数据
             UserDefaults.account = model
             UserDefaults.standard.synchronize()
+            // 开启 RabbitMQ
+            if let id = user?.userId {
+                RabbitMQManager.shared.createCommentConnection(with: id)
+            }
         }
         
         /// 自动登录
         public func autoLogin() {
             if let model = UserDefaults.account {
-                token = model.token
-                user = model.user
+                login(with: model)
             }
         }
         
@@ -73,6 +76,7 @@ extension Account {
             user = nil
             UserDefaults.removeUserInfo()
             // TODO: - 后续还需要对小红点有所调整
+            RabbitMQManager.shared.cutConnection()
         }
         
         /// 修改信息

@@ -8,14 +8,28 @@
 
 import SceneKit
 
+struct CloudNodeModel {
+    let record: Record.Model
+    let comment: Comment.Detail
+    
+    static var empty: CloudNodeModel {
+        return CloudNodeModel(record: .empty, comment: .empty)
+    }
+}
+
 class THCloudNode: THShowNode {
     
-    let commentModel: Comment.Model
+    let commentDetail: Comment.Detail
     
-    init(with model: Record.Model, comment: Comment.Model) {
-        self.commentModel = comment
+    init(with vm: CloudNodeModel) {
+        self.commentDetail = vm.comment
+        super.init(with: vm.record)
+        setupUI()
+    }
+    
+    init(with model: Record.Model, commentDetail: Comment.Detail) {
+        self.commentDetail = commentDetail
         super.init(with: model)
-        
         setupUI()
     }
     
@@ -36,12 +50,12 @@ class THCloudNode: THShowNode {
         // 添加文字
         var string = ""
         var contentString = ""
-        if let reply = commentModel.detail.reply {
+        if let reply = commentDetail.reply {
             contentString = reply
             string = "新回复"
         }
         else {
-            contentString = commentModel.text
+            contentString = commentDetail.text
             string = "新评论"
         }
         
